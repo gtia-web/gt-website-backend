@@ -41,15 +41,13 @@ authMiddleware.isVP = async (req, res, next) => {
 
         return res.json({
             runtimeErrorOccurred: true,
-            errorMessage: "Current User does not have permission to use operation",
-            exist: false
+            errorMessage: "Current User does not have permission to use operation"
         });
 
     } catch (err) {
         return res.json({
             runtimeErrorOccurred: true,
-            errorMessage: err,
-            exist: false
+            errorMessage: err
         });
     }
 }
