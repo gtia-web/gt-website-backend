@@ -9,5 +9,19 @@ function ArrayIntersect(arr1, arr2) {
     return false;
 }
 
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next()
+    }
+  
+    res.redirect('/user/login')
+  }
+  
+  function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return res.redirect('/')
+    }
+    next()
+  }
 
-module.exports = {ArrayIntersect};
+module.exports = {ArrayIntersect, checkNotAuthenticated, checkAuthenticated};

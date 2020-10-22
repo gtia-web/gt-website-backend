@@ -10,12 +10,13 @@ const passport = require('passport')
 const passportLocal = require('passport-local')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const utilityFunctions = require("./utilityMethods");
 
 
 //--------------------Start of Middleware----------------------//
 app.use(bodyParser.json());
-
-//app.use(bodyParser.urlencoded({extended: true}));
+app.set('view-engine', 'ejs')
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
@@ -37,8 +38,13 @@ require('./passportConfig')(passport);
 
 //ROUTES
 
-app.use('/User/Manage', require('./routes/Users/ManageUser'));
-app.use('/User/Get', require('./routes/Users/GetUser'));
+app.use('/user', require('./routes/user'));
+app.use('/Users/GetUser', require('./routes/Users/GetUser'));
+app.use('/signups', require('./routes/signups'));
+
+app.get('/', utilityFunctions.checkAuthenticated, (req, res) => {
+    res.render('index.ejs', { firstname: req.user.FirstName })
+})
 
 //Connect to DB
 mongoose.connect(

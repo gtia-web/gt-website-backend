@@ -22,6 +22,10 @@ const MemberProfileSchema = mongoose.Schema({
         type: String,
         default: ""
     },
+    Email: {
+        type: String,
+        required: true
+    },
     Committee: {
         type: String,
         required: true

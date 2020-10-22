@@ -1,93 +1,39 @@
-const { Console } = require('console');
-const utilityFunctions = require("../../utilityMethods");
+const utilityFunctions = require("../utilityMethods");
 const express = require('express');
 const router = express.Router();
-const UserProfile = require('../../models/UserProfile');
-const Password = require('../../models/HashedPassword');
+const UserProfile = require('../models/UserProfile');
+const Password = require('../models/HashedPassword');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
-
-require('dotenv/config');
 HashCycles = 10;
+  
+router.get('/login', utilityFunctions.checkNotAuthenticated, (req, res) => {
+    res.render('login.ejs')
+})
 
-/**router.get('/login2', (req, res) => {
-    console.log(req.body)
-    passport.authenticate('local', (err, user, info) => {
-        console.log(user)
-        if (err) throw err
-        if (!user) res.send("No User Exists")
-        else {
-            req.logIn(user, err => {
-                if (err) throw err
-                res.send('Successfully Authenticated')
-                //console.log
-            })
-        }
-    })
-})**/
-
-router.get('/login2', passport.authenticate('local', {
-    successRedirect: "/User/Manage/loginSuccessful",
-    failureRedirect: "/User/Manage/loginFailed"
+router.post('/login', utilityFunctions.checkNotAuthenticated, passport.authenticate('local', {
+    successRedirect: "/",
+    failureRedirect: "/user/login",
+    failureFlash: true
 }))
 
-router.get('/loginSuccessful', async (req, res) => {
-    res.json({
-        runtimeErrorOccurred: false,
-        loginStatus: true
-    })
+router.get('/register', utilityFunctions.checkNotAuthenticated, (req, res) => {
+    res.render('register.ejs')
 })
 
-router.get('/loginFailed', async (req, res) => {
-    res.json({
-        runtimeErrorOccurred: false,
-        loginStatus: false
-    })
+router.post('/logout', (req, res) => {
+    req.logOut()
+    res.redirect('/user/login')
 })
 
+router.get('/register', async (req, res) => {
+    res.render('register.ejs')
+})
 
-router.get('/login', async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
-        usersWithUsername = await UserProfile.find({
-            Username: req.body.username
-        });
-        if (usersWithUsername.length == 0) {
-            res.json({
-                runtimeErrorOccurred: false,
-                exist: false
-            });
-        } else { 
-            hashedPassord = await Password.findById(usersWithUsername[0].HashedPassword);
-            
-            if (await bcrypt.compare(req.body.password, hashedPassord.HashedPassword)) {
-                res.json({
-                    runtimeErrorOccurred: false,
-                    exist: true,
-                    passwordMatch: true,
-                    userid: usersWithUsername[0]._id
-                });
-            } else {
-                res.json({
-                    runtimeErrorOccurred: false,
-                    exist: true,
-                    passwordMatch: false
-                });
-            }            
-        }
-    } catch(err) {
-        res.json({
-            runtimeErrorOccurred: true,
-            errorMessage: err,
-            exist: false,
-            passwordMatch: false
-        });
-    }
-});
-
-router.post('/newUser', async (req, res) => {
-    try {
-        usersWithUsername = await UserProfile.find({
+        usersWithUsername = await UserProfile.findOne({
             Username: req.body.username
         })
     } catch(err) {
@@ -98,12 +44,8 @@ router.post('/newUser', async (req, res) => {
         });
     }     
     
-    if (usersWithUsername.length > 0){
-        res.json({
-            pendingApproval: usersWithUsername[0].PendingApproval,
-            existAlready: true,
-            runtimeErrorOccurred: false,
-        });
+    if (usersWithUsername != null){
+        res.redirect('/user/register')
     } else {
 
         const password = new Password({
@@ -114,28 +56,14 @@ router.post('/newUser', async (req, res) => {
             Username: req.body.username,
             FirstName: req.body.firstname,
             LastName: req.body.lastname,
+            Email: req.body.email,
             MiddleName: req.body.middlename,
             Committee: req.body.committee,
             HashedPassword: (await password.save())._id
         });
 
-        try{
-            const UpdateResponse = await newUserRequest.save();
-            res.json({
-                userID: UpdateResponse._id,
-                pendingApproval: true,
-                runtimeErrorOccurred: false,
-                existAlready: false
-            });
-        } catch(err) {
-            res.json({
-                userID: UpdateResponse._id,
-                pendingApproval: true,
-                runtimeErrorOccurred: true,
-                errorMessage: err,
-                existAlready: false
-            });
-        }
+        const UpdateResponse = await newUserRequest.save();
+        res.redirect('/user/login')
     }
 });
 
@@ -219,5 +147,4 @@ router.patch('/changePermission', async (req, res) => {
         } 
     }
 });
-
 module.exports = router;
