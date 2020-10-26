@@ -3,11 +3,12 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const http = require('http').createServer(app)
+const io = require('socket.io')(http)
 
 require('dotenv/config');
 
 const passport = require('passport')
-const passportLocal = require('passport-local')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const utilityFunctions = require("./utilityMethods");
@@ -16,7 +17,7 @@ const utilityFunctions = require("./utilityMethods");
 //--------------------Start of Middleware----------------------//
 app.use(bodyParser.json());
 app.set('view-engine', 'ejs')
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
@@ -43,7 +44,7 @@ app.use('/Users/GetUser', require('./routes/Users/GetUser'));
 app.use('/signups', require('./routes/signups'));
 
 app.get('/', utilityFunctions.checkAuthenticated, (req, res) => {
-    res.render('index.ejs', { firstname: req.user.FirstName })
+    res.render('index.ejs')
 })
 
 //Connect to DB
@@ -54,4 +55,14 @@ mongoose.connect(
     () => { console.log('Connected to DB!')
 });
 
-app.listen(3000);
+io.on('connection', socket => {
+    //console.log('a user connected!')
+    socket.on('update-sheet-availability', () => {
+        //console.log("selected")
+    })
+    socket.on('disconnect', () => {
+      //console.log('user disconnected!')
+    })
+})
+
+http.listen(3000, () => console.log('The app is running on localhost:3000'));

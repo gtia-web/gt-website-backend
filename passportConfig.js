@@ -12,8 +12,7 @@ module.exports = function(passport) {
             });
 
             if (user != null){
-                hashedPassord = await Password.findById(user.HashedPassword);
-                bcrypt.compare(password, hashedPassord.HashedPassword, (err, res) => {
+                bcrypt.compare(password, user.HashedPassword, (err, res) => {
                     if (res == true) {
                         return done(null, user)
                     } else {

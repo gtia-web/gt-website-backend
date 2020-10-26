@@ -17,7 +17,11 @@ const SignupSheetReponsesSchema = mongoose.Schema({
         type: Date
     },
     Fields: {
-        type: [mongoose.Schema.Types.Mixed]
+        type: [String]
+    },
+    UsesTimeSlots: {
+        type: Boolean,
+        default: false
     }
 });
 

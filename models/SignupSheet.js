@@ -66,31 +66,16 @@ const SignupSheetSchema = mongoose.Schema({
                 type: String,
                 required: true
             },
-            ResponseType: {
-                type: String,
-                required: true
-            },  
             Required: {
                 type: Boolean,
                 required: true
-            },            
-            UsesTimeSlots: {
-                type: Boolean
-            },
-            AvailableTimeSlots: {
-                type: [{
-                    StartTime: {
-                        type: Date,
-                        required: true
-                    },
-                    EndTime: {
-                        type: Date,
-                        required: true
-                    }
-                }]
             }
         }]
-    }
+    },            
+    UsesTimeSlots: {
+        type: Boolean,
+        default: false
+    }    
 });
 
 module.exports = mongoose.model('SignupSheets', SignupSheetSchema);

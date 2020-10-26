@@ -48,9 +48,7 @@ router.post('/register', async (req, res) => {
         res.redirect('/user/register')
     } else {
 
-        const password = new Password({
-            HashedPassword: await bcrypt.hash(req.body.password, HashCycles)
-        })
+        const password = await bcrypt.hash(req.body.password, HashCycles)
 
         const newUserRequest = new UserProfile({
             Username: req.body.username,
@@ -59,7 +57,7 @@ router.post('/register', async (req, res) => {
             Email: req.body.email,
             MiddleName: req.body.middlename,
             Committee: req.body.committee,
-            HashedPassword: (await password.save())._id
+            HashedPassword: password
         });
 
         const UpdateResponse = await newUserRequest.save();
