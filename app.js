@@ -12,6 +12,7 @@ const passport = require('passport')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const utilityFunctions = require("./utilityMethods");
+const notification = require('./routes/notifications');
 
 
 //--------------------Start of Middleware----------------------//
@@ -40,7 +41,6 @@ require('./passportConfig')(passport);
 //ROUTES
 
 app.use('/user', require('./routes/user'));
-app.use('/Users/GetUser', require('./routes/Users/GetUser'));
 app.use('/signups', require('./routes/signups'));
 
 app.get('/', utilityFunctions.checkAuthenticated, (req, res) => {
@@ -65,4 +65,10 @@ io.on('connection', socket => {
     })
 })
 
+//Run Notification Email Update
+
+//setInterval(notification.EmailNotificationUpdate, parseInt(process.env.NOTIFICATION_UPDATE_INTERVAL));
+
+
 http.listen(3000, () => console.log('The app is running on localhost:3000'));
+

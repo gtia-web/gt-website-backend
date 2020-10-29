@@ -2,7 +2,6 @@ const utilityFunctions = require("../utilityMethods");
 const express = require('express');
 const router = express.Router();
 const UserProfile = require('../models/UserProfile');
-const Password = require('../models/HashedPassword');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
@@ -50,7 +49,7 @@ router.post('/register', async (req, res) => {
 
         const password = await bcrypt.hash(req.body.password, HashCycles)
 
-        const newUserRequest = new UserProfile({
+        new UserProfile({
             Username: req.body.username,
             FirstName: req.body.firstname,
             LastName: req.body.lastname,
@@ -58,9 +57,8 @@ router.post('/register', async (req, res) => {
             MiddleName: req.body.middlename,
             Committee: req.body.committee,
             HashedPassword: password
-        });
+        }).save();
 
-        const UpdateResponse = await newUserRequest.save();
         res.redirect('/user/login')
     }
 });

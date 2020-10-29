@@ -5,38 +5,41 @@ const UserProfile = require('../models/UserProfile');
 const SignupSheet = require('../models/SignupSheet');
 const SignupSheetResponse = require('../models/SignupSheetResponse');
 const TimeSlots = require('../models/TimeSlots');
+const PendingEmailNotification = require('../models/PendingEmailNotification')
 
 router.get('/active', utilityFunctions.checkAuthenticated, async (req, res) => {
     
-    activeSheets = await SignupSheet.find({NotCompleted: {$elemMatch:{ UserId: req.user._id }}});
-    
-    res.render('active-signups.ejs', {sheets: activeSheets})
+    activeSheets = await SignupSheet.find({NotCompleted: {$elemMatch:{ UserId: req.user._id }}}) 
+    res.render('signups/active-signups.ejs', {sheets: activeSheets})
 })
 
-router.post('/active/openForm', utilityFunctions.checkAuthenticated,  async (req, res) => {    //,
+router.post('/active', utilityFunctions.checkAuthenticated,  async (req, res) => { 
+
     form = await SignupSheet.findById(req.body.sheet_id)  
     timeSlots = await TimeSlots.find({
         AssociatedSignupSheet: req.body.sheet_id,
         IsUsed: false
     })    
     
-    res.render('active-signup-form.ejs', {
+    res.render('signups/active-signup-form.ejs', {
         form: form, 
         timeSlots: timeSlots
     })
 })
 
-router.post('/active/submitForm', utilityFunctions.checkAuthenticated, async (req, res) => { //
-    form = await SignupSheet.findById(req.body.sheet_id) 
+router.post('/active/submitForm', utilityFunctions.checkAuthenticated, async (req, res) => { 
     
+    form = await SignupSheet.findById(req.body.sheet_id) 
     fieldsResponses = []
-    for (i = 0; i < form.Fields.length; i++) {
-        fieldsResponses.push(req.body.fields[i].value)
-    }    
+
+    if (form.hasOwnProperty("Fields")) {
+        form.Fields.forEach((f)  => fieldsResponses.push(req.body.fields[i].value))
+    }
 
     for (i = 0; i < form.NotCompleted.length; i++) {
         if (form.NotCompleted[i].UserId.toString() == req.user._id.toString()) {
             assignedDate = form.NotCompleted[i].DateSet
+            break
         }
     }
        
@@ -48,16 +51,15 @@ router.post('/active/submitForm', utilityFunctions.checkAuthenticated, async (re
         UsesTimeSlots: form.UsesTimeSlots,
     })).save();
 
-    if (form.UsesTimeSlots) {
+    if (form.UsesTimeSlots && req.body.hasOwnProperty("selected_slot_ids")) {
         selectedTimeSlots = req.body.selected_slot_ids
-
-        for (i =0; i < selectedTimeSlots.length; i++) {
-            await TimeSlots.updateMany({ _id: selectedTimeSlots[i]}, {
+        selectedTimeSlots.forEach(async slot => {
+            await TimeSlots.updateMany({ _id: slot}, {
                 IsUsed: true,
                 AssociatedUser: req.user._id,
                 AssociatedResponse: createdSignupSheetResponse._id
             })
-        }
+        });        
     }
 
         
@@ -70,7 +72,16 @@ router.post('/active/submitForm', utilityFunctions.checkAuthenticated, async (re
             DateCompleted: new Date()
         }}
     })
-    
+
+    await SignupSheet.updateOne({_id: req.body.sheet_id},
+        {$pull : {NotCompleted: { 
+            UserId: req.user._id
+        }}, 
+        $push : {Completed: { 
+            UserId: req.user._id,
+            DateCompleted: new Date()
+        }}
+    })    
      
     res.json({
         redirect: "/signups/active"
@@ -78,9 +89,79 @@ router.post('/active/submitForm', utilityFunctions.checkAuthenticated, async (re
 })
 
 router.get('/create', utilityFunctions.checkAuthenticated, async (req, res) => {
-    res.render('create-signup-form.ejs')
+    res.render('signups/create-signup-form.ejs')
 })
 
+router.post('/create', utilityFunctions.checkAuthenticated, async (req, res) => {
+    
+    fields = []
+    if (req.body.hasOwnProperty("fields")){
+        req.body.fields.forEach((f) => {
+            fields.push({
+                FieldName: f.field_name,
+                Required: f.isRequired
+            })
+        })
+    }
+
+    users = await UserProfile.find({})
+    ids = []
+    users.forEach((user) => {
+        ids.push({
+            UserId: user._id,
+            DateAsigned: new Date()
+        })
+    })
+
+    createdSignupSheet =  await (new SignupSheet({
+        Name: req.body.sheet_name,
+        Description: req.body.sheet_description,
+        CanViewResponses: ids,
+        CanFill: ids,
+        Completed: [],
+        NotCompleted: ids,
+        ExpiryDate: new Date(),
+        Fields: fields,
+        UsesTimeSlots: req.body.hasOwnProperty("time_slots") > 0
+    }).save());
+    
+    if (req.body.hasOwnProperty("time_slots")){
+        req.body.time_slots.forEach((slot) => { 
+            start = new Date(req.body.time_slots[i].start_time)
+            end = new Date(req.body.time_slots[i].end_time)
+            length = req.body.time_slots[i].time_slot_length
+            jobType = req.body.time_slots[i].job_type
+
+            j = 1
+            while(start.getTime() + j*length * 60000 <= end.getTime() + 1) {
+                await (new TimeSlots({
+                    JobType: jobType,
+                    StartTime: new Date(start.getTime() + (j-1)*length * 60000),
+                    EndTime: new Date(start.getTime() + (j)*length * 60000),
+                    AssociatedSignupSheet: createdSignupSheet._id,
+                    isUsed: false
+                }).save());
+                j++
+            }
+        })
+    }
+
+    res.json({
+        redirect: "/"
+    });
+})
+
+router.get('/view/mySignupSheets', utilityFunctions.checkAuthenticated, async (req, res) => {
+
+    mySignupSheets = await SignupSheet.find({CanViewResponses: {$elemMatch:{ UserId: req.user._id }}})
+    res.render('signups/view-my-signup-sheets.ejs', {sheets: mySignupSheets})
+})
+
+router.get('/view/myResponses', utilityFunctions.checkAuthenticated, async (req, res) => {
+
+    myResponses = await SignupSheetResponse.find({FilledBy: req.user._id })
+    res.render('signups/view-my-signup-sheets.ejs', {responses: myResponses})
+})
 
 //------------------------------------------------ for test ------------------------------------------/:
 
@@ -122,14 +203,23 @@ router.post('/newSheet', async (req, res) => {
 })
 
 router.post('/newSheet/raw', async (req, res) => {
-    users = await UserProfile.find({})
+    fields = []
+    for (i=0; i < req.body.fields.length; i++) {
+        fields.push({
+            FieldName: req.body.fields[i].field_name,
+            Required: req.body.fields[i].isRequired
+        })
+    }
+    
+    
+    /**users = await UserProfile.find({})
     ids = []
     for (i=0; i < users.length; i++) {
         ids.push({
             UserId: users[i]._id,
             DateAsigned: new Date()
         })
-    }
+    }*/
 
     createdSignupSheet =  await (new SignupSheet({
         Name: req.body.name,
@@ -138,8 +228,8 @@ router.post('/newSheet/raw', async (req, res) => {
         Completed: [],
         NotCompleted: ids,
         ExpiryDate: new Date(),
-        Fields: req.body.fields,
-        UsesTimeSlots: true
+        Fields: fields,
+        UsesTimeSlots: req.body.time_slots.length > 0
     }).save());
 
     timeSlots = []

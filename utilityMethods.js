@@ -24,4 +24,8 @@ function checkAuthenticated(req, res, next) {
     next()
   }
 
-module.exports = {ArrayIntersect, checkNotAuthenticated, checkAuthenticated};
+module.exports = {
+  ArrayIntersect, 
+  checkNotAuthenticated, 
+  checkAuthenticated
+};
