@@ -30,19 +30,12 @@ function getTransporter() {
 }
 
 function SendMain(mailOptions) {
-    /**var mailOptions = {
-        from: 'GTIA Website',
-        to: process.env.MAIN_EMAIL_USERNAME,
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
-    };*/
-
     getTransporter().sendMail(mailOptions, function(error, info){
-    if (error) {
-        console.log(error);
-    } else {
-        console.log('Email sent: ' + info.response);
-    }
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
     });
 }
 

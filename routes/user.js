@@ -1,35 +1,32 @@
-const utilityFunctions = require("../utilityMethods");
+require('dotenv/config');
+const authentication = require("../utility/authentication");
+const utility = require("../utility/utility");
 const express = require('express');
 const router = express.Router();
 const UserProfile = require('../models/UserProfile');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
-HashCycles = 10;
-  
-router.get('/login', utilityFunctions.checkNotAuthenticated, (req, res) => {
+HashCycles = parseInt(process.env.PASSWORD_HASHING_CYCLES);
+
+// Get login page
+router.get('/login', authentication.checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
 })
 
-router.post('/login', utilityFunctions.checkNotAuthenticated, passport.authenticate('local', {
+// Submit login information for login
+router.post('/login', authentication.checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: "/",
     failureRedirect: "/user/login",
     failureFlash: true
 }))
 
-router.get('/register', utilityFunctions.checkNotAuthenticated, (req, res) => {
+// Get register new account page
+router.get('/register', authentication.checkNotAuthenticated, (req, res) => {
     res.render('register.ejs')
 })
 
-router.post('/logout', (req, res) => {
-    req.logOut()
-    res.redirect('/user/login')
-})
-
-router.get('/register', async (req, res) => {
-    res.render('register.ejs')
-})
-
+// Submit new registration form
 router.post('/register', async (req, res) => {
     try {
         usersWithUsername = await UserProfile.findOne({
@@ -62,6 +59,12 @@ router.post('/register', async (req, res) => {
         res.redirect('/user/login')
     }
 });
+
+// Log out of user
+router.post('/logout', (req, res) => {
+    req.logOut()
+    res.redirect('/user/login')
+})
 
 canChangePermission = ["admin"]
 router.patch('/changePermission', async (req, res) => {
@@ -96,7 +99,7 @@ router.patch('/changePermission', async (req, res) => {
             OperationDenied: true,
             errorMessage: 'Current User DNE'
         });
-    }  else if (!utilityFunctions.ArrayIntersect(currUser.SpecialPermissions, canChangePermission)) {
+    }  else if (!utility.arrayIntersect(currUser.SpecialPermissions, canChangePermission)) {
         res.json({
             runtimeErrorOccurred: false,
             OperationDenied: true,

@@ -1,19 +1,21 @@
-const utilityFunctions = require("../utilityMethods");
+const authentication = require("../utility/authentication");
 const express = require('express');
 const router = express.Router();
 const UserProfile = require('../models/UserProfile');
 const SignupSheet = require('../models/SignupSheet');
 const SignupSheetResponse = require('../models/SignupSheetResponse');
 const TimeSlots = require('../models/TimeSlots');
-const PendingEmailNotification = require('../models/PendingEmailNotification')
+const utility = require("../utility/utility")
 
-router.get('/active', utilityFunctions.checkAuthenticated, async (req, res) => {
+// Route to get list of active sheets
+router.get('/active', authentication.checkAuthenticated, async (req, res) => {
     
     activeSheets = await SignupSheet.find({NotCompleted: {$elemMatch:{ UserId: req.user._id }}}) 
     res.render('signups/active-signups.ejs', {sheets: activeSheets})
 })
 
-router.post('/active', utilityFunctions.checkAuthenticated,  async (req, res) => { 
+// Route to get an active sheet
+router.post('/active', authentication.checkAuthenticated,  async (req, res) => { 
 
     form = await SignupSheet.findById(req.body.sheet_id)  
     timeSlots = await TimeSlots.find({
@@ -27,20 +29,23 @@ router.post('/active', utilityFunctions.checkAuthenticated,  async (req, res) =>
     })
 })
 
-router.post('/active/submitForm', utilityFunctions.checkAuthenticated, async (req, res) => { 
+//Route to submit a response to an active sheet
+router.post('/active/submitForm', authentication.checkAuthenticated, async (req, res) => { 
     
     form = await SignupSheet.findById(req.body.sheet_id) 
     fieldsResponses = []
 
     if (form.hasOwnProperty("Fields")) {
-        form.Fields.forEach((f)  => fieldsResponses.push(req.body.fields[i].value))
+        form.Fields.forEach((f)  => fieldsResponses.push(f.value))
     }
 
-    for (i = 0; i < form.NotCompleted.length; i++) {
-        if (form.NotCompleted[i].UserId.toString() == req.user._id.toString()) {
-            assignedDate = form.NotCompleted[i].DateSet
-            break
-        }
+    assignedDate = null
+    if (form.hasOwnProperty("NotCompleted")) {
+        form.NotCompleted.forEach((u)  => {
+            if (u.UserId.toString() == req.user._id.toString()) {
+                assignedDate = u.DateSet
+            }
+        })
     }
        
     createdSignupSheetResponse = await (new SignupSheetResponse({
@@ -53,7 +58,7 @@ router.post('/active/submitForm', utilityFunctions.checkAuthenticated, async (re
 
     if (form.UsesTimeSlots && req.body.hasOwnProperty("selected_slot_ids")) {
         selectedTimeSlots = req.body.selected_slot_ids
-        selectedTimeSlots.forEach(async slot => {
+        utility.asyncForEach(selectedTimeSlots, async (slot)=> {
             await TimeSlots.updateMany({ _id: slot}, {
                 IsUsed: true,
                 AssociatedUser: req.user._id,
@@ -88,11 +93,13 @@ router.post('/active/submitForm', utilityFunctions.checkAuthenticated, async (re
     });
 })
 
-router.get('/create', utilityFunctions.checkAuthenticated, async (req, res) => {
+//Route to get the create new sheet page
+router.get('/create', authentication.checkAuthenticated, async (req, res) => {
     res.render('signups/create-signup-form.ejs')
 })
 
-router.post('/create', utilityFunctions.checkAuthenticated, async (req, res) => {
+//Route to submit the created new sheet page
+router.post('/create', authentication.checkAuthenticated, async (req, res) => {
     
     fields = []
     if (req.body.hasOwnProperty("fields")){
@@ -122,26 +129,29 @@ router.post('/create', utilityFunctions.checkAuthenticated, async (req, res) => 
         NotCompleted: ids,
         ExpiryDate: new Date(),
         Fields: fields,
-        UsesTimeSlots: req.body.hasOwnProperty("time_slots") > 0
+        UsesTimeSlots: req.body.hasOwnProperty("time_slots") && req.body.time_slots.length > 0
     }).save());
     
     if (req.body.hasOwnProperty("time_slots")){
-        req.body.time_slots.forEach((slot) => { 
-            start = new Date(req.body.time_slots[i].start_time)
-            end = new Date(req.body.time_slots[i].end_time)
-            length = req.body.time_slots[i].time_slot_length
-            jobType = req.body.time_slots[i].job_type
+        
+        
+        utility.asyncForEach(req.body.time_slots, async (slot) => { 
+            start = new Date(slot.start_time)
+            end = new Date(slot.end_time)
+            length = slot.time_slot_length
+            jobType = slot.job_type
 
             j = 1
-            while(start.getTime() + j*length * 60000 <= end.getTime() + 1) {
-                await (new TimeSlots({
+
+            while(start.getTime() + j*length * 60000 <= end.getTime()) {
+                res = await (new TimeSlots({
                     JobType: jobType,
                     StartTime: new Date(start.getTime() + (j-1)*length * 60000),
-                    EndTime: new Date(start.getTime() + (j)*length * 60000),
+                    EndTime: new Date(start.getTime() + j*length * 60000),
                     AssociatedSignupSheet: createdSignupSheet._id,
                     isUsed: false
                 }).save());
-                j++
+                j++;
             }
         })
     }
@@ -151,19 +161,21 @@ router.post('/create', utilityFunctions.checkAuthenticated, async (req, res) => 
     });
 })
 
-router.get('/view/mySignupSheets', utilityFunctions.checkAuthenticated, async (req, res) => {
+//Route to view responses to sheets you can view
+router.get('/view/mySignupSheets', authentication.checkAuthenticated, async (req, res) => {
 
     mySignupSheets = await SignupSheet.find({CanViewResponses: {$elemMatch:{ UserId: req.user._id }}})
     res.render('signups/view-my-signup-sheets.ejs', {sheets: mySignupSheets})
 })
 
-router.get('/view/myResponses', utilityFunctions.checkAuthenticated, async (req, res) => {
+//Route to view your responses to sheets you filled
+router.get('/view/myResponses', authentication.checkAuthenticated, async (req, res) => {
 
     myResponses = await SignupSheetResponse.find({FilledBy: req.user._id })
     res.render('signups/view-my-signup-sheets.ejs', {responses: myResponses})
 })
 
-//------------------------------------------------ for test ------------------------------------------/:
+//------------------------------------------------ for test ------------------------------------------//
 
 router.post('/newSheet', async (req, res) => {
     users = await UserProfile.find({})

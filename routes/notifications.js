@@ -4,8 +4,8 @@ const UserProfile = require('../models/UserProfile');
 const SignupSheet = require('../models/SignupSheet');
 const SignupSheetResponse = require('../models/SignupSheetResponse');
 const TimeSlots = require('../models/TimeSlots');
-
-const emailManager = require("../emailManager");
+const emailManager = require("../utility/emailManager");
+const utility = require("../utility/utility")
 
 async function EmailNotificationUpdate() {
     const app = require('express')();
@@ -15,7 +15,7 @@ async function EmailNotificationUpdate() {
         ExpectedDate: {"$lte": Date.now()}
     });
 
-    dueEmailsNotification.forEach(async emailNotif => {
+    utility.asyncForEach(dueEmailsNotification, async (emailNotif) => {
         user = await UserProfile.findById(emailNotif.TargetUser)
         signupSheet = await SignupSheet.findById(emailNotif.AssociatedSheet)
         signupSheetResponse = await SignupSheetResponse.findById(emailNotif.AssociatedResponse)
