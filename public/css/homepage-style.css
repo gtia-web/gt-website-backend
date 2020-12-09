@@ -1,0 +1,132 @@
+.homepage-name-text {
+    position: relative;
+    left: 240px;
+    top: 40px;
+}
+
+.homepage-profile-pic-container {
+    position: relative;
+    top: -200px;
+    left: 80px;
+    width: 150px;
+    height: 150px;
+    background-color: gray;
+    z-index: 100;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.homepage-profile-pic {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.homepage-info-bar-content {
+    float: left; 
+    height: 100%;  
+    width: 20%; 
+    text-align: center; 
+    box-sizing: border-box;
+    padding-top: 22px;
+}
+
+.homepage-schedule { 
+    position: relative;
+    margin: auto;
+    width: 500px;
+    background-color: #ffe066;
+    padding: 20px;
+    border-radius: 7px;
+    padding-bottom: 40px;
+    padding-top: 0px
+}
+
+.homepage-calender-circle { 
+    width: 70px;
+    height: 70px;
+    z-index: 100;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: orange;
+}
+
+.homepage-event-on-date {   
+    color: black;
+    position: relative;
+}
+
+.homepage-date-label {
+    position: relative;
+    width: 144px;
+}
+
+.date-label-calender { 
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 100;
+    padding-top: 10px;
+    box-sizing: border-box;
+    display: block; /* Make the links appear below each other instead of side-by-side */
+    text-align: center; /* Center-align text */
+    color: #ffa62b; 
+    font-size: 42px;
+}
+
+.trailing-bar {
+    position: absolute;
+    background-color: #ffa62b; opacity:0.4;
+    width: 5px;
+    box-sizing: border-box;
+    height: calc(100% - 60px);
+    z-index: 500;
+    margin-left: 27.5px;
+    margin-top: 60px;
+    border-radius: 2.5px;
+}
+
+.date-label-day {
+    position: absolute;
+    left: 70px;
+    top: 5px;
+    width: 80px;
+    text-align: center;
+    padding: 2px;
+}
+
+.date-label-date {
+    position: absolute;
+    left: 70px;
+    top: 35px;
+    width: 80px;
+    text-align: center;
+    padding: 2px;   
+}
+
+.homepage-events-holder {
+    position: relative;
+    left: 170px;
+    width: 100%;
+}
+
+.homepage-event {
+    padding: 10px;
+    width: 100%;
+}
+
+.homepage-event-date-past{
+    text-decoration: line-through;
+}
+
+.homepage-event-header {
+    position: sticky;
+    padding: 10px 0 10px 0;
+    width: 100%;
+    background-color: #ffe066;
+    top: 210px;
+    z-index: 1000;
+    border-bottom: 3px solid rgb(255, 166, 43, .5); 
+    margin-bottom: 5px;
+}

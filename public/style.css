@@ -1,0 +1,261 @@
+body, html {
+    margin: 0;
+    height: 100%;
+}
+
+.icon-bar {
+    width: 100px; /* Set a specific width */
+    height: 100%;
+    background-color: #ffa62b; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+}
+  
+.icon-bar a.icon-bar-option {
+    display: block; /* Make the links appear below each other instead of side-by-side */
+    text-align: center; /* Center-align text */
+    padding: 14px; /* Add some padding */
+    transition: all 0.3s ease; /* Add transition for hover effects */
+    color: white; /* White text color */
+    font-size: 36px; /* Increased font-size */
+}
+
+.active-icon-bar {
+    width: 300px; /* Set a specific width */
+    height: 100%;
+    background-color: #ffa62b; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+}
+
+.active-icon-bar a.icon-bar-option {
+    display: flex; /* Make the links appear below each other instead of side-by-side */
+    align-items: center; /* Center-align text */
+    padding: 16px; /* Add some padding */
+    transition: all 0.3s ease; /* Add transition for hover effects */
+    color: white; /* White text color */
+    font-size: 30px; /* Increased font-size */
+    text-decoration: none;
+}
+
+.active-icon-bar a .font-icon {
+    margin-right: 15px;
+}
+  
+.icon-bar a:hover {
+    background-color: #000; /* Add a hover color */
+}
+  
+.active {
+    background-color: #4CAF50; /* Add an active/current color */
+}
+
+.icon-bar-sub-option {
+    display: flex; /* Make the links appear below each other instead of side-by-side */
+    align-items: center;
+    padding: 5px 0 5px 60px;
+    color: white; /* White text color */
+    font-size: 20px; /* Increased font-size */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.hide-sub-options .sub-options-hidden {
+    display: none;
+    transition: all 0.3s ease; /* Add transition for hover effects */
+}
+
+.active-icon-bar .show-text {
+    display: block;
+}
+
+.invisible {
+    display: none;
+}
+
+.homepage-head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 240px;
+    z-index: 200; 
+    color: white;       
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background-color: #3170a9;
+    z-index: 10;
+    padding: 10px;
+}
+
+.homepage-name-text {
+    position: relative;
+    left: 240px;
+    top: 40px;
+}
+
+.homepage-profile-pic-container {
+    position: relative;
+    top: -200px;
+    left: 80px;
+    width: 150px;
+    height: 150px;
+    background-color: gray;
+    z-index: 100;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.homepage-profile-pic {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.homepage-info-bar {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background-color: #489fb5;
+    z-index: 12; 
+    padding: 10px;  
+    font-size: 18px;  
+}
+
+.homepage-info-bar-content {
+    float: left; 
+    height: 100%;  
+    width: 20%; 
+    text-align: center; 
+    box-sizing: border-box;
+    padding: 35px;
+}
+
+.homepage-main-content {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    background-color: #82c0cc;
+    z-index: 5; 
+    margin-right: 0;
+    padding-bottom: 100px;
+    padding-top: 280px;
+    padding-left: 100px;
+    margin: 0;
+    top: 0;
+    left: 0;
+    
+}
+
+.homepage-schedule { 
+    position: relative;
+    margin: auto;
+    width: 500px;
+    background-color: #ffe066;
+    padding: 20px;
+    border-radius: 20px;
+    padding-bottom: 40px;
+}
+
+.homepage-calender-circle { 
+    width: 70px;
+    height: 70px;
+    z-index: 100;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: orange;
+}
+
+.homepage-event-on-date {   
+    color: black;
+    position: relative;
+}
+
+.homepage-date-label {
+    position: relative;
+    width: 144px;
+}
+
+.date-label-calender { 
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 100;
+    padding-top: 10px;
+    box-sizing: border-box;
+    display: block; /* Make the links appear below each other instead of side-by-side */
+    text-align: center; /* Center-align text */
+    color: #ffa62b; 
+    font-size: 42px;
+}
+
+.trailing-bar {
+    position: absolute;
+    background-color: #ffa62b; opacity:0.4;
+    width: 5px;
+    box-sizing: border-box;
+    height: calc(100% - 60px);
+    z-index: 500;
+    margin-left: 27.5px;
+    margin-top: 60px;
+    border-radius: 2.5px;
+}
+
+.date-label-day {
+    position: absolute;
+    left: 70px;
+    top: 5px;
+    width: 80px;
+    text-align: center;
+    padding: 2px;
+}
+
+.date-label-date {
+    position: absolute;
+    left: 70px;
+    top: 35px;
+    width: 80px;
+    text-align: center;
+    padding: 2px;   
+}
+
+.homepage-events-holder {
+    position: relative;
+    left: 170px;
+    width: 100%;
+}
+
+.homepage-event {
+    padding: 10px;
+    width: 100%;
+}
+
+.align-right {
+    /*width: 100%;*/
+    width: 100px;
+    text-align: right;
+}
+
+.align-center {
+    /*width: 100%;*/
+    text-align: center;
+}
+.light-pad {
+    padding: 2px;
+}
+
+.homepage-event-date-past{
+    text-decoration: line-through;
+}

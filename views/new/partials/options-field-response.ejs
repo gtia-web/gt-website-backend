@@ -1,0 +1,14 @@
+<div class='options-field <%= (field.Required ? "isRequired" : "")%>'>
+        <div class='question-fixed'> <span><%= field.Question %></span> 
+        </div>
+        <div class=options>
+            <% field.Options.forEach((o) => {%>
+            <div class='option'> 
+                <div class='option-radio'> 
+                    <input type="<%=(field.ChooseMultiple) ? "checkbox" : "radio" %>" <%= (field.ChooseMultiple) ? "" : "name='contact'" %>  > 
+                </div> 
+                <div class='options-fixed' > <span><%= o.Option %></span> </div> 
+            </div> 
+            <% })%>
+        </div> 
+    </div>

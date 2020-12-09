@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/create-sheet-style.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/slider.css">
+    <link rel="stylesheet" href="/css/user-select.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Sansita+Swashed">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/scripts/create-sheet-script.js"></script>
+    <meta charset=utf-8 />
+    <title>GTIA Website</title>
+</head>
+
+
+
+<body style="font-family: 'Sansita Swashed', serif;" id="main-body"> 
+    <div id="main-page" style="width: 100%; height: 100%;">
+        
+        <%- include('partials/icon-bar.ejs') %> 
+
+        <div class="homepage-head">
+            <div class="banner">
+        </div>
+        <div class="info-bar">           
+        </div>    
+        </div>
+
+        <div class="main-content">
+            <div class="sheet-create-container">
+                <div class="sheet-create-tool-bar" id="sheet-create-tool-bar">
+                    <div class="sheet-create-tool-bar-option" onclick="AddFieldClick('text')">
+                        <div class="sheet-create-tool-bar-button">
+                            <span class="fas fa-align-justify"></span></div> 
+                        <div class="sheet-create-tool-bar-text">Add Text Field</div>
+                    </div>
+                    <div style="width: 150px;" class="sheet-create-tool-bar-option" onclick="AddFieldClick('option')">
+                        <div class="sheet-create-tool-bar-button">
+                            <span class="fas fa-list-ul"></span></div> 
+                        <div style="width: 90px;" class="sheet-create-tool-bar-text">Add Options Field</div>
+                    </div>
+                    <div class="sheet-create-tool-bar-option" onclick="AddFieldClick('time-slot')">
+                        <div class="sheet-create-tool-bar-button">
+                            <span class="fas fa-calendar-alt"></span></div> 
+                        <div class="sheet-create-tool-bar-text">Add Time Slot Field</div>
+                    </div>
+                    <div class="sheet-create-tool-bar-option" onclick="CreateSheetButton('user-select-screen-1')">
+                        <div class="sheet-create-tool-bar-button">
+                            <span class="far fa-check-circle"></span></div> 
+                        <div class="sheet-create-tool-bar-text">Create Sheet</div>
+                    </div>
+
+                    <div style="float:right; width: 110px" class="sheet-create-tool-bar-option">
+                        <div class="sheet-create-tool-bar-button">
+                            <span class="fas fa-ellipsis-h"></span></div> 
+                        <div style="float:right; padding-top: 7px; margin-right: 10px; width: 60px; text-align: center; "class="sheet-create-tool-bar-text">Options</div>
+                    </div>
+                </div>
+                <div class="sheet-fields-container">                     
+                    <!-- Name Area-->
+                    <div class="name-description-container">
+                        <div class="field-holder name-section">
+                            <div class='name-description-box'>
+                                <input id="name-box" type='text' placeholder='Sheet Name' class='question'>
+                                <div id="description-box" class='long-text-box' class="editable" contenteditable data-placeholder="Description"></div>
+                            </div>
+                        <div style="clear: both;"></div>
+                        </div>
+                        <div class="sheet-field-button-bar sheet-special-settings-button-bar">
+                            <div class="switch-container">
+                                <div class="sheet-field-button-bar-required">
+                                    <label class="switch">
+                                        <input type="checkbox" class="required-switch" id="send-notification-switch">
+                                        <span class="slider round"></span></label> 
+                                </div>
+                                <div class="sheet-field-button-bar-required-text" style="width: 290px;"> Send Email Notification </div>
+                                <div class="time-slot-date-time-box expire-date-box">
+                                    <div class="time-slot-text">Expiration Date</div>
+                                    <input type="date" class="time-slot-input-date" id="expiration-date">
+                                </div>
+
+                                <div style="clear: both;"></div>
+                            </div> 
+                            <div style="clear: both;"></div>
+                        </div>
+                    </div>                    
+                        
+                        
+
+
+                    <!-- End Name Area-->
+
+                    <div id="sheet-fields-container-bottom"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <% var inputs = {} %>
+    <% inputs.userSelectScreenId = 'user-select-screen-1' %>
+    <% inputs.headerTitle = 'Select user(s) who can fill:' %>
+    <% inputs.closeButtonCallBack = 'closeUserSelectScreen()'%>
+    <% inputs.hasBack = false %>
+    <% inputs.hasNext = true %>
+    <% inputs.nextCallBack = 'confirmUserSearchInput(this, "user-select-screen-2", "can_fill")' %>
+    <%- include('partials/user-select-pop-up.ejs', inputs) %>
+
+    <% inputs = {} %>
+    <% inputs.userSelectScreenId = 'user-select-screen-2' %>
+    <% inputs.headerTitle = 'Select user(s) who can see responses:' %>
+    <% inputs.closeButtonCallBack = 'closeUserSelectScreen()'%>
+    <% inputs.hasBack = true %>
+    <% inputs.backCallBack = 'userSearchBack(this, "user-select-screen-1")' %>
+    <% inputs.hasNext = false %>
+    <% inputs.confirmCallBack = 'submitCreateSheet(this, "can_view")'%>
+    <%- include('partials/user-select-pop-up.ejs', inputs) %>
+
+</body>
+<script>
+    const ele = document.getElementById('description-box');
+
+    // Set the placeholder as initial content if it's empty
+    if(ele.innerHTML === '') { 
+        ele.innerHTML = ele.getAttribute('data-placeholder'); 
+        ele.classList.add('placeholder-text')
+    }
+
+    ele.addEventListener('focus', function(e) {
+        const value = e.target.innerHTML;
+        if(e.target.classList.contains('placeholder-text')){ 
+            e.target.innerHTML = ''; 
+            e.target.classList.toggle('placeholder-text')
+        }
+    });
+
+    ele.addEventListener('blur', function(e) {
+        const value = e.target.innerHTML;
+        if(value === '') { 
+            e.target.innerHTML = ele.getAttribute('data-placeholder'); 
+            e.target.classList.toggle('placeholder-text')
+        }
+    });
+</script>
+<script src="/scripts/user-select-script.js"></script>
+</html>

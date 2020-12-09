@@ -1,0 +1,42 @@
+<div class="options-box">
+    <% if (hasBack) { %>
+    <div class="option-button" style="margin-top: 50px;" onclick="<%= backCallBack %>">                    
+        <span class="center-text button-holder" >
+            <span class="icon"><span class="center-text fas fa-chevron-circle-left"></span></span>
+            <span class="button-text"><span class="center-text">Back</span></span>
+        </span>
+    </div>
+    <% } %>
+
+
+    <div class="option-button" style="margin-top: <%= (hasBack) ? '50' : '140' %>px;" onclick="selectallsearch(this)">                    
+        <span class="center-text button-holder" >
+            <span class="icon"><span class="center-text fas fa-user-plus"></span></span>
+            <span class="button-text"><span class="center-text">Add All</span></span>
+        </span>
+    </div>
+    <div class="option-button" onclick="removeallsearch(this)">                    
+        <span class="center-text button-holder" >
+            <span class="icon"><span class="center-text fas fa-user-minus"></span></span>
+            <span class="button-text"><span class="center-text">Remove All</span></span>
+        </span>
+    </div>
+
+
+    <% if (hasNext) { %>
+    <div class="option-button" style="margin-top: 50px;" onclick="<%= nextCallBack %>">
+        <span class="center-text button-holder" >
+            <span class="icon"><span class="center-text fas fa-chevron-circle-right" style="font-size: 18px;"></span></span>
+            <span class="button-text" ><span class="center-text">Next</span></span>
+        </span>
+    </div>
+        
+    <% } else { %>
+    <div class="option-button" style="margin-top: 50px;" onclick="<%= confirmCallBack  %>">
+        <span class="center-text button-holder" >
+            <span class="icon"><span class="center-text far fa-check-circle" style="font-size: 18px;"></span></span>
+            <span class="button-text" ><span class="center-text">Confirm</span></span>
+        </span>
+    </div>  
+    <% } %>
+</div>

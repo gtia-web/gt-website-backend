@@ -40,6 +40,7 @@ require('./utility/passportConfig')(passport);
 app.use('/user', require('./routes/user'));
 app.use('/signups', require('./routes/signups'));
 app.use('/', require('./routes/basic'));
+app.use(express.static("public"));
 
 //---------------------End of Routes-----------------------//
 

@@ -5,6 +5,10 @@ const TimeSlotsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
+    AssociatedTimeSlotFieldNumber: {
+        type: Number,
+        required: true
+    },
     AssociatedUser: mongoose.Schema.Types.ObjectId,
     AssociatedResponse: mongoose.Schema.Types.ObjectId,
     IsUsed: {
@@ -21,6 +25,10 @@ const TimeSlotsSchema = mongoose.Schema({
     },
     EndTime: {
         type: Date,
+        required: true
+    },
+    Length: {
+        type: Number,
         required: true
     }
 });

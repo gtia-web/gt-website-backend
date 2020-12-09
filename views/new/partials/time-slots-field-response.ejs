@@ -1,0 +1,31 @@
+<div class="slot-answer-field">             
+    <div class='question-fixed'> <span><%= field.ShortDecrip %></span> </div>
+    <div class='slot-short-text'><%= field.JobType %> on <%= timeSlotExtraData.weekday[field.StartTime.getDay()]%>, 
+        <%= field.StartTime.getDate()%> <%= timeSlotExtraData.month[field.StartTime.getMonth()]%> <%= field.StartTime.getFullYear()%>  </div>
+    <!--Monday, 25 August 2020-->
+    <div class="time-slot-slot-container">
+        <% var timeSlotsDataAll = timeSlotExtraData.slotAvailability.get(sheetId.toString()) %> 
+        <% if (timeSlotsDataAll.has(field.FieldNumber)) { %>
+            <% var keys = Array.from(timeSlotsDataAll.get(field.FieldNumber).keys()) %>
+            <% keys.sort(timeSlotExtraData.timeSlotSort) %>
+            <% keys.forEach((key) => { %>
+                <% var slot = timeSlotsDataAll.get(field.FieldNumber).get(key) %>
+                <div onclick="selectTimeSlot(this)" class="time-slot-slots time-slot-slot-<%= (slot.avail > 0) ? 'available' : 'used'%>"> 
+                <div class="time-slot-slot-text-box">
+                    30min @ <%= String(new Date(key).getHours()).padStart(2, '0')%>:<%= String(new Date(key).getMinutes()).padStart(2, '0')%>
+                </div>
+            </div>
+            <% }) %>
+        <% } %>
+        <div style="clear: both;"></div>                                        
+    </div>
+</div>  
+
+<!--
+timeSlotExtraData: {
+    timeSlotSort: {},
+    weekday: weekday,
+    month: month,
+    slotAvailability: timeSlotAvail
+}
+-->

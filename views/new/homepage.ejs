@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/homepage-style.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Sansita+Swashed">
+    <meta charset=utf-8 />
+    <title>GTIA Website</title>
+</head>
+
+
+
+<body style="font-family: 'Sansita Swashed', serif;">
+    
+    <%- include('partials/icon-bar.ejs') %>
+
+    <div class="homepage-head">
+        <div class="banner">
+            <div class="homepage-name-text">
+                <h1><%=user.FirstName %> <%=user.LastName %> (<%=user.Username %>)</h1>
+            </div>
+       </div>
+       <div class="info-bar">
+            <div style="box-sizing: border-box; height: 100%; width: 100%; padding-left: 400px;">
+                <div class="homepage-info-bar-content"> <%=user.Committee %> </div>
+                <div class="homepage-info-bar-content"> Work Points: <%=user.Point.WorkPoints %></div>
+                <div class="homepage-info-bar-content">  Social Points: <%=user.Point.SocialPoints %></div>
+            </div>
+           
+       </div>
+       <div class="homepage-profile-pic-container"> 
+            <img src="avatar.jpg" alt="avatar" class="homepage-profile-pic">
+        </div>
+    
+    </div>
+
+    <div class="main-content">   
+            <div class="homepage-schedule">
+                <div class="homepage-event-header">
+                    <h1 class="align-center">Upcoming Events</h1>
+                </div>
+                <div class="homepage-event-on-date">
+                    <div class="homepage-date-label">
+                        <div class="date-label-calender far fa-calendar-check"></div>
+                        <div class="date-label-day"> Monday </div>
+                        <div class="date-label-date"> 11/28/2020 </div>
+                    </div>
+                    <div class="trailing-bar"></div>
+                    <div class="homepage-events-holder">
+                        <div class="homepage-event  homepage-event-date-past"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                        <div class="homepage-event  homepage-event-date-past"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                        <div class="homepage-event  homepage-event-date-past"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                        <div class="homepage-event  homepage-event-date-past"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                        <div class="homepage-event  homepage-event-date-past"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="homepage-event-on-date">
+                    <div class="homepage-date-label">
+                        <div class="date-label-calender far fa-calendar-alt"></div>
+                        <div class="date-label-day"> Monday </div>
+                        <div class="date-label-date"> 11/28/2020 </div>
+                    </div>
+                    <div class="trailing-bar"></div>
+                    <div class="homepage-events-holder">
+                        <div class="homepage-event"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                        <div class="homepage-event"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                        <div class="homepage-event"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad ">@ 20:00pm</div>
+                        </div>
+                    </div>
+                </div>     
+                <div class="homepage-event-on-date">
+                    <div class="homepage-date-label">
+                        <div class="date-label-calender far fa-calendar-alt"></div>
+                        <div class="date-label-day"> Monday </div>
+                        <div class="date-label-date"> 11/28/2020 </div>
+                    </div>
+                    <div class="trailing-bar"></div>
+                    <div class="homepage-events-holder">
+                        <div class="homepage-event"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                        <div class="homepage-event"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                            <div class="homepage-event"> <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="homepage-event-on-date">
+                    <div class="homepage-date-label">
+                        <div class="date-label-calender far fa-calendar-alt"></div>
+                        <div class="date-label-day"> Monday </div>
+                        <div class="date-label-date"> 11/28/2020 </div>
+                    </div>
+                    <div class="trailing-bar"></div>
+                    <div class="homepage-events-holder">
+                        <div class="homepage-event"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                        <div class="homepage-event"> 
+                            <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                            <div class="homepage-event"> <div class="light-pad">Meeting</div> 
+                            <div class="align-right light-pad">@ 20:00pm</div>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+            
+    </div>
+</body>
+</html>
