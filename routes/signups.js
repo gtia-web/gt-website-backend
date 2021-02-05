@@ -95,7 +95,7 @@ router.post('/active/submitForm', authentication.checkAuthenticated, async (req,
 })
 
 
-
+/*
 router.get('/view', authentication.checkAuthenticated, async (req, res) => {
     
     activeSheets = await SignupSheet.find({CanFill: {$elemMatch:{ UserId: req.user._id }}}) 
@@ -163,13 +163,27 @@ router.get('/view', authentication.checkAuthenticated, async (req, res) => {
         }
     })
 
-})
+    res.render('new/view-sheets.ejs', {
+        sheets: activeSheets,
+        timeSlotExtraData: {
+            timeSlotSort: (a, b) => {
+                if (a.getTime() < b.getTime()) return -1
+                else if (a.getTime() > b.getTime()) return 1;
+                else  return 0;
+            },
+            weekday: weekday,
+            month: month,
+            slotAvailability: timeSlotAvail
+        }
+    })
+
+})*/
 
 //Route to get the create new sheet page
 router.get('/create', authentication.checkAuthenticated, async (req, res) => {
     //res.render('signups/create-signup-form.ejs')
     userData = await UserProfile.findById(req.user._id)
-    res.render('new/create-sheet.ejs', {user: userData})
+    res.render('create-signup-form.ejs', {user: userData})
 })
 
 //Route to submit the created new sheet page

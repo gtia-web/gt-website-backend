@@ -7,7 +7,7 @@ const authentication = require("../utility/authentication");
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
     //res.render('index.ejs')
     userData = await UserProfile.findById(req.user._id)
-    res.render('new/homepage.ejs', {user: userData})
+    res.render('index.ejs', {user: userData})
 })
 
 
