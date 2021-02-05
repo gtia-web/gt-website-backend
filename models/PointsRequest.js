@@ -1,44 +1,45 @@
 const mongoose = require('mongoose');
 
 const PointsRequestSchema = mongoose.Schema({
-    Approver: {
+    approver: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: "UserProfile"
+    },
+    requester: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "UserProfile",
         required: true
     },
-    Requester: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
-    SubmissionDate: {
+    submissionDate: {
         type: Date,
         default: Date.Now
     },
-    PointsType: {
+    pointsType: {
         type: String,
         required: true
     },
-    ApprovedDate: {
+    approvedDate: {
         type: Date
     },
-    PointsGiven: {
+    pointsGiven: {
         type: Number
     },
-    IsPending: {
+    isPending: {
         type: Boolean,
         default: true
     },
-    RequestDetails: {
-        EventName: {
-            type: Number,
+    requestDetails: {
+        eventName: {
+            type: String,
             required: true
         },
-        Description: {
+        description: {
             type: String
         },
-        DateOfEvent: {
+        dateOfEvent: {
             type: Date
         },
-        ShiftsCovered: {
+        shiftsCovered: {
             type: Number,
             required: true
         }

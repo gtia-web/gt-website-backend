@@ -39,6 +39,8 @@ require('./passportConfig')(passport);
 
 app.use('/User/Manage', require('./routes/Users/ManageUser'));
 app.use('/User/Get', require('./routes/Users/GetUser'));
+app.use('/points', require('./routes/points'));
+app.use(require('./routes/points/admin'));
 
 //Connect to DB
 mongoose.connect(
