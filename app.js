@@ -1,21 +1,21 @@
+require('dotenv/config');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
-require('dotenv/config');
-
+const http = require('http').createServer(app)
+const io = require('socket.io')(http)
 const passport = require('passport')
-const passportLocal = require('passport-local')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 
 
 //--------------------Start of Middleware----------------------//
-app.use(bodyParser.json());
 
-//app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.set('view-engine', 'ejs')
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
@@ -31,16 +31,35 @@ app.use(cookieParser(process.env.SESSION_SECRET))
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./passportConfig')(passport);
+require('./utility/passportConfig')(passport);
 
 //--------------------End of Middleware----------------------//
 
-//ROUTES
+//---------------------Start of Routes-----------------------//
 
-app.use('/User/Manage', require('./routes/Users/ManageUser'));
-app.use('/User/Get', require('./routes/Users/GetUser'));
-app.use('/points', require('./routes/points'));
-app.use(require('./routes/points/admin'));
+app.use('/user', require('./routes/user'));
+app.use('/signups', require('./routes/signups'));
+app.use('/', require('./routes/basic'));
+app.use(express.static("public"));
+
+//---------------------End of Routes-----------------------//
+
+
+/**
+io.on('connection', socket => {
+    //console.log('a user connected!')
+    socket.on('update-sheet-availability', () => {
+        //console.log("selected")
+    })
+    socket.on('disconnect', () => {
+      //console.log('user disconnected!')
+    })
+}) */
+
+//Run Notification Email Update
+
+//setInterval(notification.EmailNotificationUpdate, parseInt(process.env.NOTIFICATION_UPDATE_INTERVAL));
+
 
 //Connect to DB
 mongoose.connect(
@@ -50,4 +69,5 @@ mongoose.connect(
     () => { console.log('Connected to DB!')
 });
 
-app.listen(3000);
+http.listen(3000, () => console.log('The app is running on localhost:3000'));
+

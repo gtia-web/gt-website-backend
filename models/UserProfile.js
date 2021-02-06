@@ -22,6 +22,10 @@ const MemberProfileSchema = mongoose.Schema({
         type: String,
         default: ""
     },
+    Email: {
+        type: String,
+        required: true
+    },
     Committee: {
         type: String,
         required: true
@@ -62,7 +66,7 @@ const MemberProfileSchema = mongoose.Schema({
         default: "active"
     },
     HashedPassword: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true
     }
 });
