@@ -1,0 +1,58 @@
+.center-text {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+h3.title {
+  margin-bottom: 15px;
+}
+
+.pad-top {
+  padding-top: 30px;
+}
+
+.icon-external-link-sign::before {
+  content: "\ea3d";
+}
+
+.events-box {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+
+.card-notif .events-box {
+  padding-left: 25px;
+  padding-top: 0px;
+}
+.card-notif {
+  height: 280px;
+}
+
+.card-notif .table-full-width {
+  max-height: 200px;
+  position: relative;
+}
+
+.card-notif .card-header .title {
+  margin-right: 20px;
+  font-weight: 400;
+}
+
+.card-notif .card-header .dropdown {
+  float: right;
+  color: #cccccc;
+}
+
+.card-notif .card-body i {
+  color: #9a9a9a;
+  font-size: 1.4em;
+}
+
+.card-notif .card-body i:hover {
+  color: #ffffff;
+}
+
+.sidebar .nav li > a,
+.off-canvas-sidebar .nav li > a {
+  font-size: 1.2rem;
+}

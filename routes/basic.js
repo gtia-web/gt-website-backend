@@ -5,11 +5,15 @@ const UserProfile = require('../models/UserProfile');
 const authentication = require("../utility/authentication");
 
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
-    userData = await UserProfile.findById(req.user._id)
-    res.render('index.ejs', {user: userData})
+    res.redirect('/home');
 })
 
-router.get('/dashboard', authentication.checkAuthenticated, async (req, res) => {
+router.get('/home', authentication.checkAuthenticated, async (req, res)=> {
+    userData = await UserProfile.findById(req.user._id)
+    res.render('home.ejs', {user: userData})
+})
+
+router.get('/dashboardT',async (req, res) => {
     res.render('dashboard_template.ejs')
 })
 

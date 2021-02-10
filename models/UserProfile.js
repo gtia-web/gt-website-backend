@@ -46,7 +46,7 @@ const MemberProfileSchema = mongoose.Schema({
             type: String
         }
     },
-    Point: {
+    Points: {
         SocialPoints: {
             type: Number,
             default: 0
