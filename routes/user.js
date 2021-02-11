@@ -23,11 +23,13 @@ router.post('/login', authentication.checkNotAuthenticated, passport.authenticat
 
 // Get register new account page
 router.get('/register', authentication.checkNotAuthenticated, (req, res) => {
-    res.render('register.ejs')
+    res.render('registration.ejs')
 })
 
 // Submit new registration form
 router.post('/register', async (req, res) => {
+    console.log(req.body)
+    
     try {
         usersWithUsername = await UserProfile.findOne({
             Username: req.body.username
@@ -52,7 +54,7 @@ router.post('/register', async (req, res) => {
             LastName: req.body.lastname,
             Email: req.body.email,
             MiddleName: req.body.middlename,
-            Committee: req.body.committee,
+            Committee: "Outreach",
             HashedPassword: password
         }).save();
 

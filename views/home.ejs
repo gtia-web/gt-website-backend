@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
-  <link rel="stylesheet" href="../assets/custom/css/all.min.css">
+  <link rel="stylesheet" href="../assets/custom/css/all.css">
   <title>
     Black Dashboard by Creative Tim
   </title>
@@ -55,14 +55,14 @@
         </div> -->
         <ul class="nav">
           <li class="active ">
-            <a href="./dashboard.html">
+            <a href="/home">
               <i class="fas fa-home"></i>
               <p>Home</p>
             </a>
           </li>
           <li>
             <a href="./icons.html">
-              <i class="fas fa-clipboard"></i>
+                <i class="fas fa-clipboard-list"></i>
               <p>Sheets</p>
             </a>
           </li>
@@ -78,6 +78,23 @@
               <p>User</p>
             </a>
           </li>
+          <% if (user.SpecialPermissions.includes('admin')) {%>
+          <li>
+            <a href="./notifications.html">
+              <i class="fas fa-toolbox"></i>
+              <p>Admin Portal</p>
+            </a>
+          </li>
+          <% } %>
+
+          <% if (user.VPStatus.isVP) {%>
+          <li>
+            <a href="./notifications.html">
+              <i class="fas fa-users"></i>
+              <p>VP Portal</p>
+            </a>
+          </li>
+          <% } %>
         </ul>
       </div>
     </div>
