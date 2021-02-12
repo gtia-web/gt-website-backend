@@ -66,6 +66,26 @@ router.post('/logout', (req, res) => {
     res.redirect('/user/login')
 })
 
+
+router.post('/list', async (req, res) => {
+    var query = req.body.query
+    users = await UserProfile.find(
+        { $and: [
+            {
+                $or: [
+                    { FirstName : {$regex: query, $options : "i" }},
+                    { Username : {$regex: query , $options : "i" }},
+                    { LastName : {$regex: query , $options : "i" }}
+                ]
+            },
+            {
+                PendingApproval: req.body.pending == 'true'
+            }            
+        ]}, 
+        { Username: 1, FirstName: 1, LastName: 1, _id: 1, Email: 1 })
+    res.json(users)
+})
+
 canChangePermission = ["admin"]
 router.patch('/changePermission', async (req, res) => {
     targetUserID = req.body.targetuserid;

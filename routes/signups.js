@@ -289,7 +289,7 @@ router.post('/create', authentication.checkAuthenticated, async (req, res) => {
     });
 })
 
-router.post('/user/list', authentication.checkAuthenticated, async (req, res) => {
+/**router.post('/user/list', authentication.checkAuthenticated, async (req, res) => {
     var query = req.body.query
     users = await UserProfile.find(
         { $or: [
@@ -299,7 +299,7 @@ router.post('/user/list', authentication.checkAuthenticated, async (req, res) =>
         ]}, 
         { Username: 1, FirstName: 1, LastName: 1, _id: 1 })
     res.json(users)
-})
+})**/
 
 //Route to view responses to sheets you can view
 router.get('/view/mySignupSheets', authentication.checkAuthenticated, async (req, res) => {
