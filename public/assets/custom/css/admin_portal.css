@@ -29,6 +29,10 @@
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
+.modal.view {
+  display: block;
+}
+
 /* The Close Button */
 .close {
   color: #aaa;
@@ -91,4 +95,23 @@
     top: 0;
     opacity: 1;
   }
+}
+
+.form-checkbox .form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.25rem);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-right: 0;
+}
+
+.form-checkbox {
+  text-align: center;
+}
+
+.form-control option {
+  color: black;
 }

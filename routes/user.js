@@ -86,6 +86,12 @@ router.post('/list', async (req, res) => {
     res.json(users)
 })
 
+router.post('/data', async (req, res) => {
+    var id = req.body.id
+    users = await UserProfile.findById(id, { HashedPassword: 0})
+    res.json(users)
+})
+
 canChangePermission = ["admin"]
 router.patch('/changePermission', async (req, res) => {
     targetUserID = req.body.targetuserid;
