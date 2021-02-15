@@ -19,7 +19,7 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 100; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -113,5 +113,112 @@
 }
 
 .form-control option {
-  color: black;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.chosen-container {
+  width: 100% !important;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  margin: 1px 0;
+  padding: 10px 18px 10px 18px;
+  width: 25px;
+  outline: 0;
+  height: calc(2.25rem + 2px);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.428571;
+  border: 0 !important;
+}
+
+.modal .chosen-container-multi .chosen-choices li.search-choice {
+  margin: 11px 3px 8px 3px !important;
+}
+
+.modal .chosen-container-active .chosen-choices {
+  border-color: #e14eca;
+  border-radius: 0.4285rem;
+  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.modal
+  .chosen-container-active
+  .chosen-choices
+  li.search-field
+  input[type="text"] {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.modal .chosen-container-multi .chosen-choices {
+  padding: 0 0;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  border: 1px solid #2b3553;
+  background-color: transparent;
+  background-image: none;
+  line-height: 1.428571;
+  font-size: 0.875rem;
+  font-weight: 400;
+  border-radius: 0.4285rem;
+  font-size: 0.75rem;
+  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+
+.modal
+  .chosen-container-multi
+  .chosen-choices
+  li.search-field
+  input[type="text"] {
+  padding: 10px 10px 10px 10px;
+  height: calc(2.25rem + 2px);
+  color: #adb5bd;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.428571;
+}
+
+.modal .chosen-drop ul li {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 0.75rem;
+}
+
+tbody .btn i {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+tbody .btn i:hover {
+  color: white;
+}
+
+.modal p.modal-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#confirmDeleteModal .modal-content {
+  width: 600px;
+}
+
+#deleteUserFullname {
+  font-weight: bold;
 }

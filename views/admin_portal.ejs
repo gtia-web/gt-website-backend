@@ -33,6 +33,9 @@
   <!-- CSS Files -->
   <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
   <link href="../assets/custom/css/admin_portal.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
+
 </head>
 
 <body class="">
@@ -198,7 +201,7 @@
                           <h5 class="title">Edit Profile</h5>
                         </div>
                         <div class="card-body">
-                          <form  action="/user/register" method="POST">
+                          <form >
                               <div class="row">
                                   <div class="col-md-12">
                                       <div class="form-group">
@@ -304,27 +307,175 @@
                                   </div>
                                   <div class="col-md-4 px-md-1">
                                   </div>
-                              </div>
-                            <div class="row card-footer">
-                              <div class="col-md-2"></div>
-                              <div class="col-md-4 pl-md-1">
-                                  <button type="submit" class="btn btn-fill btn-primary">Submit</button>
-                              </div>
-                              <div class="col-md-4 pr-md-1">
-                                  <div class="float-right">
-                                      <a href="/user/login" class="button btn btn-fill btn-primary">Login</a>
-                                  </div>                                  
-                              </div> 
-                              <div class="col-md-2"></div>                   
-                            </div>
-                            
+                              </div>                            
                           </form>
+                          <div class="row card-footer">
+                            <div class="col-md-4 pl-md-1">
+                                <button class="btn btn-fill btn-primary confirm-edit-btn">Confirm Edit</button>
+                            </div>
+                            <div class="col-md-2"></div>                   
+                          </div>
                         </div>
                         
                     </div>
                 </div>
             </div>
         </div>
+        <div id="initializeUserModal" class="modal">
+            <!-- Modal content -->
+             <div class="modal-content">
+                 <div class="modal-body">
+                     <div class="card">
+                         <div class="card-header">
+                           <h5 class="title">Activate Profile</h5>
+                         </div>
+                         <div class="card-body">
+                           <form >
+                               <div class="row">
+                                   <div class="col-md-12">
+                                       <div class="form-group">
+                                       <label for="exampleInputEmail1">Email address</label>
+                                       <input type="email" disabled class="form-control" placeholder="Email" name="email" value="">
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="row">
+                               <div class="col-md-8 pr-md-1">
+                                 <div class="form-group">
+                                   <label>Username</label>
+                                   <input type="text" class="form-control" disabled placeholder="Username" name="username" value="">
+                                 </div>
+                               </div>                   
+                               <div class="col-md-4 pl-md-1">
+                                   <div class="form-group">
+                                     <label>Password</label>
+                                     <input type="password" class="form-control" disabled name="password" value="">
+                                   </div>
+                               </div>
+                             </div>
+                             <div class="row">
+                               <div class="col-md-4 pr-md-1">
+                                 <div class="form-group">
+                                   <label>First Name</label>
+                                   <input type="text" class="form-control" placeholder="First Name" disabled name="firstname" value="">
+                                 </div>
+                               </div>
+                               <div class="col-md-4 px-md-1">
+                                   <div class="form-group">
+                                     <label>Middle Name</label>
+                                     <input type="text" class="form-control" placeholder="Middle Name (Optional)" disabled name="middlename" value="">
+                                   </div>
+                                 </div>
+                               <div class="col-md-4 pl-md-1">
+                                 <div class="form-group">
+                                   <label>Last Name</label>
+                                   <input type="text" class="form-control" placeholder="Last Name" value="" disabled name="lastname">
+                                 </div>
+                               </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-4 pr-md-1">
+                                   <div class="form-group">
+                                     <label>Committee</label>
+                                     <select class="form-control" name="committee">
+                                       <option value="Internal">Internal</option>
+                                       <option value="External">External</option>
+                                       <option value="Outreach">Outreach</option>
+                                       <option value="Finance">Finance</option>
+                                       <option value="Marketing">Marketing</option>
+                                       <option value="Executive">Executive</option>
+                                     </select>
+                                     
+                                   </div>
+                                 </div>
+                                 <div class="col-md-4 px-md-1">
+                                     <div class="form-group">
+                                       <label>Subcommittee</label>
+                                       <input type="text" class="form-control" placeholder="Subcommittee" name="subcommittee" value="">
+                                     </div>
+                                   </div>
+                                    <div class="col-md-4 pl-md-1">
+                                       <div class="form-group">
+                                            <label>Special Permission</label>
+                                            <select class="chosen-select form-control" multiple>
+                                                <option value=""></option>
+                                                <option value="admin">Admin</option>
+                                                <option value="publiceventpublisher">Public Event Publisher</option>=
+                                            </select>
+                                        </div>
+                                    </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-4 px-md-1">
+                                   </div>
+                                 <div class="col-md-1 px-md-1 form-checkbox">
+                                     <div class="form-group">
+                                       <label>Is Active</label>
+                                       <input type="checkbox" class="form-control" name="isactive" value="">
+                                     </div>
+                                   </div>
+                                   <div class="col-md-1 px-md-1 form-checkbox">
+                                     <div class="form-group">
+                                       <label>Is Admin</label>
+                                       <input type="checkbox" class="form-control" name="isadmin" value="">
+                                     </div>
+                                   </div>
+                                   <div class="col-md-1 px-md-1 form-checkbox">
+                                     <div class="form-group">
+                                       <label>Is VP</label>
+                                       <input type="checkbox" class="form-control" name="isvp" value="">
+                                     </div>
+                                   </div>
+                                   <div class="col-md-1 px-md-1 form-checkbox">
+                                     <div class="form-group">
+                                       <label>Is Pres.</label>
+                                       <input type="checkbox" class="form-control" name="ispresident" value="">
+                                     </div>
+                                   </div>
+                                   <div class="col-md-4 px-md-1">
+                                   </div>
+                               </div>                            
+                           </form>
+                           <div class="row card-footer">
+                             <div class="col-md-4 pl-md-1">
+                                 <button class="btn btn-fill btn-primary accept-profile-btn">Activate</button>
+                             </div>
+                             <div class="col-md-2"></div>                   
+                           </div>
+                         </div>
+                         
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div id="confirmDeleteModal" class="modal">
+            <!-- Modal content -->
+             <div class="modal-content">
+                 <div class="modal-body">
+                     <div class="card">
+                         <div class="card-header">
+                           <h5 class="title">Delete Profile</h5>
+                         </div>
+                         <div class="card-body">
+                           <form >
+                               <div class="row">
+                                   <div class="col-md-12">
+                                       <p class="modal-text"> Are you sure you want to delete the user account of <span id='deleteUserFullname'></span> ?</p>
+                                   </div>
+                               </div>                           
+                           </form>
+                           <div class="row card-footer">
+                             <div class="col-md-4 pl-md-1">
+                                 <button class="btn btn-fill btn-primary confirm-delete-btn">Delete</button>
+                             </div>
+                             <div class="col-md-2"></div>                   
+                           </div>
+                         </div>
+                         
+                     </div>
+                 </div>
+             </div>
+         </div>
 
         <div class="row">
           <div class="col-12"> 
@@ -376,22 +527,6 @@
                             </tr>
                         </thead>
                         <tbody id='user-list-body-1'>
-                        <tr>
-                            <td>
-                            <p class="title">Chido Onyeze</p>
-                            </td>
-                            <td>
-                            <p class="title">conyeze3</p>
-                            </td>
-                            <td>
-                            <p class="title">chidozieonyeze@gatech.edu</p>
-                            </td>
-                            <td class="text-right">
-                            <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                <i class="tim-icons icon-pencil"></i>
-                            </button>
-                            </td>
-                        </tr>
                         </tbody>
                         </table>
                     </div>
@@ -435,7 +570,11 @@
   <script src="../assets/template/js/core/jquery.min.js"></script>
   <script src="../assets/template/js/core/popper.min.js"></script>
   <script src="../assets/template/js/core/bootstrap.min.js"></script>
-  <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>  
+
+  <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
+  <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
   <!-- Chart JS -->
   <script src="../assets/template/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->
