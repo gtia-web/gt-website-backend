@@ -54,7 +54,7 @@ router.post('/register', async (req, res) => {
             LastName: req.body.lastname,
             Email: req.body.email,
             MiddleName: req.body.middlename,
-            Committee: "Outreach",
+            Committee: "Not Assigned",
             HashedPassword: password
         }).save();
 
@@ -111,19 +111,6 @@ router.post('/update', async (req, res) => {
     }})
 
     res.json({})
-
-    
-
-    /*data = {
-        committee: modal.find('select[name ="committee"]').val(),
-        subcommittee: modal.find('input[name ="subcommittee"]').val(),
-        workpoints: modal.find('input[name ="workpoints"]').val(),
-        socialpoints: modal.find('input[name ="socialpoints"]').val(),
-        isactive: modal.find('input[name ="isactive"]').is(":checked"),
-        isadmin: modal.find('input[name ="isadmin"]').is(":checked"),
-        isvp: modal.find('input[name ="isvp"]').is(":checked"),
-        ispresident: modal.find('input[name ="ispresident"]').is(":checked"),
-    }*/
 })
 
 router.post('/activate', async (req, res) => {
@@ -145,16 +132,6 @@ router.post('/activate', async (req, res) => {
     }})
 
     res.json({})
-
-    /**
-     * committee: modal.find('select[name ="committee"]').val(),
-        subcommittee: modal.find('input[name ="subcommittee"]').val(),
-        isactive: modal.find('input[name ="isactive"]').is(":checked"),
-        isadmin: modal.find('input[name ="isadmin"]').is(":checked"),
-        isvp: modal.find('input[name ="isvp"]').is(":checked"),
-        ispresident: modal.find('input[name ="ispresident"]').is(":checked"),
-        id: currentID
-     */
 })
 
 router.post('/deleteByID', async (req, res) => {
@@ -165,7 +142,7 @@ router.post('/deleteByID', async (req, res) => {
 })
 
 
-canChangePermission = ["admin"]
+/**canChangePermission = ["admin"]
 router.patch('/changePermission', async (req, res) => {
     targetUserID = req.body.targetuserid;
     currentUserID = req.body.currentuserid;
@@ -245,4 +222,5 @@ router.patch('/changePermission', async (req, res) => {
         } 
     }
 });
+*/
 module.exports = router;

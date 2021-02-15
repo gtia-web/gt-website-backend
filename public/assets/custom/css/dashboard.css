@@ -51,8 +51,3 @@ h3.title {
 .card-notif .card-body i:hover {
   color: #ffffff;
 }
-
-.sidebar .nav li > a,
-.off-canvas-sidebar .nav li > a {
-  font-size: 1.2rem;
-}

@@ -1,0 +1,45 @@
+<div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="active ">
+            <a href="/home">
+              <i class="fas fa-home"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li>
+            <a href="./icons.html">
+                <i class="fas fa-clipboard-list"></i>
+              <p>Sheets</p>
+            </a>
+          </li>
+          <li>
+            <a href="./map.html">
+              <i class="fas fa-star"></i>
+              <p>Points</p>
+            </a>
+          </li>
+          <li>
+            <a href="./notifications.html">
+              <i class="fas fa-user"></i>
+              <p>User</p>
+            </a>
+          </li>
+          <% if (user.SpecialPermissions.includes('admin')) {%>
+          <li>
+            <a href="/admin">
+              <i class="fas fa-toolbox"></i>
+              <p>Admin Portal</p>
+            </a>
+          </li>
+          <% } %>
+
+          <% if (user.VPStatus.isVP) {%>
+          <li>
+            <a href="">
+              <i class="fas fa-users"></i>
+              <p>VP Portal</p>
+            </a>
+          </li>
+          <% } %>
+        </ul>
+      </div>

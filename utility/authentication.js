@@ -1,19 +1,31 @@
+const UserProfile = require('../models/UserProfile');
+
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-      return next()
+        return next()
     }
-  
+
     res.redirect('/user/login')
-  }
+}
   
-  function checkNotAuthenticated(req, res, next) {
+function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-      return res.redirect('/')
+        return res.redirect('/')
     }
     next()
-  }
+}
+
+async function checkAuthenticatedAdmin (req, res, next) {
+    userData = await UserProfile.findById(req.user._id)
+    if (userData.SpecialPermissions.includes('admin')) {
+        return next();
+    } else {
+        return res.redirect('/')
+    }
+}
 
 module.exports = {
   checkNotAuthenticated, 
-  checkAuthenticated
+  checkAuthenticated,
+  checkAuthenticatedAdmin
 };
