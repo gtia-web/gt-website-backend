@@ -17,5 +17,8 @@ router.get('/dashboardT',async (req, res) => {
     res.render('dashboard_template.ejs')
 })
 
+router.get('/admin', async (req, res) => {
+    res.render('admin_portal.ejs')
+})
 
 module.exports = router;

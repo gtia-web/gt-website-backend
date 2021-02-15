@@ -68,6 +68,103 @@ router.post('/logout', (req, res) => {
     res.redirect('/user/login')
 })
 
+
+router.post('/list', async (req, res) => {
+    var query = req.body.query
+    users = await UserProfile.find(
+        { $and: [
+            {
+                $or: [
+                    { FirstName : {$regex: query, $options : "i" }},
+                    { Username : {$regex: query , $options : "i" }},
+                    { LastName : {$regex: query , $options : "i" }}
+                ]
+            },
+            {
+                PendingApproval: req.body.pending == 'true'
+            }            
+        ]}, 
+        { Username: 1, FirstName: 1, LastName: 1, _id: 1, Email: 1 })
+    res.json(users)
+})
+
+router.post('/data', async (req, res) => {
+    var id = req.body.id
+    users = await UserProfile.findById(id, { HashedPassword: 0})
+    res.json(users)
+})
+
+router.post('/update', async (req, res) => {
+    var data = req.body.data
+
+    await UserProfile.updateOne({_id: data.id  }, { $set: {
+        Committee: data.committee,
+        Subcommittee: data.subcommittee, 
+        VPStatus: {
+            isVP: data.isvp == 'true'
+        },
+        Points: {
+            SocialPoints: data.socialpoints,
+            WorkPoints: data.workpoints
+        },
+        MembershipStatus: (data.isactive == 'true') ? 'active' : 'inactive'
+    }})
+
+    res.json({})
+
+    
+
+    /*data = {
+        committee: modal.find('select[name ="committee"]').val(),
+        subcommittee: modal.find('input[name ="subcommittee"]').val(),
+        workpoints: modal.find('input[name ="workpoints"]').val(),
+        socialpoints: modal.find('input[name ="socialpoints"]').val(),
+        isactive: modal.find('input[name ="isactive"]').is(":checked"),
+        isadmin: modal.find('input[name ="isadmin"]').is(":checked"),
+        isvp: modal.find('input[name ="isvp"]').is(":checked"),
+        ispresident: modal.find('input[name ="ispresident"]').is(":checked"),
+    }*/
+})
+
+router.post('/activate', async (req, res) => {
+    var data = req.body.data
+
+    console.log(data)
+    await UserProfile.updateOne({_id: data.id  }, { $set: {
+        Committee: data.committee,
+        Subcommittee: data.subcommittee, 
+        VPStatus: {
+            isVP: data.isvp == 'true'
+        },
+        Points: {
+            SocialPoints: data.socialpoints,
+            WorkPoints: data.workpoints
+        },
+        MembershipStatus: (data.isactive == 'true') ? 'active' : 'inactive',
+        PendingApproval: false
+    }})
+
+    res.json({})
+
+    /**
+     * committee: modal.find('select[name ="committee"]').val(),
+        subcommittee: modal.find('input[name ="subcommittee"]').val(),
+        isactive: modal.find('input[name ="isactive"]').is(":checked"),
+        isadmin: modal.find('input[name ="isadmin"]').is(":checked"),
+        isvp: modal.find('input[name ="isvp"]').is(":checked"),
+        ispresident: modal.find('input[name ="ispresident"]').is(":checked"),
+        id: currentID
+     */
+})
+
+router.post('/deleteByID', async (req, res) => {
+    await UserProfile.deleteOne({
+        _id: req.body.id
+    })
+    res.json({})
+})
+
+
 canChangePermission = ["admin"]
 router.patch('/changePermission', async (req, res) => {
     targetUserID = req.body.targetuserid;
