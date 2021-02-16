@@ -46,85 +46,11 @@
 <body class="">
   <div class="wrapper">
     <div class="sidebar">
-        <%- include('partials/toolbar.ejs',  {user: user})%>
+        <%- include('partials/toolbar.ejs',  {user: user, currentPage: 'admin_portal'})%>
     </div>
     <div class="main-panel">
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle d-inline">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navigation">
-            <ul class="navbar-nav ml-auto">
-              <li class="search-bar input-group">
-                <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split" ></i>
-                  <span class="d-lg-none d-md-block">Search</span>
-                </button>
-              </li>
-              <li class="dropdown nav-item">
-                <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <div class="notification d-none d-lg-block d-xl-block"></div>
-                  <i class="tim-icons icon-sound-wave"></i>
-                  <p class="d-lg-none">
-                    Notifications
-                  </p>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                  <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John responded to your email</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more tasks</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Your friend Michael is in town</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another notification</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a></li>
-                </ul>
-              </li>
-              <li class="dropdown nav-item">
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <div class="photo">
-                    <img src="../assets/template/img/anime3.png" alt="Profile Photo">
-                  </div>
-                  <b class="caret d-none d-lg-block d-xl-block"></b>
-                  <p class="d-lg-none">
-                    Log out
-                  </p>
-                </a>
-                <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
-                  <li class="dropdown-divider"></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a></li>
-                </ul>
-              </li>
-              <li class="separator d-lg-none"></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!--
-      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="tim-icons icon-simple-remove"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>-->
+      <%- include('partials/top_navbar.ejs',  {title: 'Admin Portal'})%>
       <!-- End Navbar -->
       <div class="content">
 
@@ -148,17 +74,11 @@
                                   </div>
                               </div>
                               <div class="row">
-                              <div class="col-md-8 pr-md-1">
+                              <div class="col-md-12">
                                 <div class="form-group">
                                   <label>Username</label>
                                   <input type="text" class="form-control" disabled placeholder="Username" name="username" value="">
                                 </div>
-                              </div>                   
-                              <div class="col-md-4 pl-md-1">
-                                  <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" disabled name="password" value="">
-                                  </div>
                               </div>
                             </div>
                             <div class="row">
@@ -186,12 +106,12 @@
                                   <div class="form-group">
                                     <label>Committee</label>
                                     <select class="form-control" name="committee">
-                                      <option value="Internal">Internal</option>
-                                      <option value="External">External</option>
-                                      <option value="Outreach">Outreach</option>
-                                      <option value="Finance">Finance</option>
-                                      <option value="Marketing">Marketing</option>
-                                      <option value="Executive">Executive</option>
+                                      <option name='Internal' value="Internal">Internal</option>
+                                      <option name="External" value="External">External</option>
+                                      <option name="Outreach" value="Outreach">Outreach</option>
+                                      <option name="Finance" value="Finance">Finance</option>
+                                      <option name="Marketing" value="Marketing">Marketing</option>
+                                      <option name="Executive" value="Executive">Executive</option>
                                     </select>
                                     
                                   </div>
@@ -202,13 +122,13 @@
                                       <input type="text" class="form-control" placeholder="Subcommittee" name="subcommittee" value="">
                                     </div>
                                   </div>
-                                  <div class="col-md-2 pr-md-1">
+                                  <div class="col-md-2 px-md-1">
                                     <div class="form-group">
                                       <label>Work Points</label>
                                       <input type="text" class="form-control" placeholder="0" name="workpoints" value="">
                                     </div>
                                   </div>
-                                  <div class="col-md-2 px-md-1">
+                                  <div class="col-md-2 pl-md-1">
                                       <div class="form-group">
                                         <label>Social Points</label>
                                         <input type="text" class="form-control" placeholder="0" name="socialpoints" value="">
@@ -277,18 +197,12 @@
                                    </div>
                                </div>
                                <div class="row">
-                               <div class="col-md-8 pr-md-1">
+                               <div class="col-md-12">
                                  <div class="form-group">
                                    <label>Username</label>
                                    <input type="text" class="form-control" disabled placeholder="Username" name="username" value="">
                                  </div>
-                               </div>                   
-                               <div class="col-md-4 pl-md-1">
-                                   <div class="form-group">
-                                     <label>Password</label>
-                                     <input type="password" class="form-control" disabled name="password" value="">
-                                   </div>
-                               </div>
+                               </div> 
                              </div>
                              <div class="row">
                                <div class="col-md-4 pr-md-1">

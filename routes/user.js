@@ -9,6 +9,15 @@ const passport = require('passport');
 
 HashCycles = parseInt(process.env.PASSWORD_HASHING_CYCLES);
 
+router.get('/', authentication.checkAuthenticated, async (req, res) => {
+    userData = await UserProfile.findById(req.user._id)
+    res.render('user.ejs', {user: userData})
+})
+
+router.get('/login', authentication.checkNotAuthenticated, (req, res) => {
+    res.render('login.ejs')
+})
+
 // Get login page
 router.get('/login', authentication.checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
@@ -63,13 +72,13 @@ router.post('/register', async (req, res) => {
 });
 
 // Log out of user
-router.post('/logout', (req, res) => {
+router.get('/logout', authentication.checkAuthenticated, (req, res) => {
     req.logOut()
     res.redirect('/user/login')
 })
 
 
-router.post('/list', async (req, res) => {
+router.post('/list', authentication.checkAuthenticated, async (req, res) => {
     var query = req.body.query
     users = await UserProfile.find(
         { $and: [
@@ -88,13 +97,13 @@ router.post('/list', async (req, res) => {
     res.json(users)
 })
 
-router.post('/data', async (req, res) => {
+router.post('/data', authentication.checkAuthenticated, async (req, res) => {
     var id = req.body.id
     users = await UserProfile.findById(id, { HashedPassword: 0})
     res.json(users)
 })
 
-router.post('/update', async (req, res) => {
+router.post('/update', authentication.checkAuthenticated, async (req, res) => {
     var data = req.body.data
 
     await UserProfile.updateOne({_id: data.id  }, { $set: {
@@ -113,7 +122,7 @@ router.post('/update', async (req, res) => {
     res.json({})
 })
 
-router.post('/activate', async (req, res) => {
+router.post('/activate', authentication.checkAuthenticated, async (req, res) => {
     var data = req.body.data
 
     console.log(data)
@@ -134,7 +143,7 @@ router.post('/activate', async (req, res) => {
     res.json({})
 })
 
-router.post('/deleteByID', async (req, res) => {
+router.post('/deleteByID', authentication.checkAuthenticated, async (req, res) => {
     await UserProfile.deleteOne({
         _id: req.body.id
     })

@@ -90,8 +90,30 @@ async function EditUser() {
     modal.find('input[name ="middlename"]').val(data.MiddleName)
     modal.find('input[name ="lastname"]').val(data.LastName)
 
-    modal.find('select[name ="committee"]').val("") //Add Committee to model
-    modal.find('input[name ="subcommittee"]').val("") //Add Subcommittee to model
+    modal.find('select[name ="committee"]').find("option").attr("selected", false);
+
+    switch(data.Committee) {
+        case 'Internal':
+            modal.find('select[name ="committee"]').find('option[name ="Internal"]').attr('selected','selected');
+            break;
+        case 'External':
+            modal.find('select[name ="committee"]').find('option[name ="External"]').attr('selected','selected');
+            break;
+        case 'Outreach':
+            modal.find('select[name ="committee"]').find('option[name ="Outreach"]').attr('selected','selected');
+            break;
+        case 'Finance':
+            modal.find('select[name ="committee"]').find('option[name ="Finance"]').attr('selected','selected');
+            break;
+        case 'Marketing':
+            modal.find('select[name ="committee"]').find('option[name ="Marketing"]').attr('selected','selected');
+            break;
+        case 'Executive':
+            modal.find('select[name ="committee"]').find('option[name ="Executive"]').attr('selected','selected');
+            break;
+    }
+
+    modal.find('input[name ="subcommittee"]').val(data.Subcommittee) 
     modal.find('input[name ="workpoints"]').val(data.Points.WorkPoints)
     modal.find('input[name ="socialpoints"]').val(data.Points.SocialPoints)
 
@@ -140,8 +162,6 @@ async function AcceptUser() {
     modal.find('input[name ="middlename"]').val(data.MiddleName)
     modal.find('input[name ="lastname"]').val(data.LastName)
 
-    modal.find('input[name ="committee"]').val("") //Add Subcommittee to model
-    modal.find('input[name ="subcommittee"]').val("") //Add Subcommittee to model
     modal.find('input[name ="workpoints"]').val(data.Points.WorkPoints)
     modal.find('input[name ="socialpoints"]').val(data.Points.SocialPoints)
 

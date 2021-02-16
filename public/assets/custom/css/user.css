@@ -1,0 +1,32 @@
+.center-text {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h3.title {
+  margin-bottom: 15px;
+}
+
+.pad-top {
+  padding-top: 30px;
+}
+
+.form-checkbox .form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.25rem);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-right: 0;
+}
+
+.form-checkbox {
+  text-align: center;
+}
+
+.form-control option {
+  color: rgba(0, 0, 0, 0.8);
+}
