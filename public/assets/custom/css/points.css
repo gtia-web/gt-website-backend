@@ -1,0 +1,26 @@
+.card-user-management .card-body {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.card-user-management .user-search {
+  margin-bottom: 20px;
+}
+.card-user-management {
+  min-height: 670px;
+}
+
+.card-user-management .table-full-width {
+  max-height: 370px;
+  position: relative;
+}
+
+.card-user-management .card-footer {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 20px;
+}
+
+.table-width-bound {
+  min-width: 90px;
+}

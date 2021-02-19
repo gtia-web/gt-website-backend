@@ -36,7 +36,8 @@
   <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-  <link href="../assets/custom/css/admin_portal.css" rel="stylesheet" />
+  
+  <link href="../assets/custom/css/points.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
   <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
@@ -46,11 +47,11 @@
 <body class="">
   <div class="wrapper">
     <div class="sidebar">
-        <%- include('partials/toolbar.ejs',  {user: user, currentPage: 'admin_portal'})%>
+        <%- include('partials/toolbar.ejs',  {user: user, currentPage: 'points'})%>
     </div>
     <div class="main-panel">
       <!-- Navbar -->
-      <%- include('partials/top_navbar.ejs',  {title: 'Admin Portal'})%>
+      <%- include('partials/top_navbar.ejs',  {title: 'Points'})%>
       <!-- End Navbar -->
       <div class="content">
 
@@ -329,66 +330,102 @@
          </div>
 
         <div class="row">
-          <div class="col-12"> 
-            <div class="card card-user-management">
-              <div class="card-header ">
-                <div class="row" >
-                  <div class="col-sm-6 text-left">
-                    <h2 class="card-title">User Management</h2>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                      <label class="btn btn-sm btn-primary btn-simple active" onclick="ViewActiveAccounts()">
-                        <input type="radio" name="options" checked>
-                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Active Accounts</span>
-                        <span class="d-block d-sm-none">
-                          <i class="tim-icons icon-single-02"></i>
-                        </span>
-                      </label>
-                      <label class="btn btn-sm btn-primary btn-simple" onclick="ViewPendingAccounts()">
-                        <input type="radio" class="d-none d-sm-none" name="options">
-                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Pending Accounts</span>
-                        <span class="d-block d-sm-none">
-                          <i class="tim-icons icon-gift-2"></i>
-                        </span>
-                      </label>
+            <div class="col-12"> 
+                <div class="card card-user-management">
+                  <div class="card-header ">
+                    <div class="row" >
+                        <div class="col-sm-6 text-left">
+                            <h2 class="card-title">Work Points</h2>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                              <label class="btn btn-sm btn-primary btn-simple active" onclick="ViewActiveAccounts()">
+                                <input type="radio" name="options" checked>
+                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Work Points</span>
+                                <span class="d-block d-sm-none">
+                                  <i class="tim-icons icon-single-02"></i>
+                                </span>
+                              </label>
+                              <label class="btn btn-sm btn-primary btn-simple" onclick="ViewPendingAccounts()">
+                                <input type="radio" class="d-none d-sm-none" name="options">
+                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Social Points</span>
+                                <span class="d-block d-sm-none">
+                                  <i class="tim-icons icon-gift-2"></i>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
                     </div>
+                  </div>
+                  <div class="card-body points-table">
+                    <input type="text" class="form-control user-search" id="searsch_user_1" placeholder="SEARCH" value="" oninput="MakeSearchQuery()">
+                    <div class="table-responsive">
+                        <div class="table-full-width  table-responsive">
+                            <table class="table" id='workPointsTableHead'>
+                                <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                        Date
+                                        </th>
+                                        <th>
+                                        Type
+                                        </th>
+                                        <th>
+                                        Description
+                                        </th>
+                                        <th>
+                                        Points
+                                        </th>
+                                        <th>
+                                        Status
+                                        </th>
+                                        <th class="text-right">
+                                        Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="table-full-width  table-responsive">
+                            <table class="table" id='workPointsTableBody'>
+                                <tbody id='user-list-body-1'>
+                                    <tr>
+                                        <td class="table-width-bound"> 12/12/20</td>
+                                        <td class="table-width-bound"> Points Request</td>
+                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis vestibulum orci. Praesent et accumsan dui. Proin sed nulla elementum, ornare justo et, sollicitudin sem. Pellentesque commodo eleifend sem, quis tempor quam consectetur ac. Maecenas non mauris nec turpis efficitur aliquet non ac purus. Morbi molestie metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc dictum ante eget dictum dapibus. Praesent in orci lobortis, pretium dolor id, sollicitudin augue. Donec rhoncus libero ac massa luctus facilisis. Nam eu dapibus dui, non fermentum ipsum. Pellentesque quam lacus, egestas ac sapien nec, bibendum venenatis massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. </td>
+                                        <td class="table-width-bound"> +2</td>
+                                        <td class="table-width-bound"> Pending</td>
+                                        <td class="text-right table-width-bound"> <i class="fas fa-external-link-alt"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-width-bound"> 12/12/20</td>
+                                        <td class="table-width-bound"> Points Request</td>
+                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis vestibulum orci. Praesent et accumsan dui. Proin sed nulla elementum, ornare justo et, sollicitudin sem. Pellentesque commodo eleifend sem, quis tempor quam consectetur ac. Maecenas non mauris nec turpis efficitur aliquet non ac purus. Morbi molestie metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc dictum ante eget dictum dapibus. Praesent in orci lobortis, pretium dolor id, sollicitudin augue. Donec rhoncus libero ac massa luctus facilisis. Nam eu dapibus dui, non fermentum ipsum. Pellentesque quam lacus, egestas ac sapien nec, bibendum venenatis massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. </td>
+                                        <td class="table-width-bound"> +2</td>
+                                        <td class="table-width-bound"> Pending</td>
+                                        <td class="text-right table-width-bound"> <i class="fas fa-external-link-alt"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-width-bound"> 12/12/20</td>
+                                        <td class="table-width-bound"> Points Request</td>
+                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis vestibulum orci. Praesent et accumsan dui. Proin sed nulla elementum, ornare justo et, sollicitudin sem. Pellentesque commodo eleifend sem, quis tempor quam consectetur ac. Maecenas non mauris nec turpis efficitur aliquet non ac purus. Morbi molestie metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc dictum ante eget dictum dapibus. Praesent in orci lobortis, pretium dolor id, sollicitudin augue. Donec rhoncus libero ac massa luctus facilisis. Nam eu dapibus dui, non fermentum ipsum. Pellentesque quam lacus, egestas ac sapien nec, bibendum venenatis massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. </td>
+                                        <td class="table-width-bound"> +2</td>
+                                        <td class="table-width-bound"> Pending</td>
+                                        <td class="text-right table-width-bound"> <i class="fas fa-external-link-alt"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  </div>   
+                  <div class="row card-footer">
+                        <div class="col-md-4 pl-md-1">  
+                            <button class="btn btn-fill btn-primary confirm-edit-btn"><i class="fas fa-plus" style="padding-right: 5px;"></i>   New </button>
+                        </div>
+                        <div class="col-md-2"></div>            
                   </div>
                 </div>
               </div>
-              <div class="card-body">
-                <input type="text" class="form-control user-search" id="searsch_user_1" placeholder="SEARCH" value="" oninput="MakeSearchQuery()">
-                <div class="table-responsive">
-                    <div class="table-full-width  table-responsive">
-                        <table class="table" id='userManagementTableHead'>
-                            <thead class=" text-primary">
-                                <tr>
-                                    <th>
-                                    Name
-                                    </th>
-                                    <th>
-                                    Username
-                                    </th>
-                                    <th>
-                                    Email
-                                    </th>
-                                    <th class="text-right">
-                                    Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="table-full-width  table-responsive">
-                        <table class="table" id='userManagementTableBody'>
-                            <tbody id='user-list-body-1'>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <footer class="footer">
@@ -435,10 +472,9 @@
   <!--  Notifications Plugin    -->
   <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script> 
-  <script src="../assets/custom/js/admin_portal.js"></script>
+  <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>  
+ <script src="../assets/custom/js/points.js"></script>
 
- 
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
     window.TrackJS &&

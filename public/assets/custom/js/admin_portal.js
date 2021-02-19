@@ -4,6 +4,11 @@ var pendingQueries = "";
 var showPendingAccounts = false;
 var currentID = ''
 
+/**
+ * 
+ * @param {string} query 
+ * Get all accounts with user name or name containing query and add them to User list table.
+ */
 async function GetUserQuery(query) {
     var data = await Promise.resolve($.post('/user/list', {
         query: query,
@@ -42,41 +47,54 @@ async function GetUserQuery(query) {
     });
 }
 
+/**
+ * Run the search query from the pending query
+ */
 async function RunSearchUpdate() {
     if (requestsPending) {
         requestsPending = false;
         await GetUserQuery(pendingQueries)
     }
-
-    setTimeout( RunSearchUpdate, 500 );
 }
 
+/**
+ * Add a pending search
+ */
 function MakeSearchQuery() {
     query = $('#searsch_user_1').val()
     pendingQueries = query
     requestsPending = true
 }
 
+/**
+ * Initialize page with empty query
+ */
 function initialize() {
     requestsPending = true
     pendingQueries = ""
-
-    RunSearchUpdate();
 }
 
+/**
+ * Get List of pending accounts
+ */
 function ViewPendingAccounts() {
     showPendingAccounts = true
     MakeSearchQuery();
 }
 
+/**
+ * Get List of active accounts
+ */
 function ViewActiveAccounts() {
     showPendingAccounts = false;
     MakeSearchQuery();
 }
 
-initialize();
-
-
+/**
+ * Add Edit user button functionality
+ * Fill data into Modal
+ * Add on Click listener to button
+ */
 async function EditUser() {
     currentID = $(this).closest('tr').attr('id')
     var data = await Promise.resolve($.post('/user/data', {
@@ -91,27 +109,7 @@ async function EditUser() {
     modal.find('input[name ="lastname"]').val(data.LastName)
 
     modal.find('select[name ="committee"]').find("option").attr("selected", false);
-
-    switch(data.Committee) {
-        case 'Internal':
-            modal.find('select[name ="committee"]').find('option[name ="Internal"]').attr('selected','selected');
-            break;
-        case 'External':
-            modal.find('select[name ="committee"]').find('option[name ="External"]').attr('selected','selected');
-            break;
-        case 'Outreach':
-            modal.find('select[name ="committee"]').find('option[name ="Outreach"]').attr('selected','selected');
-            break;
-        case 'Finance':
-            modal.find('select[name ="committee"]').find('option[name ="Finance"]').attr('selected','selected');
-            break;
-        case 'Marketing':
-            modal.find('select[name ="committee"]').find('option[name ="Marketing"]').attr('selected','selected');
-            break;
-        case 'Executive':
-            modal.find('select[name ="committee"]').find('option[name ="Executive"]').attr('selected','selected');
-            break;
-    }
+    modal.find('select[name ="committee"]').find('option[name ="' + data.Committee + '"]').attr('selected','selected');
 
     modal.find('input[name ="subcommittee"]').val(data.Subcommittee) 
     modal.find('input[name ="workpoints"]').val(data.Points.WorkPoints)
@@ -149,6 +147,11 @@ async function EditUser() {
     })
 }
 
+/**
+ * Add Accept user button functionality
+ * Fill data into Modal
+ * Add on Click listener to button
+ */
 async function AcceptUser() {
     currentID = $(this).closest('tr').attr('id')
     var data = await Promise.resolve($.post('/user/data', {
@@ -164,6 +167,8 @@ async function AcceptUser() {
 
     modal.find('input[name ="workpoints"]').val(data.Points.WorkPoints)
     modal.find('input[name ="socialpoints"]').val(data.Points.SocialPoints)
+
+    //console.log(modal.find(".chosen-select").chosen().val())
 
     modal.find('input[name ="isactive"]').prop( "checked",  data.MembershipStatus == 'active');
     modal.find('input[name ="isadmin"]').prop( "checked", data.SpecialPermissions.includes('admin') );
@@ -194,6 +199,10 @@ async function AcceptUser() {
     })
 }
 
+/**
+ * Add Delete user button functionality
+ * Add on Click listener to button
+ */
 async function DeleteUser() {
     currentID = $(this).closest('tr').attr('id')
     var data = await Promise.resolve($.post('/user/data', {
@@ -218,7 +227,7 @@ async function DeleteUser() {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+$(window).on('click', function(event) {
     if ($(event.target).attr('id') == "editUserModal") {
         $("#editUserModal").removeClass("view");  
     } else if ($(event.target).attr('id') == "initializeUserModal") {
@@ -226,4 +235,28 @@ window.onclick = function(event) {
     } else if ($(event.target).attr('id') == "confirmDeleteModal") {
         $('#confirmDeleteModal').removeClass("view");
     }
+})
+
+/**
+ * Resize table so that header column are always same size as body columns
+ */
+function resizeTable() {
+    var tbody = $("#userManagementTableBody td");
+    $("#userManagementTableHead th").each(function(i,v) {
+        $(v).width(tbody.eq(i).width());
+    });
 }
+
+/**
+ * Perform run seach update and table resize loop
+ */
+async function loop() {
+    await RunSearchUpdate();
+    resizeTable();
+    setTimeout( loop, 500 );
+
+}
+
+/** Run Query and resize loop */
+initialize();
+loop();

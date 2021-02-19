@@ -1,6 +1,5 @@
 require('dotenv/config');
 const authentication = require("../utility/authentication");
-const utility = require("../utility/utility");
 const express = require('express');
 const router = express.Router();
 const UserProfile = require('../models/UserProfile');
@@ -9,16 +8,13 @@ const passport = require('passport');
 
 HashCycles = parseInt(process.env.PASSWORD_HASHING_CYCLES);
 
+//Retrieve User Page
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
     userData = await UserProfile.findById(req.user._id)
     res.render('user.ejs', {user: userData})
 })
 
-router.get('/login', authentication.checkNotAuthenticated, (req, res) => {
-    res.render('login.ejs')
-})
-
-// Get login page
+//Retrieve Login Page
 router.get('/login', authentication.checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
 })
@@ -71,13 +67,18 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Log out of user
+/** Log out of user
+ * Must Be Logged in 
+ */ 
 router.get('/logout', authentication.checkAuthenticated, (req, res) => {
     req.logOut()
     res.redirect('/user/login')
 })
 
-
+/** Get list of student whose name or user name contains a query
+ * Also takes boolean pending argument to retuieve pending account or non-pending accounts.
+ * Must be logged in
+ */
 router.post('/list', authentication.checkAuthenticated, async (req, res) => {
     var query = req.body.query
     users = await UserProfile.find(
@@ -97,13 +98,21 @@ router.post('/list', authentication.checkAuthenticated, async (req, res) => {
     res.json(users)
 })
 
-router.post('/data', authentication.checkAuthenticated, async (req, res) => {
+/** Get user profile details by ID
+ * Must be logged in
+ * Must be Admin
+ */
+router.post('/data', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
     var id = req.body.id
     users = await UserProfile.findById(id, { HashedPassword: 0})
     res.json(users)
 })
 
-router.post('/update', authentication.checkAuthenticated, async (req, res) => {
+/** Update user profile
+ * Must be Logged in
+ * Must be Admin
+ */
+router.post('/update', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
     var data = req.body.data
 
     await UserProfile.updateOne({_id: data.id  }, { $set: {
@@ -122,7 +131,11 @@ router.post('/update', authentication.checkAuthenticated, async (req, res) => {
     res.json({})
 })
 
-router.post('/activate', authentication.checkAuthenticated, async (req, res) => {
+/** Activate user profile
+ * Must be Logged in
+ * Must be Admin
+ */
+router.post('/activate', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
     var data = req.body.data
 
     console.log(data)
@@ -143,7 +156,11 @@ router.post('/activate', authentication.checkAuthenticated, async (req, res) => 
     res.json({})
 })
 
-router.post('/deleteByID', authentication.checkAuthenticated, async (req, res) => {
+/** Delete are user profile by ID
+ * Must be Logged in
+ * Must be Admin
+ */
+router.post('/deleteByID', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
     await UserProfile.deleteOne({
         _id: req.body.id
     })

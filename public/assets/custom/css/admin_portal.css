@@ -11,7 +11,7 @@
 }
 
 .card-user-management .table-full-width {
-  max-height: 420px;
+  max-height: 370px;
   position: relative;
 }
 
@@ -221,4 +221,8 @@ tbody .btn i:hover {
 
 #deleteUserFullname {
   font-weight: bold;
+}
+
+thead th {
+  font-size: 13px !important;
 }
