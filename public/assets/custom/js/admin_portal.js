@@ -119,7 +119,6 @@ async function EditUser() {
     modal.find('input[name ="isadmin"]').prop( "checked", data.SpecialPermissions.includes('admin') );
     modal.find('input[name ="isvp"]').prop( "checked", data.VPStatus.isVP );
     modal.find('input[name ="ispresident"]').prop( "checked", false ); //Add to model
-      
 
     modal.addClass("view");
 
