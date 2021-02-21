@@ -52,7 +52,7 @@
 .modal-header {
   padding: 2px 16px;
   background-color: #5cb85c;
-  color: white;
+  color: #1d253b;
 }
 
 .modal-body .card {
@@ -68,7 +68,7 @@
 .modal-footer {
   padding: 2px 16px;
   background-color: #5cb85c;
-  color: white;
+  color: #1d253b;
 }
 
 /* Modal Content */
@@ -77,9 +77,9 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-name: animatetop;
   animation-duration: 0.4s;
-
+  color: #1d253b;
   background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: 8% auto; /* 15% from the top and centered */
   padding: 0px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
@@ -136,21 +136,8 @@
   margin: 11px 3px 8px 3px !important;
 }
 
-.modal .chosen-container-active .chosen-choices {
-  border-color: #e14eca;
-  border-radius: 0.4285rem;
-  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
-  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
-  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
-  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
-  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
-  box-shadow: none;
-  -webkit-box-shadow: none;
+.white-content .form-control:focus {
+  border-color: #f5d580;
 }
 
 .modal
@@ -158,7 +145,8 @@
   .chosen-choices
   li.search-field
   input[type="text"] {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: #222a42 !important;
+  font-family: "Poppins", sans-serif;
 }
 
 .modal .chosen-container-multi .chosen-choices {
@@ -185,6 +173,23 @@
     background-color 0.3s ease-in-out;
 }
 
+.modal .chosen-container-active .chosen-choices {
+  border-color: #f5d580;
+  border-radius: 0.4285rem;
+  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
 .modal
   .chosen-container-multi
   .chosen-choices
@@ -196,6 +201,7 @@
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.428571;
+  font-family: "Poppins", sans-serif;
 }
 
 .modal .chosen-drop ul li {
@@ -204,15 +210,15 @@
 }
 
 tbody .btn i {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgb(0, 48, 87, 1);
 }
 
 tbody .btn i:hover {
-  color: white;
+  color: rgb(0, 48, 87, 0.6);
 }
 
 .modal p.modal-text {
-  color: rgba(255, 255, 255, 0.8);
+  color: #1d253b;
 }
 
 #confirmDeleteModal .modal-content {

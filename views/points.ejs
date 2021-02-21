@@ -17,472 +17,551 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
-  <title>
-    Black Dashboard by Creative Tim
-  </title>
-  
-  <!-- Nucleo Icons -->
-  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
+    <title>
+        Black Dashboard by Creative Tim
+    </title>
+
+    <!-- Nucleo Icons -->
 
 
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/custom/css/all.css">
-  <!-- Nucleo Icons -->
-  <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-  
-  <link href="../assets/custom/css/points.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
-  <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/custom/css/all.css">
+    <!-- Nucleo Icons -->
+    <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
+
+    <link href="../assets/custom/css/points.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
+    <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
 
 </head>
 
-<body class="">
-  <div class="wrapper">
-    <div class="sidebar">
-        <%- include('partials/toolbar.ejs',  {user: user, currentPage: 'points'})%>
-    </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <%- include('partials/top_navbar.ejs',  {title: 'Points'})%>
-      <!-- End Navbar -->
-      <div class="content">
-
-        <!-- The Modal -->
-        <div id="editUserModal" class="modal">
-           <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-header">
-                          <h5 class="title">Edit Profile</h5>
-                        </div>
-                        <div class="card-body">
-                          <form >
-                              <div class="row">
-                                  <div class="col-md-12">
-                                      <div class="form-group">
-                                      <label for="exampleInputEmail1">Email address</label>
-                                      <input type="email" disabled class="form-control" placeholder="Email" name="email" value="">
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row">
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <label>Username</label>
-                                  <input type="text" class="form-control" disabled placeholder="Username" name="username" value="">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-4 pr-md-1">
-                                <div class="form-group">
-                                  <label>First Name</label>
-                                  <input type="text" class="form-control" placeholder="First Name" disabled name="firstname" value="">
-                                </div>
-                              </div>
-                              <div class="col-md-4 px-md-1">
-                                  <div class="form-group">
-                                    <label>Middle Name</label>
-                                    <input type="text" class="form-control" placeholder="Middle Name (Optional)" disabled name="middlename" value="">
-                                  </div>
-                                </div>
-                              <div class="col-md-4 pl-md-1">
-                                <div class="form-group">
-                                  <label>Last Name</label>
-                                  <input type="text" class="form-control" placeholder="Last Name" value="" disabled name="lastname">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 pr-md-1">
-                                  <div class="form-group">
-                                    <label>Committee</label>
-                                    <select class="form-control" name="committee">
-                                      <option name='Internal' value="Internal">Internal</option>
-                                      <option name="External" value="External">External</option>
-                                      <option name="Outreach" value="Outreach">Outreach</option>
-                                      <option name="Finance" value="Finance">Finance</option>
-                                      <option name="Marketing" value="Marketing">Marketing</option>
-                                      <option name="Executive" value="Executive">Executive</option>
-                                    </select>
-                                    
-                                  </div>
-                                </div>
-                                <div class="col-md-4 px-md-1">
-                                    <div class="form-group">
-                                      <label>Subcommittee</label>
-                                      <input type="text" class="form-control" placeholder="Subcommittee" name="subcommittee" value="">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-2 px-md-1">
-                                    <div class="form-group">
-                                      <label>Work Points</label>
-                                      <input type="text" class="form-control" placeholder="0" name="workpoints" value="">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-2 pl-md-1">
-                                      <div class="form-group">
-                                        <label>Social Points</label>
-                                        <input type="text" class="form-control" placeholder="0" name="socialpoints" value="">
-                                      </div>
-                                    </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 px-md-1">
-                                  </div>
-                                <div class="col-md-1 px-md-1 form-checkbox">
-                                    <div class="form-group">
-                                      <label>Is Active</label>
-                                      <input type="checkbox" class="form-control" name="isactive" value="">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-1 px-md-1 form-checkbox">
-                                    <div class="form-group">
-                                      <label>Is Admin</label>
-                                      <input type="checkbox" class="form-control" name="isadmin" value="">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-1 px-md-1 form-checkbox">
-                                    <div class="form-group">
-                                      <label>Is VP</label>
-                                      <input type="checkbox" class="form-control" name="isvp" value="">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-1 px-md-1 form-checkbox">
-                                    <div class="form-group">
-                                      <label>Is Pres.</label>
-                                      <input type="checkbox" class="form-control" name="ispresident" value="">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 px-md-1">
-                                  </div>
-                              </div>                            
-                          </form>
-                          <div class="row card-footer">
-                            <div class="col-md-4 pl-md-1">
-                                <button class="btn btn-fill btn-primary confirm-edit-btn">Confirm Edit</button>
-                            </div>
-                            <div class="col-md-2"></div>                   
-                          </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
+<body class="white-content">
+    <div class="wrapper">
+        <div class="sidebar">
+            <%- include('partials/toolbar.ejs', {user: user, currentPage: 'points' })%>
         </div>
-        <div id="initializeUserModal" class="modal">
-            <!-- Modal content -->
-             <div class="modal-content">
-                 <div class="modal-body">
-                     <div class="card">
-                         <div class="card-header">
-                           <h5 class="title">Activate Profile</h5>
-                         </div>
-                         <div class="card-body">
-                           <form >
-                               <div class="row">
-                                   <div class="col-md-12">
-                                       <div class="form-group">
-                                       <label for="exampleInputEmail1">Email address</label>
-                                       <input type="email" disabled class="form-control" placeholder="Email" name="email" value="">
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="row">
-                               <div class="col-md-12">
-                                 <div class="form-group">
-                                   <label>Username</label>
-                                   <input type="text" class="form-control" disabled placeholder="Username" name="username" value="">
-                                 </div>
-                               </div> 
-                             </div>
-                             <div class="row">
-                               <div class="col-md-4 pr-md-1">
-                                 <div class="form-group">
-                                   <label>First Name</label>
-                                   <input type="text" class="form-control" placeholder="First Name" disabled name="firstname" value="">
-                                 </div>
-                               </div>
-                               <div class="col-md-4 px-md-1">
-                                   <div class="form-group">
-                                     <label>Middle Name</label>
-                                     <input type="text" class="form-control" placeholder="Middle Name (Optional)" disabled name="middlename" value="">
-                                   </div>
-                                 </div>
-                               <div class="col-md-4 pl-md-1">
-                                 <div class="form-group">
-                                   <label>Last Name</label>
-                                   <input type="text" class="form-control" placeholder="Last Name" value="" disabled name="lastname">
-                                 </div>
-                               </div>
-                             </div>
-                             <div class="row">
-                                 <div class="col-md-4 pr-md-1">
-                                   <div class="form-group">
-                                     <label>Committee</label>
-                                     <select class="form-control" name="committee">
-                                       <option value="Internal">Internal</option>
-                                       <option value="External">External</option>
-                                       <option value="Outreach">Outreach</option>
-                                       <option value="Finance">Finance</option>
-                                       <option value="Marketing">Marketing</option>
-                                       <option value="Executive">Executive</option>
-                                     </select>
-                                     
-                                   </div>
-                                 </div>
-                                 <div class="col-md-4 px-md-1">
-                                     <div class="form-group">
-                                       <label>Subcommittee</label>
-                                       <input type="text" class="form-control" placeholder="Subcommittee" name="subcommittee" value="">
-                                     </div>
-                                   </div>
-                                    <div class="col-md-4 pl-md-1">
-                                       <div class="form-group">
-                                            <label>Special Permission</label>
-                                            <select class="chosen-select form-control" multiple>
-                                                <option value=""></option>
-                                                <option value="admin">Admin</option>
-                                                <option selected value="publiceventpublisher">Public Event Publisher</option>=
-                                            </select>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <%- include('partials/top_navbar.ejs', {title: 'Points' })%>
+                <!-- End Navbar -->
+                <div class="content">
+
+                    <!-- The Modal -->
+                    <div id="editUserModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="title">Edit Profile</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email address</label>
+                                                        <input type="email" disabled class="form-control"
+                                                            placeholder="Email" name="email" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <input type="text" class="form-control" disabled
+                                                            placeholder="Username" name="username" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 pr-md-1">
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input type="text" class="form-control" placeholder="First Name"
+                                                            disabled name="firstname" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-md-1">
+                                                    <div class="form-group">
+                                                        <label>Middle Name</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Middle Name (Optional)" disabled
+                                                            name="middlename" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-md-1">
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <input type="text" class="form-control" placeholder="Last Name"
+                                                            value="" disabled name="lastname">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 pr-md-1">
+                                                    <div class="form-group">
+                                                        <label>Committee</label>
+                                                        <select class="form-control" name="committee">
+                                                            <option name='Internal' value="Internal">Internal</option>
+                                                            <option name="External" value="External">External</option>
+                                                            <option name="Outreach" value="Outreach">Outreach</option>
+                                                            <option name="Finance" value="Finance">Finance</option>
+                                                            <option name="Marketing" value="Marketing">Marketing
+                                                            </option>
+                                                            <option name="Executive" value="Executive">Executive
+                                                            </option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-md-1">
+                                                    <div class="form-group">
+                                                        <label>Subcommittee</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Subcommittee" name="subcommittee" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 px-md-1">
+                                                    <div class="form-group">
+                                                        <label>Work Points</label>
+                                                        <input type="text" class="form-control" placeholder="0"
+                                                            name="workpoints" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 pl-md-1">
+                                                    <div class="form-group">
+                                                        <label>Social Points</label>
+                                                        <input type="text" class="form-control" placeholder="0"
+                                                            name="socialpoints" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 px-md-1">
+                                                </div>
+                                                <div class="col-md-1 px-md-1 form-checkbox">
+                                                    <div class="form-group">
+                                                        <label>Is Active</label>
+                                                        <input type="checkbox" class="form-control" name="isactive"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 px-md-1 form-checkbox">
+                                                    <div class="form-group">
+                                                        <label>Is Admin</label>
+                                                        <input type="checkbox" class="form-control" name="isadmin"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 px-md-1 form-checkbox">
+                                                    <div class="form-group">
+                                                        <label>Is VP</label>
+                                                        <input type="checkbox" class="form-control" name="isvp"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 px-md-1 form-checkbox">
+                                                    <div class="form-group">
+                                                        <label>Is Pres.</label>
+                                                        <input type="checkbox" class="form-control" name="ispresident"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-md-1">
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="row card-footer">
+                                            <div class="col-md-4 pl-md-1">
+                                                <button class="btn btn-fill btn-primary confirm-edit-btn">Confirm
+                                                    Edit</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
                                         </div>
                                     </div>
-                             </div>
-                             <div class="row">
-                                 <div class="col-md-4 px-md-1">
-                                   </div>
-                                 <div class="col-md-1 px-md-1 form-checkbox">
-                                     <div class="form-group">
-                                       <label>Is Active</label>
-                                       <input type="checkbox" class="form-control" name="isactive" value="">
-                                     </div>
-                                   </div>
-                                   <div class="col-md-1 px-md-1 form-checkbox">
-                                     <div class="form-group">
-                                       <label>Is Admin</label>
-                                       <input type="checkbox" class="form-control" name="isadmin" value="">
-                                     </div>
-                                   </div>
-                                   <div class="col-md-1 px-md-1 form-checkbox">
-                                     <div class="form-group">
-                                       <label>Is VP</label>
-                                       <input type="checkbox" class="form-control" name="isvp" value="">
-                                     </div>
-                                   </div>
-                                   <div class="col-md-1 px-md-1 form-checkbox">
-                                     <div class="form-group">
-                                       <label>Is Pres.</label>
-                                       <input type="checkbox" class="form-control" name="ispresident" value="">
-                                     </div>
-                                   </div>
-                                   <div class="col-md-4 px-md-1">
-                                   </div>
-                               </div>                            
-                           </form>
-                           <div class="row card-footer">
-                             <div class="col-md-4 pl-md-1">
-                                 <button class="btn btn-fill btn-primary accept-profile-btn">Activate</button>
-                             </div>
-                             <div class="col-md-2"></div>                   
-                           </div>
-                         </div>
-                         
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <div id="confirmDeleteModal" class="modal">
-            <!-- Modal content -->
-             <div class="modal-content">
-                 <div class="modal-body">
-                     <div class="card">
-                         <div class="card-header">
-                           <h5 class="title">Delete Profile</h5>
-                         </div>
-                         <div class="card-body">
-                           <form >
-                               <div class="row">
-                                   <div class="col-md-12">
-                                       <p class="modal-text"> Are you sure you want to delete the user account of <span id='deleteUserFullname'></span> ?</p>
-                                   </div>
-                               </div>                           
-                           </form>
-                           <div class="row card-footer">
-                             <div class="col-md-4 pl-md-1">
-                                 <button class="btn btn-fill btn-primary confirm-delete-btn">Delete</button>
-                             </div>
-                             <div class="col-md-2"></div>                   
-                           </div>
-                         </div>
-                         
-                     </div>
-                 </div>
-             </div>
-         </div>
 
-        <div class="row">
-            <div class="col-12"> 
-                <div class="card card-user-management">
-                  <div class="card-header ">
-                    <div class="row" >
-                        <div class="col-sm-6 text-left">
-                            <h2 class="card-title">Work Points</h2>
-                          </div>
-                          <div class="col-sm-6">
-                            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                              <label class="btn btn-sm btn-primary btn-simple active" onclick="ViewActiveAccounts()">
-                                <input type="radio" name="options" checked>
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Work Points</span>
-                                <span class="d-block d-sm-none">
-                                  <i class="tim-icons icon-single-02"></i>
-                                </span>
-                              </label>
-                              <label class="btn btn-sm btn-primary btn-simple" onclick="ViewPendingAccounts()">
-                                <input type="radio" class="d-none d-sm-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Social Points</span>
-                                <span class="d-block d-sm-none">
-                                  <i class="tim-icons icon-gift-2"></i>
-                                </span>
-                              </label>
+                                </div>
                             </div>
-                          </div>
-                    </div>
-                  </div>
-                  <div class="card-body points-table">
-                    <input type="text" class="form-control user-search" id="searsch_user_1" placeholder="SEARCH" value="" oninput="MakeSearchQuery()">
-                    <div class="table-responsive">
-                        <div class="table-full-width  table-responsive">
-                            <table class="table" id='workPointsTableHead'>
-                                <thead class=" text-primary">
-                                    <tr>
-                                        <th>
-                                        Date
-                                        </th>
-                                        <th>
-                                        Type
-                                        </th>
-                                        <th>
-                                        Description
-                                        </th>
-                                        <th>
-                                        Points
-                                        </th>
-                                        <th>
-                                        Status
-                                        </th>
-                                        <th class="text-right">
-                                        Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="table-full-width  table-responsive">
-                            <table class="table" id='workPointsTableBody'>
-                                <tbody id='user-list-body-1'>
-                                    <tr>
-                                        <td class="table-width-bound"> 12/12/20</td>
-                                        <td class="table-width-bound"> Points Request</td>
-                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis vestibulum orci. Praesent et accumsan dui. Proin sed nulla elementum, ornare justo et, sollicitudin sem. Pellentesque commodo eleifend sem, quis tempor quam consectetur ac. Maecenas non mauris nec turpis efficitur aliquet non ac purus. Morbi molestie metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc dictum ante eget dictum dapibus. Praesent in orci lobortis, pretium dolor id, sollicitudin augue. Donec rhoncus libero ac massa luctus facilisis. Nam eu dapibus dui, non fermentum ipsum. Pellentesque quam lacus, egestas ac sapien nec, bibendum venenatis massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. </td>
-                                        <td class="table-width-bound"> +2</td>
-                                        <td class="table-width-bound"> Pending</td>
-                                        <td class="text-right table-width-bound"> <i class="fas fa-external-link-alt"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-width-bound"> 12/12/20</td>
-                                        <td class="table-width-bound"> Points Request</td>
-                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis vestibulum orci. Praesent et accumsan dui. Proin sed nulla elementum, ornare justo et, sollicitudin sem. Pellentesque commodo eleifend sem, quis tempor quam consectetur ac. Maecenas non mauris nec turpis efficitur aliquet non ac purus. Morbi molestie metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc dictum ante eget dictum dapibus. Praesent in orci lobortis, pretium dolor id, sollicitudin augue. Donec rhoncus libero ac massa luctus facilisis. Nam eu dapibus dui, non fermentum ipsum. Pellentesque quam lacus, egestas ac sapien nec, bibendum venenatis massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. </td>
-                                        <td class="table-width-bound"> +2</td>
-                                        <td class="table-width-bound"> Pending</td>
-                                        <td class="text-right table-width-bound"> <i class="fas fa-external-link-alt"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-width-bound"> 12/12/20</td>
-                                        <td class="table-width-bound"> Points Request</td>
-                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis vestibulum orci. Praesent et accumsan dui. Proin sed nulla elementum, ornare justo et, sollicitudin sem. Pellentesque commodo eleifend sem, quis tempor quam consectetur ac. Maecenas non mauris nec turpis efficitur aliquet non ac purus. Morbi molestie metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc dictum ante eget dictum dapibus. Praesent in orci lobortis, pretium dolor id, sollicitudin augue. Donec rhoncus libero ac massa luctus facilisis. Nam eu dapibus dui, non fermentum ipsum. Pellentesque quam lacus, egestas ac sapien nec, bibendum venenatis massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. </td>
-                                        <td class="table-width-bound"> +2</td>
-                                        <td class="table-width-bound"> Pending</td>
-                                        <td class="text-right table-width-bound"> <i class="fas fa-external-link-alt"></i></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
-                  </div>   
-                  <div class="row card-footer">
-                        <div class="col-md-4 pl-md-1">  
-                            <button class="btn btn-fill btn-primary confirm-edit-btn"><i class="fas fa-plus" style="padding-right: 5px;"></i>   New </button>
+                    <div id="initializeUserModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="title">Activate Profile</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email address</label>
+                                                        <input type="email" disabled class="form-control"
+                                                            placeholder="Email" name="email" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <input type="text" class="form-control" disabled
+                                                            placeholder="Username" name="username" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 pr-md-1">
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input type="text" class="form-control" placeholder="First Name"
+                                                            disabled name="firstname" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-md-1">
+                                                    <div class="form-group">
+                                                        <label>Middle Name</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Middle Name (Optional)" disabled
+                                                            name="middlename" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-md-1">
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <input type="text" class="form-control" placeholder="Last Name"
+                                                            value="" disabled name="lastname">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 pr-md-1">
+                                                    <div class="form-group">
+                                                        <label>Committee</label>
+                                                        <select class="form-control" name="committee">
+                                                            <option value="Internal">Internal</option>
+                                                            <option value="External">External</option>
+                                                            <option value="Outreach">Outreach</option>
+                                                            <option value="Finance">Finance</option>
+                                                            <option value="Marketing">Marketing</option>
+                                                            <option value="Executive">Executive</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-md-1">
+                                                    <div class="form-group">
+                                                        <label>Subcommittee</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Subcommittee" name="subcommittee" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-md-1">
+                                                    <div class="form-group">
+                                                        <label>Special Permission</label>
+                                                        <select class="chosen-select form-control" multiple>
+                                                            <option value=""></option>
+                                                            <option value="admin">Admin</option>
+                                                            <option selected value="publiceventpublisher">Public Event
+                                                                Publisher</option>=
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 px-md-1">
+                                                </div>
+                                                <div class="col-md-1 px-md-1 form-checkbox">
+                                                    <div class="form-group">
+                                                        <label>Is Active</label>
+                                                        <input type="checkbox" class="form-control" name="isactive"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 px-md-1 form-checkbox">
+                                                    <div class="form-group">
+                                                        <label>Is Admin</label>
+                                                        <input type="checkbox" class="form-control" name="isadmin"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 px-md-1 form-checkbox">
+                                                    <div class="form-group">
+                                                        <label>Is VP</label>
+                                                        <input type="checkbox" class="form-control" name="isvp"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 px-md-1 form-checkbox">
+                                                    <div class="form-group">
+                                                        <label>Is Pres.</label>
+                                                        <input type="checkbox" class="form-control" name="ispresident"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-md-1">
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="row card-footer">
+                                            <div class="col-md-4 pl-md-1">
+                                                <button
+                                                    class="btn btn-fill btn-primary accept-profile-btn">Activate</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-2"></div>            
-                  </div>
+                    </div>
+                    <div id="confirmDeleteModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="title">Delete Profile</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p class="modal-text"> Are you sure you want to delete the user
+                                                        account of <span id='deleteUserFullname'></span> ?</p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="row card-footer">
+                                            <div class="col-md-4 pl-md-1">
+                                                <button
+                                                    class="btn btn-fill btn-primary confirm-delete-btn">Delete</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-user-management">
+                                <div class="card-header ">
+                                    <div class="row">
+                                        <div class="col-sm-6 text-left">
+                                            <h2 class="card-title">Work Points</h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                                                <label class="btn btn-sm btn-primary btn-simple active"
+                                                    onclick="ViewActiveAccounts()">
+                                                    <input type="radio" name="options" checked>
+                                                    <span
+                                                        class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Work
+                                                        Points</span>
+                                                    <span class="d-block d-sm-none">
+                                                        <i class="tim-icons icon-single-02"></i>
+                                                    </span>
+                                                </label>
+                                                <label class="btn btn-sm btn-primary btn-simple"
+                                                    onclick="ViewPendingAccounts()">
+                                                    <input type="radio" class="d-none d-sm-none" name="options">
+                                                    <span
+                                                        class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Social
+                                                        Points</span>
+                                                    <span class="d-block d-sm-none">
+                                                        <i class="tim-icons icon-gift-2"></i>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body points-table">
+                                    <input type="text" class="form-control user-search" id="searsch_user_1"
+                                        placeholder="SEARCH" value="" oninput="MakeSearchQuery()">
+                                    <div class="table-responsive">
+                                        <div class="table-full-width  table-responsive">
+                                            <table class="table" id='workPointsTableHead'>
+                                                <thead class=" text-primary">
+                                                    <tr>
+                                                        <th>
+                                                            Date
+                                                        </th>
+                                                        <th>
+                                                            Type
+                                                        </th>
+                                                        <th>
+                                                            Description
+                                                        </th>
+                                                        <th>
+                                                            Points
+                                                        </th>
+                                                        <th>
+                                                            Status
+                                                        </th>
+                                                        <th class="text-right">
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div class="table-full-width  table-responsive">
+                                            <table class="table" id='workPointsTableBody'>
+                                                <tbody id='user-list-body-1'>
+                                                    <tr>
+                                                        <td class="table-width-bound"> 12/12/20</td>
+                                                        <td class="table-width-bound"> Points Request</td>
+                                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet,
+                                                            consectetur adipiscing elit. Ut lobortis vestibulum orci.
+                                                            Praesent et accumsan dui. Proin sed nulla elementum, ornare
+                                                            justo et, sollicitudin sem. Pellentesque commodo eleifend
+                                                            sem, quis tempor quam consectetur ac. Maecenas non mauris
+                                                            nec turpis efficitur aliquet non ac purus. Morbi molestie
+                                                            metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc
+                                                            dictum ante eget dictum dapibus. Praesent in orci lobortis,
+                                                            pretium dolor id, sollicitudin augue. Donec rhoncus libero
+                                                            ac massa luctus facilisis. Nam eu dapibus dui, non fermentum
+                                                            ipsum. Pellentesque quam lacus, egestas ac sapien nec,
+                                                            bibendum venenatis massa. Interdum et malesuada fames ac
+                                                            ante ipsum primis in faucibus. </td>
+                                                        <td class="table-width-bound"> +2</td>
+                                                        <td class="table-width-bound"> Pending</td>
+                                                        <td class="text-right table-width-bound"> <i
+                                                                class="fas fa-external-link-alt"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-width-bound"> 12/12/20</td>
+                                                        <td class="table-width-bound"> Points Request</td>
+                                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet,
+                                                            consectetur adipiscing elit. Ut lobortis vestibulum orci.
+                                                            Praesent et accumsan dui. Proin sed nulla elementum, ornare
+                                                            justo et, sollicitudin sem. Pellentesque commodo eleifend
+                                                            sem, quis tempor quam consectetur ac. Maecenas non mauris
+                                                            nec turpis efficitur aliquet non ac purus. Morbi molestie
+                                                            metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc
+                                                            dictum ante eget dictum dapibus. Praesent in orci lobortis,
+                                                            pretium dolor id, sollicitudin augue. Donec rhoncus libero
+                                                            ac massa luctus facilisis. Nam eu dapibus dui, non fermentum
+                                                            ipsum. Pellentesque quam lacus, egestas ac sapien nec,
+                                                            bibendum venenatis massa. Interdum et malesuada fames ac
+                                                            ante ipsum primis in faucibus. </td>
+                                                        <td class="table-width-bound"> +2</td>
+                                                        <td class="table-width-bound"> Pending</td>
+                                                        <td class="text-right table-width-bound"> <i
+                                                                class="fas fa-external-link-alt"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-width-bound"> 12/12/20</td>
+                                                        <td class="table-width-bound"> Points Request</td>
+                                                        <td class="table-width-bound"> Lorem ipsum dolor sit amet,
+                                                            consectetur adipiscing elit. Ut lobortis vestibulum orci.
+                                                            Praesent et accumsan dui. Proin sed nulla elementum, ornare
+                                                            justo et, sollicitudin sem. Pellentesque commodo eleifend
+                                                            sem, quis tempor quam consectetur ac. Maecenas non mauris
+                                                            nec turpis efficitur aliquet non ac purus. Morbi molestie
+                                                            metus ac sapien fringilla, eu tincidunt purus suscipit. Nunc
+                                                            dictum ante eget dictum dapibus. Praesent in orci lobortis,
+                                                            pretium dolor id, sollicitudin augue. Donec rhoncus libero
+                                                            ac massa luctus facilisis. Nam eu dapibus dui, non fermentum
+                                                            ipsum. Pellentesque quam lacus, egestas ac sapien nec,
+                                                            bibendum venenatis massa. Interdum et malesuada fames ac
+                                                            ante ipsum primis in faucibus. </td>
+                                                        <td class="table-width-bound"> +2</td>
+                                                        <td class="table-width-bound"> Pending</td>
+                                                        <td class="text-right table-width-bound"> <i
+                                                                class="fas fa-external-link-alt"></i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row card-footer">
+                                    <div class="col-md-4 pl-md-1">
+                                        <button class="btn btn-fill btn-primary confirm-edit-btn"><i class="fas fa-plus"
+                                                style="padding-right: 5px;"></i> New </button>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    Creative Tim
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="copyright">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>2018 made with <i class="tim-icons icon-heart-2"></i> by
+                            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
+                        </div>
+                    </div>
+                </footer>
         </div>
-      </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <ul class="nav">
-            <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                Creative Tim
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                About Us
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                Blog
-              </a>
-            </li>
-          </ul>
-          <div class="copyright">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>2018 made with <i class="tim-icons icon-heart-2"></i> by
-            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
-          </div>
-        </div>
-      </footer>
     </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="../assets/template/js/core/jquery.min.js"></script>
-  <script src="../assets/template/js/core/popper.min.js"></script>
-  <script src="../assets/template/js/core/bootstrap.min.js"></script>
-  <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>  
+    <!--   Core JS Files   -->
+    <script src="../assets/template/js/core/jquery.min.js"></script>
+    <script src="../assets/template/js/core/popper.min.js"></script>
+    <script src="../assets/template/js/core/bootstrap.min.js"></script>
+    <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-  <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
-  <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
-  <!-- Chart JS -->
-  <script src="../assets/template/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>  
- <script src="../assets/custom/js/points.js"></script>
+    <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+    <!-- Chart JS -->
+    <script src="../assets/template/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="../assets/custom/js/points.js"></script>
 
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-  <script>
-    window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "black-dashboard-free"
-      });
-  </script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+        window.TrackJS &&
+            TrackJS.install({
+                token: "ee6fab19c5a04ac1a32a645abde4613a",
+                application: "black-dashboard-free"
+            });
+    </script>
 </body>
 
 </html>

@@ -15,3 +15,52 @@ a.button {
   text-decoration: none;
   color: initial;
 }
+
+img.login-image {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  max-height: 700px;
+}
+
+.no-left-pad {
+  padding-left: 0;
+}
+
+.no-right-pad {
+  padding-right: 0;
+}
+
+.card.card-login {
+  max-width: 933px;
+}
+
+.center-content {
+  margin: 0% auto;
+}
+
+form {
+  padding: 40px;
+}
+
+.btn-submit {
+  margin: 0%;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.form-text {
+  padding: 20px 40px 0 40px;
+  font-family: "Playfair Display", serif;
+}
+
+.form-text h5 {
+  font-size: 1.5rem;
+  margin-bottom: 2px;
+  font-style: italic;
+}
+
+.form-text h3 {
+  font-size: 3.3rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
