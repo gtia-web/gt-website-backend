@@ -1,0 +1,253 @@
+<!--
+=========================================================
+* * Black Dashboard - v1.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/black-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
+    <title>
+        GTIA - Events
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/custom/css/all.css">
+    <!-- Nucleo Icons -->
+    <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
+
+
+    <link href="../assets/custom/css/events.css" rel="stylesheet" />
+    <link href="../assets/custom/css/calendar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
+    <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="white-content">
+    <div class="wrapper">
+        <div class="sidebar">
+            <%- include('partials/toolbar.ejs', {user: user, currentPage: 'events' })%>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <%- include('partials/top_navbar.ejs', {title: 'Events' })%>
+                <!-- End Navbar -->
+                <div class="content">
+                    <!-- The Modal -->
+                    <div id="newEventCreateModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="title">Create Event</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-6 pr-md-1">
+                                                    <div class="form-group">
+                                                        <label>Event Name</label>
+                                                        <input type="text" class="form-control" placeholder="Event Name"
+                                                            name="event-name" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 pl-md-1">
+                                                    <div class="form-group">
+                                                        <label>Location</label>
+                                                        <input type="text" class="form-control" placeholder="Location"
+                                                            name="location" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Description</label>
+                                                        <textarea class="form-control" placeholder="Description"
+                                                            name="description" value=""></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 pr-md-1">
+                                                    <div class="form-group">
+                                                        <label>Date</label>
+                                                        <input type="date" class="form-control" placeholder=""
+                                                            name="date" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 px-md-1">
+                                                    <div class="form-group">
+                                                        <label>Start Time</label>
+                                                        <input type="time" class="form-control" placeholder=""
+                                                            name="starttime" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 px-md-1">
+                                                    <div class="form-group">
+                                                        <label>End Time</label>
+                                                        <input type="time" class="form-control" placeholder=""
+                                                            name="endtime" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-md-1">
+                                                    <div class="form-group">
+                                                        <label>Event Type</label>
+                                                        <select class="form-control" name="event-type">
+                                                            <option value="Internal">Internal</option>
+                                                            <option value="External">External</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12 plr-md-1">
+                                                    <div class="form-group">
+                                                        <label>Special Permission</label>
+                                                        <select class="chosen-select form-control" multiple>
+                                                            <option value=""></option>
+                                                            <option value="publicpublish">Display to Public</option>
+                                                            <option value="notification">Send Notification</option>
+                                                            <option value="signups">Add Signups</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="row card-footer">
+                                            <div class="col-md-4 pl-md-1">
+                                                <button class="btn btn-fill btn-primary confirm-edit-btn"
+                                                    onclick="createEventButton()">Create</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card card-events-list">
+                                <div class="card-header ">
+                                    <h4 class="title d-inline">Events</h4>
+                                </div>
+                                <div class="card-body ">
+                                    <div class="table-full-width table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="events-box">
+                                                            <p class="title">Night Market</p>
+                                                            <p class="text-muted">2/28/20, 7:00 PM, Online</p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title=""
+                                                            class="btn btn-link" data-original-title="Edit Task">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="events-box">
+                                                            <p class="title">Night Market</p>
+                                                            <p class="text-muted">2/28/20, 7:00 PM, Online</p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title=""
+                                                            class="btn btn-link" data-original-title="Edit Task">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card">
+                                <%- include('partials/calendar.ejs')%>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--<footer class="footer">
+                    <div class="container-fluid">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    Creative Tim
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="copyright">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>2018 made with <i class="tim-icons icon-heart-2"></i> by
+                            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
+                        </div>
+                    </div>
+                </footer>-->
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../assets/template/js/core/jquery.min.js"></script>
+    <script src="../assets/template/js/core/popper.min.js"></script>
+    <script src="../assets/template/js/core/bootstrap.min.js"></script>
+    <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="../assets/custom/js/calendar.js"></script>
+
+</body>
+
+</html>

@@ -30,3 +30,113 @@ h3.title {
 .form-control option {
   color: rgba(0, 0, 0, 0.8);
 }
+
+.card-user .author .block.block-one,
+.card-user .author .block.block-two,
+.card-user .author .block.block-three,
+.card-user .author .block.block-four {
+  background: linear-gradient(
+    to right,
+    rgba(234, 170, 0, 0.6) 0%,
+    rgba(234, 170, 0, 0) 100%
+  );
+}
+
+.form-checkbox .form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.25rem);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-right: 0;
+}
+
+.chosen-container {
+  width: 100% !important;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  margin: 1px 0;
+  padding: 10px 18px 10px 18px;
+  width: 25px;
+  outline: 0;
+  height: calc(2.25rem + 2px);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.428571;
+  border: 0 !important;
+}
+
+.card .chosen-container-multi .chosen-choices li.search-choice {
+  margin: 11px 3px 8px 3px !important;
+}
+
+.white-content .form-control:focus {
+  border-color: #f5d580;
+}
+
+.card
+  .chosen-container-active
+  .chosen-choices
+  li.search-field
+  input[type="text"] {
+  color: #222a42 !important;
+  font-family: "Poppins", sans-serif;
+}
+
+.card .chosen-container-multi .chosen-choices {
+  padding: 0 0;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  border: 1px solid #2b3553;
+  background-color: transparent;
+  background-image: none;
+  line-height: 1.428571;
+  font-size: 0.875rem;
+  font-weight: 400;
+  border-radius: 0.4285rem;
+  font-size: 0.75rem;
+  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+
+.card .chosen-container-active .chosen-choices {
+  border-color: #f5d580;
+  border-radius: 0.4285rem;
+  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.card
+  .chosen-container-multi
+  .chosen-choices
+  li.search-field
+  input[type="text"] {
+  padding: 10px 10px 10px 10px;
+  height: calc(2.25rem + 2px);
+  color: #adb5bd;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.428571;
+  font-family: "Poppins", sans-serif;
+}

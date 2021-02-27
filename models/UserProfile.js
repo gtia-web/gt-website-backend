@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const MemberProfileSchema = mongoose.Schema({
 
-    PendingApproval: {
+    Approved: {
         type: Boolean,
-        default: true
+        default: false
     },
     Username: {
         type: String,
@@ -17,10 +17,6 @@ const MemberProfileSchema = mongoose.Schema({
     LastName: {
         type: String,
         required: true
-    },
-    MiddleName: {
-        type: String,
-        default: ""
     },
     Email: {
         type: String,
@@ -42,8 +38,9 @@ const MemberProfileSchema = mongoose.Schema({
             type: Boolean,
             default: false
         },
-        Position: {
-            type: String
+        isPresident: {
+            type: Boolean,
+            default: false
         }
     },
     Points: {
@@ -54,11 +51,6 @@ const MemberProfileSchema = mongoose.Schema({
         WorkPoints: {
             type: Number,
             default: 0
-        },
-        PendingPoints: {
-            _id: {
-                type: [mongoose.Schema.Types.ObjectId]
-            }
         }
     },
     MembershipStatus: {

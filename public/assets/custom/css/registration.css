@@ -54,13 +54,20 @@ form {
 }
 
 .form-text h5 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 2px;
-  font-style: italic;
 }
 
 .form-text h3 {
-  font-size: 3.3rem;
+  font-size: 3.2rem;
   margin-bottom: 5px;
   font-weight: bold;
+}
+
+.card-body {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  width: calc(100% - 15px);
 }

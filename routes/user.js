@@ -3,6 +3,7 @@ const authentication = require("../utility/authentication");
 const express = require('express');
 const router = express.Router();
 const UserProfile = require('../models/UserProfile');
+const PointReceipt = require('../models/PointsReceipt');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
@@ -58,9 +59,12 @@ router.post('/register', async (req, res) => {
             FirstName: req.body.firstname,
             LastName: req.body.lastname,
             Email: req.body.email,
-            MiddleName: req.body.middlename,
             Committee: "Not Assigned",
-            HashedPassword: password
+            HashedPassword: password,
+            Points: {
+                SocialPoints: 0,
+                WorkPoints: 0
+            }
         }).save();
 
         res.redirect('/user/login')
@@ -76,7 +80,7 @@ router.get('/logout', authentication.checkAuthenticated, (req, res) => {
 })
 
 /** Get list of student whose name or user name contains a query
- * Also takes boolean pending argument to retuieve pending account or non-pending accounts.
+ * Also takes boolean approved argument to retrieve approved accounts or pending accounts.
  * Must be logged in
  */
 router.post('/list', authentication.checkAuthenticated, async (req, res) => {
@@ -91,7 +95,7 @@ router.post('/list', authentication.checkAuthenticated, async (req, res) => {
                 ]
             },
             {
-                PendingApproval: req.body.pending == 'true'
+                Approved: req.body.approved == 'true'
             }            
         ]}, 
         { Username: 1, FirstName: 1, LastName: 1, _id: 1, Email: 1 })
@@ -104,8 +108,18 @@ router.post('/list', authentication.checkAuthenticated, async (req, res) => {
  */
 router.post('/data', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
     var id = req.body.id
-    users = await UserProfile.findById(id, { HashedPassword: 0})
-    res.json(users)
+    user = await UserProfile.findById(id, { HashedPassword: 0})
+    res.json(user)
+})
+
+/** Get user profile from current User
+ * Must be logged in
+ * Must be Admin
+ */
+router.post('/data/self', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
+    var id = req.user._id
+    user = await UserProfile.findById(id, { HashedPassword: 0})
+    res.json(user)
 })
 
 /** Update user profile
@@ -114,21 +128,80 @@ router.post('/data', authentication.checkAuthenticated, authentication.checkAuth
  */
 router.post('/update', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
     var data = req.body.data
+    users = await UserProfile.findById(data.id, { HashedPassword: 0})
+
+    previousPoint = {
+        socialpoints: user.Points.SocialPoints,
+        workpoints: user.Points.WorkPoints
+    }
 
     await UserProfile.updateOne({_id: data.id  }, { $set: {
         Committee: data.committee,
         Subcommittee: data.subcommittee, 
         VPStatus: {
-            isVP: data.isvp == 'true'
+            isVP: data.isvp == 'true',
+            isPresident: data.ispresident == 'true'
         },
+
         Points: {
             SocialPoints: data.socialpoints,
             WorkPoints: data.workpoints
         },
-        MembershipStatus: (data.isactive == 'true') ? 'active' : 'inactive'
+        MembershipStatus: data.membershipstatus,
+        SpecialPermissions: data.specialpermissions
     }})
 
-    res.json({})
+    if (previousPoint.workpoints != data.workpoints){
+        new PointReceipt({
+            Type: "Manual Admin Change",
+            Status: 'Complete',
+            PointsType: "work",
+            SubmissionDate: Date.now(),
+            ApprovedDate: Date.now(),
+            Recipient: data.id,
+            PointsChange: data.workpoints - previousPoint.workpoints,
+            Approver: req.user._id,
+            RequestDetails: {
+                Description: "Manual Update From Admin",
+                AssociatedEventTimeSlots: {
+                    IsAssociatedToSlots: false
+                },
+                AssociatedEvent: {
+                    IsAssociatedToEvent: false
+                },
+                AssociatedSheet: {
+                    IsAssociatedToSheet: false
+                }
+            }
+        }).save();
+    }
+
+    if (previousPoint.socialpoints != data.socialpoints){
+        new PointReceipt({
+            Type: "Manual Admin Change",
+            Status: 'Complete',
+            PointsType: "social",
+            SubmissionDate: Date.now(),
+            ApprovedDate: Date.now(),
+            Recipient: data.id,
+            PointsChange: data.socialpoints - previousPoint.socialpoints,
+            Approver: req.user._id,
+            RequestDetails: {
+                Description: "Manual Update From Admin",
+                AssociatedEventTimeSlots: {
+                    IsAssociatedToSlots: false
+                },
+                AssociatedEvent: {
+                    IsAssociatedToEvent: false
+                },
+                AssociatedSheet: {
+                    IsAssociatedToSheet: false
+                }
+            }
+        }).save();
+    }
+
+    res.json({'status': 'complete'})
 })
 
 /** Activate user profile
@@ -138,19 +211,21 @@ router.post('/update', authentication.checkAuthenticated, authentication.checkAu
 router.post('/activate', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
     var data = req.body.data
 
-    console.log(data)
     await UserProfile.updateOne({_id: data.id  }, { $set: {
         Committee: data.committee,
         Subcommittee: data.subcommittee, 
         VPStatus: {
-            isVP: data.isvp == 'true'
+            isVP: data.isvp == 'true',
+            isPresident: data.ispresident == 'true'
         },
+
         Points: {
-            SocialPoints: data.socialpoints,
-            WorkPoints: data.workpoints
+            SocialPoints: 0,
+            WorkPoints: 0
         },
-        MembershipStatus: (data.isactive == 'true') ? 'active' : 'inactive',
-        PendingApproval: false
+        MembershipStatus: data.membershipstatus,
+        SpecialPermissions: data.specialpermissions,
+        Approved: true
     }})
 
     res.json({})

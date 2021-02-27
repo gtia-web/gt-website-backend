@@ -52,3 +52,23 @@ h3.title {
 .card-notif .card-body i:hover {
   color: #ffffff;
 }
+
+.card-user .author .block.block-one,
+.card-user .author .block.block-two,
+.card-user .author .block.block-three,
+.card-user .author .block.block-four {
+  background: linear-gradient(
+    to right,
+    rgba(234, 170, 0, 0.6) 0%,
+    rgba(234, 170, 0, 0) 100%
+  );
+}
+
+.card-tasks {
+  height: 434px;
+}
+
+.card-tasks .table-full-width {
+  max-height: 360px;
+  position: relative;
+}

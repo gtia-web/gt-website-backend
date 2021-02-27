@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
     <title>
-        Black Dashboard by Creative Tim
+        GTIA - User
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -34,6 +34,7 @@
     <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
 
     <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
     <link href="../assets/custom/css/user.css" rel="stylesheet" />
 
 
@@ -107,7 +108,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8" id='editUser'>
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="title">Edit Profile</h5>
@@ -117,116 +118,108 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email address</label>
+                                                    <label>Email address</label>
                                                     <input type="email" disabled class="form-control"
-                                                        placeholder="Email" name="email" value="<%- user.Email %>">
+                                                        placeholder="Email" name="email" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-8 pr-md-1">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Username</label>
                                                     <input type="text" class="form-control" disabled
-                                                        placeholder="Username" name="username"
-                                                        value="<%- user.Username %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-md-1">
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="password" class="form-control" disabled name="password"
-                                                        value="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4 pr-md-1">
-                                                <div class="form-group">
-                                                    <label>First Name</label>
-                                                    <input type="text" class="form-control" placeholder="First Name"
-                                                        disabled name="firstname" value="<%- user.FirstName %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-md-1">
-                                                <div class="form-group">
-                                                    <label>Middle Name</label>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Middle Name (Optional)" disabled name="middlename"
-                                                        value="<%- user.MiddleName %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-md-1">
-                                                <div class="form-group">
-                                                    <label>Last Name</label>
-                                                    <input type="text" class="form-control" placeholder="Last Name"
-                                                        value="<%- user.LastName %>" disabled name="lastname">
+                                                        placeholder="Username" name="username" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6 pr-md-1">
                                                 <div class="form-group">
-                                                    <label>Committee</label>
-                                                    <select class="form-control" name="committee" disabled>
-                                                        <option value="Internal" <% if (user.Committee=='Internal' ){ %>
-                                                            selected <%}%> > Internal</option>
-                                                        <option value="External" <% if (user.Committee=='External' ){ %>
-                                                            selected <%}%> >External</option>
-                                                        <option value="Outreach" <% if (user.Committee=='Outreach' ){ %>
-                                                            selected <%}%>>Outreach</option>
-                                                        <option value="Finance" <% if (user.Committee=='Finance' ){ %>
-                                                            selected <%}%>>Finance</option>
-                                                        <option value="Marketing" <% if (user.Committee=='Marketing' ){
-                                                            %> selected <%}%>>Marketing</option>
-                                                        <option value="Executive" <% if (user.Committee=='Executive' ){
-                                                            %> selected <%}%>>Executive</option>
-                                                    </select>
-
+                                                    <label>First Name</label>
+                                                    <input type="text" class="form-control" placeholder="First Name"
+                                                        disabled name="firstname" value="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 pl-md-1">
                                                 <div class="form-group">
+                                                    <label>Last Name</label>
+                                                    <input type="text" class="form-control" placeholder="Last Name"
+                                                        value="" disabled name="lastname">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4 pr-md-1">
+                                                <div class="form-group">
+                                                    <label>Committee</label>
+                                                    <select disabled class="form-control" name="committee">
+                                                        <option value="Internal">Internal</option>
+                                                        <option value="External">External</option>
+                                                        <option value="Outreach">Outreach</option>
+                                                        <option value="Finance">Finance</option>
+                                                        <option value="Marketing">Marketing</option>
+                                                        <option value="Executive">Executive</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-md-1">
+                                                <div class="form-group">
                                                     <label>Subcommittee</label>
-                                                    <input type="text" class="form-control" placeholder="Subcommittee"
-                                                        name="subcommittee" value="<%- user.Subcommittee %>" disabled>
+                                                    <input disabled type="text" class="form-control"
+                                                        placeholder="Subcommittee" name="subcommittee" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-md-1">
+                                                <div class="form-group">
+                                                    <label>Special Position</label>
+                                                    <select disabled class="form-control" name="specialpositions">
+                                                        <option value="none">None</option>
+                                                        <option value="vp">Vice President</option>
+                                                        <option value="pres">President</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4 px-md-1">
-                                            </div>
-                                            <div class="col-md-1 px-md-1 form-checkbox">
+                                            <div class="col-md-12 plr-md-1">
                                                 <div class="form-group">
-                                                    <label>Is Active</label>
-                                                    <input type="checkbox" class="form-control" name="isactive" value=""
-                                                        disabled <% if (user.MembershipStatus=='active' ){ %> checked
-                                                    <%}%> >
+                                                    <label>Special Permission</label>
+                                                    <select disabled class="chosen-select form-control" multiple>
+                                                        <option value=""></option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="publiceventpublisher">Public Event
+                                                            Publisher</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-1 px-md-1 form-checkbox">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-md-1">
                                                 <div class="form-group">
-                                                    <label>Is Admin</label>
-                                                    <input type="checkbox" class="form-control" name="isadmin" value=""
-                                                        disabled <% if (user.SpecialPermissions.includes('admin')){ %>
-                                                    checked <%}%>>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1 px-md-1 form-checkbox">
-                                                <div class="form-group">
-                                                    <label>Is VP</label>
-                                                    <input type="checkbox" class="form-control" name="isvp" value=""
-                                                        disabled <% if (user.VPStatus.isVP){ %> checked <%}%>>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1 px-md-1 form-checkbox">
-                                                <div class="form-group">
-                                                    <label>Is Pres.</label>
-                                                    <input type="checkbox" class="form-control" name="ispresident"
-                                                        value="" disabled>
+                                                    <label>Membership Status</label>
+                                                    <select disabled class="form-control" name="membershipstatus">
+                                                        <option value="active">Active</option>
+                                                        <option value="inactive">Inactive</option>
+                                                        <option value="gradstat">Graduate Status</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 px-md-1">
+                                                <div class="form-group">
+                                                    <label>Work Points</label>
+                                                    <input disabled type="text" class="form-control" placeholder="0"
+                                                        name="workpoints" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-md-1">
+                                                <div class="form-group">
+                                                    <label>Social Points</label>
+                                                    <input disabled type="text" class="form-control" placeholder="0"
+                                                        name="socialpoints" value="0">
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
@@ -243,7 +236,7 @@
 
                     </div>
                 </div>
-                <footer class="footer">
+                <!--<footer class="footer">
                     <div class="container-fluid">
                         <ul class="nav">
                             <li class="nav-item">
@@ -270,7 +263,7 @@
                             <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
                         </div>
                     </div>
-                </footer>
+                </footer>-->
         </div>
     </div>
     <!--   Core JS Files   -->
@@ -278,130 +271,17 @@
     <script src="../assets/template/js/core/popper.min.js"></script>
     <script src="../assets/template/js/core/bootstrap.min.js"></script>
     <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/custom/js/user.js"></script>
 
     <!--  Notifications Plugin    -->
     <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
+
+    <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
-    <script>
-        $(document).ready(function () {
-            $().ready(function () {
-                $sidebar = $('.sidebar');
-                $navbar = $('.navbar');
-                $main_panel = $('.main-panel');
-
-                $full_page = $('.full-page');
-
-                $sidebar_responsive = $('body > .navbar-collapse');
-                sidebar_mini_active = true;
-                white_color = false;
-
-                window_width = $(window).width();
-
-                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-
-
-                $('.fixed-plugin a').click(function (event) {
-                    if ($(this).hasClass('switch-trigger')) {
-                        if (event.stopPropagation) {
-                            event.stopPropagation();
-                        } else if (window.event) {
-                            window.event.cancelBubble = true;
-                        }
-                    }
-                });
-
-                $('.fixed-plugin .background-color span').click(function () {
-                    $(this).siblings().removeClass('active');
-                    $(this).addClass('active');
-
-                    var new_color = $(this).data('color');
-
-                    if ($sidebar.length != 0) {
-                        $sidebar.attr('data', new_color);
-                    }
-
-                    if ($main_panel.length != 0) {
-                        $main_panel.attr('data', new_color);
-                    }
-
-                    if ($full_page.length != 0) {
-                        $full_page.attr('filter-color', new_color);
-                    }
-
-                    if ($sidebar_responsive.length != 0) {
-                        $sidebar_responsive.attr('data', new_color);
-                    }
-                });
-
-                $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
-                    var $btn = $(this);
-
-                    if (sidebar_mini_active == true) {
-                        $('body').removeClass('sidebar-mini');
-                        sidebar_mini_active = false;
-                        blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-                    } else {
-                        $('body').addClass('sidebar-mini');
-                        sidebar_mini_active = true;
-                        blackDashboard.showSidebarMessage('Sidebar mini activated...');
-                    }
-
-                    // we simulate the window Resize so the charts will get updated in realtime.
-                    var simulateWindowResize = setInterval(function () {
-                        window.dispatchEvent(new Event('resize'));
-                    }, 180);
-
-                    // we stop the simulation of Window Resize after the animations are completed
-                    setTimeout(function () {
-                        clearInterval(simulateWindowResize);
-                    }, 1000);
-                });
-
-                $('.switch-change-color input').on("switchChange.bootstrapSwitch", function () {
-                    var $btn = $(this);
-
-                    if (white_color == true) {
-
-                        $('body').addClass('change-background');
-                        setTimeout(function () {
-                            $('body').removeClass('change-background');
-                            $('body').removeClass('white-content');
-                        }, 900);
-                        white_color = false;
-                    } else {
-
-                        $('body').addClass('change-background');
-                        setTimeout(function () {
-                            $('body').removeClass('change-background');
-                            $('body').addClass('white-content');
-                        }, 900);
-
-                        white_color = true;
-                    }
-
-
-                });
-
-                $('.light-badge').click(function () {
-                    $('body').addClass('white-content');
-                });
-
-                $('.dark-badge').click(function () {
-                    $('body').removeClass('white-content');
-                });
-            });
-        });
-    </script>
-    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-    <script>
-        window.TrackJS &&
-            TrackJS.install({
-                token: "ee6fab19c5a04ac1a32a645abde4613a",
-                application: "black-dashboard-free"
-            });
-    </script>
 </body>
 
 </html>
