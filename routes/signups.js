@@ -6,7 +6,6 @@ const SignupSheet = require('../models/SignupSheet');
 const SignupSheetResponse = require('../models/SignupSheetResponse');
 const TimeSlots = require('../models/TimeSlots');
 const utility = require("../utility/utility");
-const { query } = require("express");
 
 // Route to get list of active sheets
 router.get('/active', authentication.checkAuthenticated, async (req, res) => {
@@ -289,7 +288,7 @@ router.post('/create', authentication.checkAuthenticated, async (req, res) => {
     });
 })
 
-router.post('/user/list', authentication.checkAuthenticated, async (req, res) => {
+/**router.post('/user/list', authentication.checkAuthenticated, async (req, res) => {
     var query = req.body.query
     users = await UserProfile.find(
         { $or: [
@@ -299,7 +298,7 @@ router.post('/user/list', authentication.checkAuthenticated, async (req, res) =>
         ]}, 
         { Username: 1, FirstName: 1, LastName: 1, _id: 1 })
     res.json(users)
-})
+})**/
 
 //Route to view responses to sheets you can view
 router.get('/view/mySignupSheets', authentication.checkAuthenticated, async (req, res) => {
@@ -313,108 +312,6 @@ router.get('/view/myResponses', authentication.checkAuthenticated, async (req, r
 
     myResponses = await SignupSheetResponse.find({FilledBy: req.user._id })
     res.render('signups/view-my-signup-sheets.ejs', {responses: myResponses})
-})
-
-//------------------------------------------------ for test ------------------------------------------//
-
-router.post('/newSheet', async (req, res) => {
-    users = await UserProfile.find({})
-    ids = []
-    for (i=0; i < users.length; i++) {
-        ids.push({
-            UserId: users[i]._id,
-            DateAsigned: new Date()
-        })
-    }
-    const newCreateRequest = new SignupSheet({
-        Name: req.body.name,
-        CanViewResponses: ids,
-        CanFill: ids,
-        Completed: [],
-        NotCompleted: ids,
-        ExpiryDate: new Date(),
-        Fields: [{
-            FieldName: "Field1", 
-            Required: true
-        },
-        {
-            FieldName: "Field2", 
-            Required: true
-        },
-        {
-            FieldName: "Field3",  
-            Required: true
-        }]
-    });
-
-    const UpdateResponse = await newCreateRequest.save();
-
-    res.json({
-        Done: true
-    });
-})
-
-router.post('/newSheet/raw', async (req, res) => {
-    fields = []
-    for (i=0; i < req.body.fields.length; i++) {
-        fields.push({
-            FieldName: req.body.fields[i].field_name,
-            Required: req.body.fields[i].isRequired
-        })
-    }
-    
-    
-    /**users = await UserProfile.find({})
-    ids = []
-    for (i=0; i < users.length; i++) {
-        ids.push({
-            UserId: users[i]._id,
-            DateAsigned: new Date()
-        })
-    }*/
-
-    createdSignupSheet =  await (new SignupSheet({
-        Name: req.body.name,
-        CanViewResponses: ids,
-        CanFill: ids,
-        Completed: [],
-        NotCompleted: ids,
-        ExpiryDate: new Date(),
-        Fields: fields,
-        UsesTimeSlots: req.body.time_slots.length > 0
-    }).save());
-
-    timeSlots = []
-    BaseDate = new Date()
-    for (i = 0; i < 6; i++) {
-        await (new TimeSlots({
-            JobType: "Setup",
-            StartTime: new Date(BaseDate.getTime() + i*30 *60000),
-            EndTime: new Date(BaseDate.getTime() + (i+1)*30 *60000),
-            AssociatedSignupSheet: createdSignupSheet._id,
-            isUsed: false
-        }).save());
-        
-        await (new TimeSlots({
-            JobType: "Breakdown",
-            StartTime: new Date(BaseDate.getTime() + i*30 *60000),
-            EndTime: new Date(BaseDate.getTime() + (i+1)*30 *60000),
-            AssociatedSignupSheet: createdSignupSheet._id,
-            isUsed: false
-        }).save());
-
-        await (new TimeSlots({
-            JobType: "Main Event",
-            StartTime: new Date(BaseDate.getTime() + i*30 *60000),
-            EndTime: new Date(BaseDate.getTime() + (i+1)*30 *60000),
-            AssociatedSignupSheet: createdSignupSheet._id,
-            isUsed: false
-        }).save());
-    } 
-
-    res.json({
-        Done: true
-    });
 })
 
 

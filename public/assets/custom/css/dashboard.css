@@ -3,6 +3,7 @@
   align-items: center;
   text-align: center;
 }
+
 h3.title {
   margin-bottom: 15px;
 }
@@ -52,7 +53,22 @@ h3.title {
   color: #ffffff;
 }
 
-.sidebar .nav li > a,
-.off-canvas-sidebar .nav li > a {
-  font-size: 1.2rem;
+.card-user .author .block.block-one,
+.card-user .author .block.block-two,
+.card-user .author .block.block-three,
+.card-user .author .block.block-four {
+  background: linear-gradient(
+    to right,
+    rgba(234, 170, 0, 0.6) 0%,
+    rgba(234, 170, 0, 0) 100%
+  );
+}
+
+.card-tasks {
+  height: 434px;
+}
+
+.card-tasks .table-full-width {
+  max-height: 360px;
+  position: relative;
 }

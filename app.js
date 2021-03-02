@@ -39,7 +39,9 @@ require('./utility/passportConfig')(passport);
 
 app.use('/user', require('./routes/user'));
 app.use('/signups', require('./routes/signups'));
+app.use('/points', require('./routes/points'));
 app.use('/', require('./routes/basic'));
+app.use('/events', require('./routes/events'));
 app.use(express.static("public"));
 
 //---------------------End of Routes-----------------------//

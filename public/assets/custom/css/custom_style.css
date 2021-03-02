@@ -1,0 +1,95 @@
+.navbar.navbar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.navbar.navbar-solid-color {
+  background: white;
+}
+
+.main-panel > .content {
+  padding: 98px 30px 10px 280px;
+  min-height: calc(100vh - 70px);
+}
+
+.white-content .main-panel {
+  background: rgba(203, 203, 210, 0.15);
+}
+
+.card {
+  border: 0.0625rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.4857rem;
+  box-shadow: none;
+}
+
+.white-content .card:not(.card-white) {
+  box-shadow: none;
+}
+
+.white-content .sidebar {
+  box-shadow: 0 0.5px 15px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary.active:focus,
+.btn-primary.active:hover {
+  background-color: white;
+  background-image: linear-gradient(
+    to bottom left,
+    #f5d580,
+    #eaaa00
+  ) !important;
+}
+
+.btn-primary.btn-simple.active:hover,
+.btn-primary.btn-simple.active:focus,
+.btn-primary.btn-simple.active:active,
+.btn-primary.btn-simple.active:not(:disabled):not(.disabled):active {
+  background-color: white !important;
+  border-color: #b3a369 !important;
+  background-image: linear-gradient(
+    to bottom left,
+    #f5d580,
+    #eaaa00
+  ) !important;
+  /**color: #B3A369;*/
+}
+
+.btn-primary.btn-simple.active {
+  background-color: white !important;
+  border-color: #b3a369 !important;
+}
+.btn-primary.btn-simple {
+  background-color: white;
+  border-color: #b3a369 !important;
+  color: #b3a369;
+}
+
+.btn-primary.btn-simple:hover,
+.btn-primary.btn-simple:focus,
+.btn-primary.btn-simple:active,
+.btn-primary.btn-simple:not(:disabled):not(.disabled):active {
+  background-color: white !important;
+  border-color: #b3a369;
+  color: #eaaa00;
+}
+
+.btn-primary {
+  background-image: linear-gradient(to bottom left, #004f9f, #1879db);
+}
+
+.modal-content {
+  border-radius: 0.4857rem;
+}
+
+.input-error-highlight {
+  border: 0.5px solid red !important;
+  box-shadow: 0px 0px 5px red !important;
+}

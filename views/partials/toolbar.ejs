@@ -1,0 +1,51 @@
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li <% if (currentPage=='dashboard' ){ %> class="active " <%}%> >
+                <a href="/home">
+                    <i class="fas fa-home"></i>
+                    <p>Dashboard</p>
+                </a>
+        </li>
+        <li <% if (currentPage=='sheets' ){ %> class="active " <%}%>>
+                <a href="">
+                    <i class="fas fa-clipboard-list"></i>
+                    <p>Sheets</p>
+                </a>
+        </li>
+        <li <% if (currentPage=='events' ){ %> class="active " <%}%>>
+                <a href="/events">
+                    <i class="fas fa-calendar-alt"></i>
+                    <p>Events</p>
+                </a>
+        </li>
+        <li <% if (currentPage=='points' ){ %> class="active " <%}%>>
+                <a href="/points">
+                    <i class="fas fa-star"></i>
+                    <p>Points</p>
+                </a>
+        </li>
+        <li <% if (currentPage=='user' ){ %> class="active " <%}%>>
+                <a href="/user">
+                    <i class="fas fa-user"></i>
+                    <p>User</p>
+                </a>
+        </li>
+        <% if (user.SpecialPermissions.includes('admin')) {%>
+            <li <% if (currentPage=='admin_portal' ){ %> class="active " <%}%>>
+                    <a href="/admin">
+                        <i class="fas fa-toolbox"></i>
+                        <p>Admin Portal</p>
+                    </a>
+            </li>
+            <% } %>
+
+                <% if (user.VPStatus.isVP) {%>
+                    <li <% if (currentPage=='vp_portal' ){ %> class="active " <%}%>>
+                            <a href="">
+                                <i class="fas fa-users"></i>
+                                <p>VP Portal</p>
+                            </a>
+                    </li>
+                    <% } %>
+    </ul>
+</div>

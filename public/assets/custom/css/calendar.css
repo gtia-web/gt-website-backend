@@ -1,0 +1,141 @@
+.calendar-container {
+  margin: 0px auto;
+  width: 100%;
+}
+
+.weekday-header-container,
+.day-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.weekday-header-container {
+  padding: 10px 0;
+  background-color: #f7f7f7;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.calendar-day {
+  position: relative;
+  min-height: 110px;
+  border-left: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.calendar-day.left-border {
+  border-left: 1px solid #e5e5e5;
+}
+
+.weekday-header {
+  text-align: center;
+}
+
+.calendar-day-content {
+  padding: 5px 10px 0 10px;
+}
+
+.calendar-day.inactive {
+  background-color: rgb(235, 235, 228);
+}
+
+.calendar-container .row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.calendar-header-container {
+  margin: 15px 0;
+}
+
+.calendar-header-container h2 {
+  margin: 0;
+}
+
+.month-change-button {
+  width: 50px;
+  height: 30px;
+  border: 1px solid #b3a369;
+  float: left;
+  text-align: center;
+  line-height: 28px;
+  cursor: pointer;
+  color: #eaaa00;
+}
+
+.month-change-button:hover {
+  color: white;
+  background-color: #f5d580;
+}
+
+.month-change-button.left-button {
+  border-radius: 5px 0 0 5px;
+}
+
+.month-change-button.right-button {
+  border-radius: 0 5px 5px 0;
+  border-left: none;
+}
+
+.month-change-button.right-left-button {
+  border-radius: 5px;
+  margin-left: 20px;
+  width: 60px;
+}
+
+.month-change-buttons {
+  float: right;
+}
+
+#today-button.active {
+  background-color: #f5d580;
+  color: white;
+  cursor: default;
+}
+
+#today-button {
+  border: none;
+}
+
+.add-event-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 0px;
+  bottom: 0px;
+  display: none;
+  cursor: pointer;
+}
+
+.calendar-day:hover .add-event-icon {
+  display: block;
+}
+
+.add-event-icon .fas {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.day-number {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  float: right;
+  text-align: center;
+  line-height: 30px;
+}
+
+.calendar-day-number {
+  position: relative;
+  height: 36px;
+  padding: 3px 5px 0 0px;
+}
+
+.day-number.current {
+  background-color: #eaaa00;
+  color: white;
+}

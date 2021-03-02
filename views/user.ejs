@@ -1,0 +1,287 @@
+<!--
+=========================================================
+* * Black Dashboard - v1.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/black-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
+    <title>
+        GTIA - User
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/custom/css/all.css">
+    <!-- Nucleo Icons -->
+    <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
+
+    <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
+    <link href="../assets/custom/css/user.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="white-content">
+    <div class="wrapper">
+        <div class="sidebar">
+            <%- include('partials/toolbar.ejs', {user: user, currentPage: 'user' })%>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <%- include('partials/top_navbar.ejs', {title: 'User' })%>
+                <!-- End Navbar -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card card-user">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                    <div class="author">
+                                        <div class="block block-one"></div>
+                                        <div class="block block-two"></div>
+                                        <div class="block block-three"></div>
+                                        <div class="block block-four"></div>
+                                        <a href="javascript:void(0)">
+                                            <img class="avatar" src="../assets/custom/img/avatar.jpg" alt="...">
+                                            <h3 class="title">
+                                                <%- user.FirstName %>
+                                                    <%- user.LastName %>
+                                            </h3>
+                                        </a>
+                                        <p class="description">
+                                            <%- user.Committee %>
+
+                                                <%if (user.VPStatus.isVP) { %>
+                                                    Vice President
+                                                    <% } else { %>
+                                                        Member
+                                                        <% } %>
+                                        </p>
+                                    </div>
+                                    </p>
+                                    <div class="center-text pad-top">
+                                        <h3>
+                                            Points
+                                        </h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 center-text">
+                                            <div>
+                                                <h4>Work</h4>
+                                            </div>
+                                            <div>
+                                                <h4>
+                                                    <%- user.Points.WorkPoints %>/3
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 center-text">
+                                            <div>
+                                                <h4>Social</h4>
+                                            </div>
+                                            <div>
+                                                <h4>
+                                                    <%- user.Points.SocialPoints %>/3
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8" id='editUser'>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="title">Edit Profile</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Email address</label>
+                                                    <input type="email" disabled class="form-control"
+                                                        placeholder="Email" name="email" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Username</label>
+                                                    <input type="text" class="form-control" disabled
+                                                        placeholder="Username" name="username" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pr-md-1">
+                                                <div class="form-group">
+                                                    <label>First Name</label>
+                                                    <input type="text" class="form-control" placeholder="First Name"
+                                                        disabled name="firstname" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl-md-1">
+                                                <div class="form-group">
+                                                    <label>Last Name</label>
+                                                    <input type="text" class="form-control" placeholder="Last Name"
+                                                        value="" disabled name="lastname">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4 pr-md-1">
+                                                <div class="form-group">
+                                                    <label>Committee</label>
+                                                    <select disabled class="form-control" name="committee">
+                                                        <option value="Internal">Internal</option>
+                                                        <option value="External">External</option>
+                                                        <option value="Outreach">Outreach</option>
+                                                        <option value="Finance">Finance</option>
+                                                        <option value="Marketing">Marketing</option>
+                                                        <option value="Executive">Executive</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-md-1">
+                                                <div class="form-group">
+                                                    <label>Subcommittee</label>
+                                                    <input disabled type="text" class="form-control"
+                                                        placeholder="Subcommittee" name="subcommittee" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-md-1">
+                                                <div class="form-group">
+                                                    <label>Special Position</label>
+                                                    <select disabled class="form-control" name="specialpositions">
+                                                        <option value="none">None</option>
+                                                        <option value="vp">Vice President</option>
+                                                        <option value="pres">President</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 plr-md-1">
+                                                <div class="form-group">
+                                                    <label>Special Permission</label>
+                                                    <select disabled class="chosen-select form-control" multiple>
+                                                        <option value=""></option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="publiceventpublisher">Public Event
+                                                            Publisher</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-md-1">
+                                                <div class="form-group">
+                                                    <label>Membership Status</label>
+                                                    <select disabled class="form-control" name="membershipstatus">
+                                                        <option value="active">Active</option>
+                                                        <option value="inactive">Inactive</option>
+                                                        <option value="gradstat">Graduate Status</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-md-1">
+                                                <div class="form-group">
+                                                    <label>Work Points</label>
+                                                    <input disabled type="text" class="form-control" placeholder="0"
+                                                        name="workpoints" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-md-1">
+                                                <div class="form-group">
+                                                    <label>Social Points</label>
+                                                    <input disabled type="text" class="form-control" placeholder="0"
+                                                        name="socialpoints" value="0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="row card-footer">
+                                        <div class="col-md-4 pl-md-1">
+                                            <button class="btn btn-fill btn-primary confirm-edit-btn">Save</button>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--<footer class="footer">
+                    <div class="container-fluid">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    Creative Tim
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="copyright">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>2018 made with <i class="tim-icons icon-heart-2"></i> by
+                            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
+                        </div>
+                    </div>
+                </footer>-->
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../assets/template/js/core/jquery.min.js"></script>
+    <script src="../assets/template/js/core/popper.min.js"></script>
+    <script src="../assets/template/js/core/bootstrap.min.js"></script>
+    <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/custom/js/user.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
+
+    <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+</body>
+
+</html>

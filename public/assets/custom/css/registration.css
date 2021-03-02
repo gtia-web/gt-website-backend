@@ -1,0 +1,73 @@
+.main-panel > .content {
+  padding-left: 78px;
+  min-height: calc(100vh - 70px);
+}
+
+.context-box {
+  padding-top: 40px;
+}
+
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
+}
+
+img.login-image {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  max-height: 700px;
+}
+
+.no-left-pad {
+  padding-left: 0;
+}
+
+.no-right-pad {
+  padding-right: 0;
+}
+
+.card.card-login {
+  max-width: 933px;
+}
+
+.center-content {
+  margin: 0% auto;
+}
+
+form {
+  padding: 40px;
+}
+
+.btn-submit {
+  margin: 0%;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.form-text {
+  padding: 20px 40px 0 40px;
+  font-family: "Playfair Display", serif;
+}
+
+.form-text h5 {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+.form-text h3 {
+  font-size: 3.2rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.card-body {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  width: calc(100% - 15px);
+}
