@@ -15,7 +15,7 @@ async function GetReceipts(query) {
     tbody.empty()
 
     data.forEach(e => {
-        date = new Date(e.SubmissionDate)
+        date = new Date(e.SubmissionDate)       
 
         entry = '<tr><td class="table-width-bound">' +  (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + '</td>'
         entry += '<td class="table-width-bound">' + e.Type + '</td>'
@@ -97,7 +97,9 @@ async function newPointRequest(){
 
     approverSelect.trigger("chosen:updated");
     modal.find('select[name ="pointstype"]').val(showPointType)
-
+    modal.find('textarea[name ="description"]').val('')
+    modal.find('input[name ="date"]').val('')
+    modal.find('input[name ="points"]').val('')
     
     modal.addClass("view");
 }
@@ -158,7 +160,7 @@ async function createNewPointsRequest() {
             pointType: pointType
         }
 
-        await Promise.resolve($.post('/points//request', {
+        await Promise.resolve($.post('/points/request', {
            data: data
         })) 
 

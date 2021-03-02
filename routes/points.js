@@ -284,12 +284,13 @@ router.post('/approver/list', authentication.checkAuthenticated, async (req, res
 
 router.post('/request', authentication.checkAuthenticated, async (req, res) => {
     data = req.body.data
+    date = data.date.split("-");
 
     new PointsReceipt({
         Type: "Points Request",
         Status: 'Pending',
         PointsType: data.pointType,
-        SubmissionDate: new Date(data.date),
+        SubmissionDate: new Date(parseInt(date[0]), parseInt(date[1]) - 1, parseInt(date[2])),
         Recipient: req.user._id,
         PointsChange: data.points,
         Approver: data.approver,
@@ -307,16 +308,7 @@ router.post('/request', authentication.checkAuthenticated, async (req, res) => {
         }
     }).save();
 
-
-    approvers = await UserProfile.find(
-        { $or: [
-                    { "VPStatus.isVP": true }, 
-                    { "VPStatus.isPresident": true }
-                ]
-        }, 
-        {FirstName: 1, LastName: 1, _id: 1, VPStatus: 1, Committee: 1})
-
-    res.json(approvers)
+    res.json({status: 'successful'})
 });
 
 module.exports = router;
