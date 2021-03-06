@@ -7,6 +7,9 @@
     --dark-secondary: #4d6e89;
 }
 
+/* ======================================= */
+/*index*/
+
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
 }
@@ -126,3 +129,21 @@ p {
 	}
 }
 
+/* ======================================= */
+/* faq */
+
+.faq-link {
+	color: var(--primary);
+	text-decoration: underline;
+	text-decoration-skip-ink: all;
+}
+.faq-link:hover {
+	color: var(--secondary);
+}
+
+.fa {
+  transition: .3s transform ease-in-out;
+}
+.collapsed .fa {
+  transform: rotate(90deg);
+}
