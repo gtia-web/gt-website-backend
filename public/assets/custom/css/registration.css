@@ -3,10 +3,6 @@
   min-height: calc(100vh - 70px);
 }
 
-.context-box {
-  padding-top: 40px;
-}
-
 a.button {
   -webkit-appearance: button;
   -moz-appearance: button;
@@ -38,10 +34,6 @@ img.login-image {
   margin: 0% auto;
 }
 
-form {
-  padding: 40px;
-}
-
 .btn-submit {
   margin: 0%;
   width: 100%;
@@ -70,4 +62,98 @@ form {
   transform: translateY(-50%);
   box-sizing: border-box;
   width: calc(100% - 15px);
+}
+
+/** New Design Stuff **/
+
+.card.card-login {
+  width: 959px;
+  height: 701px;
+  border: none;
+}
+
+div.content div.card.card-login {
+  background-image: url("../img/brushstroke texture tall 1.svg");
+  background-repeat: no-repeat;
+  background-size: 959px 701px;
+}
+
+.card-body {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  width: 300px;
+  margin-left: 140px;
+}
+
+form {
+}
+
+.context-box {
+}
+
+img.login-image {
+  width: 390px;
+  margin-top: 93px;
+  border-radius: 4px;
+}
+
+.login-preheading-text {
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0px;
+  text-align: left;
+
+  color: #032d23;
+}
+
+.login-heading-text {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 52px;
+
+  letter-spacing: 1px;
+
+  color: #091133;
+  margin-bottom: 18px;
+}
+
+.form-group.login-text .form-control {
+  height: 45px;
+  border-radius: 4px;
+  background: #ffffff;
+  font-family: "Inter";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+  font-family: "Inter";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.form-group.login-text {
+  margin-bottom: 15px;
+}
+
+.login-btn-pad {
+  margin-bottom: 4px;
 }
