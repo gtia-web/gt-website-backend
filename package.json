@@ -15,6 +15,7 @@
     "express-session": "^1.17.1",
     "googleapis": "^61.0.0",
     "mongoose": "^5.10.9",
+    "node-cache": "^5.1.2",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.14",
     "nodemon": "^2.0.4",
