@@ -4,7 +4,7 @@ const Cache = require('../../utility/cache');
 
 const router = express.Router();
 
-const cache = new Cache(12 * 60 * 60, false);
+const cache = new Cache(6 * 60 * 60, false);
 const FB_EVENTS_KEY = 'facebook_events';
 
 const TOTAL_EVENTS_COUNT = 3; // The number of events to return

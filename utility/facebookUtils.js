@@ -4,15 +4,18 @@ const FB_GRAPH_QL_BASE = "https://graph.facebook.com/v10.0";
 
 /**
  * Since this works on the backend without user intervention, we cannot have a login flow.
- * We are using long-lived Page Access Token, which does not have any expiration date (unless App permission is removed from the page)
+ * We are using long-lived Page Access Token, which does not have any expiration date.
  * 
+ * However, if the app permission is revoked from the page or there are some changes to Facebook's policy, the token might become invalid.
  * If new token is needed:
- *  1. Retrieve the user access token from Graph API explorer since we will not a separate login flow - https://developers.facebook.com/tools/explorer/
+ *  1. Retrieve the user access token from Graph API explorer since we do not have a separate login flow - https://developers.facebook.com/tools/explorer/
  *  2. Retrieve long-lived user access token - https://developers.facebook.com/docs/pages/access-tokens/#get-a-long-lived-user-access-token
  *  3. Retrieve page access token from this new user token - https://developers.facebook.com/docs/pages/access-tokens/#get-a-page-access-token
  * 
  * TODO:
  *  1. Store token and user information in the database instead of environment variable.
+ *      This allows us to change them in runtime if needed without having the re-deploy the application.
+ * 
  *  2. Create an admin tool to get new page access token if needed in case the previousu token was invalidated
  * 
  * @returns Acesss token for the page
@@ -33,6 +36,23 @@ function getPageId() {
 }
 
 /**
+ * Check if the specified url is valid API endpoint to retrieve events from Facebook GraphQL
+ * Throws exception if it does not match
+ * 
+ * @param {} url url to be checked
+ * @returns null
+ */
+async function validateEventsUrl(url) {
+    // Check for valid url
+    const regex = new RegExp(`^${FB_GRAPH_QL_BASE}/[0-9]+/events`);
+    if (regex.test(url)) {
+        return;
+    }
+
+    throw Error(`Invalid API endpoint specified. It must be in the form ${FB_GRAPH_QL_BASE}/:pageId/events`)
+}
+
+/**
  * Retrieve the events from the Facebook Page from the given URL
  * Facebook GraphQL does pagination of the events and returns the next url to fetch additional events as required
  * 
@@ -40,6 +60,8 @@ function getPageId() {
  */
 async function getEvents(url) {
     try {
+        validateEventsUrl(url);
+
         const response = await fetch(url, { method: 'GET' });
         if (response.ok) {
             const events_data = await response.json();
