@@ -4,7 +4,7 @@ const Cache = require('../../utility/cache');
 
 const router = express.Router();
 
-const cache = new Cache(6 * 60 * 60, false);
+const cache = new Cache(2 * 60 * 60, false);
 const FB_EVENTS_KEY = 'facebook_events';
 
 const TOTAL_EVENTS_COUNT = 3; // The number of events to return
@@ -14,7 +14,7 @@ const TOTAL_EVENTS_COUNT = 3; // The number of events to return
  * First retrieve the upcoming events.
  * If there are less upcoming events, then recent past events are added.
  * 
- * To minimize the number of API calls, events are cached for 24 hours
+ * To minimize the number of API calls, events are cached for 2 hours
  * 
  */
 router.get('/facebook', async (req, res) => {

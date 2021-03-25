@@ -102,7 +102,8 @@ async function getUpcomingEvents() {
 }
 
 /**
- * Retrieve the upcoming events from the Facebook Page
+ * Retrieve the past events from the Facebook Page.
+ * They are ordered from most recent to the oldest event
  * 
  * @returns Events and next url to fetch additional events
  */
