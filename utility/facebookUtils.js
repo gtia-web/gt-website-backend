@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 const FB_GRAPH_QL_BASE = "https://graph.facebook.com/v10.0";
 
 /**
@@ -17,7 +19,7 @@ function getAccessToken() {
 
 /**
  * Facebook Page ID is permanent.
- * So we do need to make API calls to retrieve the page id for GTIA
+ * Hence we do need to make API calls to retrieve the page id for GTIA and instead store it
  * 
  * @returns Page Id for GTIA page
  */
@@ -31,7 +33,7 @@ function getPageId() {
  * 
  * @returns Events and next url to fetch additional events data
  */
-function getEvents(url) {
+async function getEvents(url) {
     try {
         const response = await fetch(url, { method: 'GET' });
         if (response.ok) {
@@ -48,14 +50,13 @@ function getEvents(url) {
 
         throw Error('Failed request to retrieve data');
     } catch (err) {
-        throw Error('Failed to retrieve events from Facebook');
+        console.error(err);
+        throw err;
     }
 }
 
 /**
- * Retrieve the upcoming events from the Facebook Page in ascending order.
- * Facebook GraphQL does pagination of the events and returns the next url to fetch additional events as required
- * Pass the next url to the method to retreive additional events if needed
+ * Retrieve the upcoming events from the Facebook Page in ascending order of start time
  * 
  * @returns Events and next url to fetch additional events
  */
@@ -65,7 +66,6 @@ async function getUpcomingEvents() {
         const page_id = getPageId();
         const current_time = Math.round(Date.now() / 1000);
 
-        // Page ID is permanent so it there is no need to fetch is on every request. We can store it.
         const url = `${FB_GRAPH_QL_BASE}/${page_id}/events?since=${current_time}&access_token=${access_token}&sort=start_time_ascending`;
 
         return await getEvents(url);
@@ -74,12 +74,17 @@ async function getUpcomingEvents() {
     }
 }
 
+/**
+ * Retrieve the upcoming events from the Facebook Page
+ * 
+ * @returns Events and next url to fetch additional events
+ */
 async function getPastEvents() {
     try {
         const access_token = getAccessToken();
+        const page_id = getPageId();
         const current_time = Math.round(Date.now() / 1000);
 
-        // Page ID is permanent so it there is no need to fetch is on every request. We can store it
         const url = `${FB_GRAPH_QL_BASE}/${page_id}/events?until=${current_time}&access_token=${access_token}`;
 
         return await getEvents(url);
@@ -88,3 +93,7 @@ async function getPastEvents() {
     }
 }
 
+module.exports = {
+    getUpcomingEvents,
+    getPastEvents
+};
