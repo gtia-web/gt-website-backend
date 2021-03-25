@@ -38,6 +38,8 @@
     <link href="../assets/custom/css/calendar.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
     <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/custom/css/slider.css">
+    <link rel="stylesheet" href="../assets/custom/css/sheet.css">
 
 
 </head>
@@ -53,105 +55,289 @@
                 <!-- End Navbar -->
                 <div class="content">
                     <!-- The Modal -->
-                    <div id="newEventCreateModal" class="modal">
+                    <div id="newEventCreateModal" class="modal view">
                         <!-- Modal content -->
                         <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="title">Create Event</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-md-6 pr-md-1">
-                                                    <div class="form-group">
-                                                        <label>Event Name</label>
-                                                        <input type="text" class="form-control" placeholder="Event Name"
-                                                            name="event-name" value="">
+                            <div class="flex-container">
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="title">Create Event (Basic Details)</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div id='modalsection-1' class='' data-section-title='Basic Details'>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-md-1">
+                                                            <div class="form-group">
+                                                                <label>Event Name</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Event Name" name="event-name" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-md-1">
+                                                            <div class="form-group">
+                                                                <label>Location</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Location" name="location" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Description</label>
+                                                                <textarea class="form-control" placeholder="Description"
+                                                                    name="description" value=""></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4 pr-md-1">
+                                                            <div class="form-group">
+                                                                <label>Date</label>
+                                                                <input type="date" class="form-control" placeholder=""
+                                                                    name="date" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 px-md-1">
+                                                            <div class="form-group">
+                                                                <label>Start Time</label>
+                                                                <input type="time" class="form-control" placeholder=""
+                                                                    name="starttime" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 px-md-1">
+                                                            <div class="form-group">
+                                                                <label>End Time</label>
+                                                                <input type="time" class="form-control" placeholder=""
+                                                                    name="endtime" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 pl-md-1">
+                                                            <div class="form-group">
+                                                                <label>Event Type</label>
+                                                                <select class="form-control" name="event-type">
+                                                                    <option value="Internal">Internal</option>
+                                                                    <option value="External">External</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <!--
+                                                    <div class="row">
+                                                        <div class="col-md-12 plr-md-1">
+                                                            <div class="form-group">
+                                                                <label>Special Permission</label>
+                                                                <select class="chosen-select form-control" multiple>
+                                                                    <option value=""></option>
+                                                                    <option value="publicpublish">Display to
+                                                                        Public
+                                                                    </option>
+                                                                    <option value="notification">Send
+                                                                        Notification
+                                                                    </option>
+                                                                    <option value="signups">Add Signups</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>-->
+                                                </div>
+                                                <div id='modalsection-2' class='inactive'
+                                                    data-section-title='Notifications'>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Send Notification</label>
+                                                                <select class="chosen-select form-control" multiple>
+                                                                    <option value=""></option>
+                                                                    <option value="admin">Now</option>
+                                                                    <option value="1hour">1 Hour Before
+                                                                    </option>
+                                                                    <option value="2hour">2 Hours Before
+                                                                    </option>
+                                                                    <option value="24hour">24 Hours Before
+                                                                    </option>
+                                                                    <option value="48hour">48 Hour Before
+                                                                    </option>
+                                                                    <option value="1week">1 Week Before
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Notification Note</label>
+                                                                <textarea class="form-control" placeholder="Note"
+                                                                    name="notification-note" value=""></textarea>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 pl-md-1">
-                                                    <div class="form-group">
-                                                        <label>Location</label>
-                                                        <input type="text" class="form-control" placeholder="Location"
-                                                            name="location" value="">
+                                                <!--<div id='modalsection-3' data-section-title='Sign Ups'>
+                                                    <div class="row">
+                                                        <div class="question-container">
+
+                                                            <div class="question-header">
+
+                                                                <div class="setting-switch">
+                                                                    <label class="switch">
+                                                                        <input type="checkbox" class="">
+                                                                        <span class="slider round"></span>
+                                                                    </label>
+                                                                    <div class='switch-label'>Required</div>
+                                                                </div>
+
+                                                                <div class="setting-switch choose-multiple"
+                                                                    style='padding-left: 30px;'>
+                                                                    <label class="switch">
+                                                                        <input type="checkbox" class="">
+                                                                        <span class="slider round"></span>
+                                                                    </label>
+                                                                    <div class='switch-label'>Choose Multiple</div>
+                                                                </div>
+
+                                                                <div class='type-select'>
+                                                                    <select class="form-control" name="event-type">
+                                                                        <option value="text">Text </option>
+                                                                        <option value="multiple-choice">Multiple Choice
+                                                                        </option>
+                                                                        <option value="time-slot">Time Slot
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-1">
+                                                                    <div class='number'>
+                                                                        <div class="vertical-center">
+                                                                            <span class="">1.</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-11 text-field">
+                                                                    <div class='row'>
+                                                                        <input type='text' placeholder='Question'
+                                                                            class='question'>
+                                                                    </div>
+                                                                    <div class='row'>
+                                                                        <input type='text'
+                                                                            placeholder='Enter your answer'
+                                                                            class='answer' disabled>
+                                                                    </div>
+                                                                </div>
+                                                            <div class="col-1">
+                                                                    <div class='number'>
+                                                                        <div class="vertical-center">
+                                                                            <span class="">1.</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-11 text-field">
+                                                                    <div class='row'>
+                                                                        <input type='text' placeholder='Question'
+                                                                            class='question'>
+                                                                    </div>
+                                                                    <div class='row '>
+                                                                        <div class='col-11 table-full-width table-responsive 
+                                                                            options-containter'>
+                                                                            <div
+                                                                                class='row answer-option-container bottom'>
+                                                                                <div class='col-1 answer-radio'>
+                                                                                    <input type="radio"
+                                                                                        class='option-input' disabled>
+                                                                                </div>
+                                                                                <div class='col-11'>
+                                                                                    <input type='text'
+                                                                                        placeholder='Option 1'
+                                                                                        class='answer-option'>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class='separator'></div>
+
+                                                            <div class="modal-search-user">
+                                                                <input type="text" class='search-user'>
+                                                            </div>
+                                                            <div class='row user-select'>
+                                                                <div class='col-5 user-panel'>
+                                                                    <div class='fixed-list-header'>
+                                                                        <div class='center-text'>
+                                                                            Available Members
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="table-full-width table-responsive user-list-container">
+                                                                        <ul>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                            <li>One</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='col-2 button-panel'></div>
+                                                                <div class='col-5 user-panel'></div>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
+                                                </div> -->
+                                            </form>
+                                            <div class="row card-footer">
                                                 <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <textarea class="form-control" placeholder="Description"
-                                                            name="description" value=""></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 pr-md-1">
-                                                    <div class="form-group">
-                                                        <label>Date</label>
-                                                        <input type="date" class="form-control" placeholder=""
-                                                            name="date" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 px-md-1">
-                                                    <div class="form-group">
-                                                        <label>Start Time</label>
-                                                        <input type="time" class="form-control" placeholder=""
-                                                            name="starttime" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 px-md-1">
-                                                    <div class="form-group">
-                                                        <label>End Time</label>
-                                                        <input type="time" class="form-control" placeholder=""
-                                                            name="endtime" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 pl-md-1">
-                                                    <div class="form-group">
-                                                        <label>Event Type</label>
-                                                        <select class="form-control" name="event-type">
-                                                            <option value="Internal">Internal</option>
-                                                            <option value="External">External</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                    <button
+                                                        class="btn btn-fill btn-primary confirm-edit-btn back-btn hidden"
+                                                        onclick="gotoLastSection()">Back</button>
 
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12 plr-md-1">
-                                                    <div class="form-group">
-                                                        <label>Special Permission</label>
-                                                        <select class="chosen-select form-control" multiple>
-                                                            <option value=""></option>
-                                                            <option value="publicpublish">Display to Public</option>
-                                                            <option value="notification">Send Notification</option>
-                                                            <option value="signups">Add Signups</option>
-                                                        </select>
-                                                    </div>
+                                                    <button
+                                                        class="btn btn-fill btn-primary confirm-edit-btn btn-float-right next-btn"
+                                                        onclick="gotoNextSection()">Next</button>
                                                 </div>
                                             </div>
-                                        </form>
-                                        <div class="row card-footer">
-                                            <div class="col-md-4 pl-md-1">
-                                                <button class="btn btn-fill btn-primary confirm-edit-btn"
-                                                    onclick="createEventButton()">Create</button>
-                                            </div>
-                                            <div class="col-md-2"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class='modal-toolbar hidden'>
+                                    <div class='button-container'>
+                                        <div class="btn-special">
+                                            <a href=""><span class="icon fas fa-plus-circle"></span></a>
+                                        </div>
+                                        <div class="btn-special">
+                                            <a href=""><span class="icon fas fa-trash-alt"></span></a>
+                                        </div>
+                                        <div class="btn-special">
+                                            <a href=""><span class="icon fas fa-chevron-up"></span></a>
+                                        </div>
+                                        <div class="btn-special">
+                                            <a href=""><span class="icon fas fa-chevron-down"></span></a>
+                                        </div>
+                                        <div class="btn-special bottom">
+                                            <a href=""><span class="icon far fa-check-circle"></span></a>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-3">
+                    <div class="row fixed-size-container">
+                        <div class="event-tab-holder">
                             <div class="card card-events-list">
                                 <div class="card-header ">
                                     <h4 class="title d-inline">Events</h4>
@@ -194,9 +380,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="card">
-                                <%- include('partials/calendar.ejs')%>
+                        <div class='calendar-size-container'>
+                            <div class="calendar-holder">
+                                <div class="card">
+                                    <%- include('partials/calendar.ejs')%>
+                                </div>
                             </div>
                         </div>
 
@@ -247,6 +435,8 @@
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
     <script src="../assets/custom/js/calendar.js"></script>
+    <script src="../assets/custom/js/events.js"></script>
+    <script src="../assets/custom/js/sheet.js"></script>
 
 </body>
 

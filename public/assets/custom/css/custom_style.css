@@ -40,26 +40,23 @@
 .btn-primary:active:hover,
 .btn-primary.active:focus,
 .btn-primary.active:hover {
-  background-color: white;
-  background-image: linear-gradient(
-    to bottom left,
-    #f5d580,
-    #eaaa00
-  ) !important;
+  background-color: #eaaa00 !important;
+  background-image: none !important;
 }
 
 .btn-primary.btn-simple.active:hover,
 .btn-primary.btn-simple.active:focus,
 .btn-primary.btn-simple.active:active,
 .btn-primary.btn-simple.active:not(:disabled):not(.disabled):active {
-  background-color: white !important;
+  background-color: #eaaa00 !important;
   border-color: #b3a369 !important;
-  background-image: linear-gradient(
+  background-image: none !important;
+  /**background-image: linear-gradient(
     to bottom left,
-    #f5d580,
-    #eaaa00
+    #eaaa00,
+    
   ) !important;
-  /**color: #B3A369;*/
+  color: #B3A369;*/
 }
 
 .btn-primary.btn-simple.active {
@@ -92,4 +89,14 @@
 .input-error-highlight {
   border: 0.5px solid red !important;
   box-shadow: 0px 0px 5px red !important;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+}
+
+.vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
 }
