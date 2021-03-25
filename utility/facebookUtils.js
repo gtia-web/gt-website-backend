@@ -3,23 +3,28 @@ const fetch = require('node-fetch');
 const FB_GRAPH_QL_BASE = "https://graph.facebook.com/v10.0";
 
 /**
- * Since this works on the backend without user intervention, we cannot have login flow.
- * It currently uses long-lived access token, which will be refereshed automatically as needed.
+ * Since this works on the backend without user intervention, we cannot have a login flow.
+ * We are using long-lived Page Access Token, which does not have any expiration date (unless App permission is removed from the page)
+ * 
+ * If new token is needed:
+ *  1. Retrieve the user access token from Graph API explorer since we will not a separate login flow - https://developers.facebook.com/tools/explorer/
+ *  2. Retrieve long-lived user access token - https://developers.facebook.com/docs/pages/access-tokens/#get-a-long-lived-user-access-token
+ *  3. Retrieve page access token from this new user token - https://developers.facebook.com/docs/pages/access-tokens/#get-a-page-access-token
  * 
  * TODO:
- *  1. Build an admin tool, that allows the admin to retrieve user Access Token for our service account
- *  2. Store token and user information in the database instead of environment variable.
+ *  1. Store token and user information in the database instead of environment variable.
+ *  2. Create an admin tool to get new page access token if needed in case the previousu token was invalidated
  * 
- * @returns Acesss token for the user
+ * @returns Acesss token for the page
  */
-function getAccessToken() {
-    return process.env.FB_ACCESS_TOKEN;
+function getPageAccessToken() {
+    return process.env.FB_PAGE_ACCESS_TOKEN;
 }
 
 
 /**
  * Facebook Page ID is permanent.
- * Hence we do need to make API calls to retrieve the page id for GTIA and instead store it
+ * Hence we do need to make API calls to retrieve the page id for GTIA and can instead store it directly
  * 
  * @returns Page Id for GTIA page
  */
@@ -62,7 +67,7 @@ async function getEvents(url) {
  */
 async function getUpcomingEvents() {
     try {
-        const access_token = getAccessToken();
+        const access_token = getPageAccessToken();
         const page_id = getPageId();
         const current_time = Math.round(Date.now() / 1000);
 
@@ -81,7 +86,7 @@ async function getUpcomingEvents() {
  */
 async function getPastEvents() {
     try {
-        const access_token = getAccessToken();
+        const access_token = getPageAccessToken();
         const page_id = getPageId();
         const current_time = Math.round(Date.now() / 1000);
 
