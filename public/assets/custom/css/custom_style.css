@@ -6,7 +6,11 @@
 }
 
 .navbar.navbar-solid-color {
-  background: white;
+  background: rgba(234, 170, 0, 0.2);
+}
+
+.main-panel {
+  border-top: none;
 }
 
 .main-panel > .content {
@@ -15,7 +19,8 @@
 }
 
 .white-content .main-panel {
-  background: rgba(203, 203, 210, 0.15);
+  /* background: rgba(203, 203, 210, 0.15);*/
+  background: white;
 }
 
 .card {

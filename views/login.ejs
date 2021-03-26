@@ -23,6 +23,9 @@
     <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
 
     <title>
         GTIA - Login
@@ -49,17 +52,23 @@
                     <div class="row context-box">
                         <div class="col-md-12 ">
                             <div class="card card-login center-content">
-                                <div class="row">
-                                    <div class='col-md-6 no-right-pad '>
+                                <div class="row full-height">
+                                    <div class='col-md-6 no-right-pad'>
                                         <div class="card-body">
-                                            <div class='form-text'>
-                                                <h5>Welcome back, Ambassador GTIA!</h5>
-                                                <h3>Login</h3>
+                                            <div class='row login-preheading-text'>
+                                                <div class='col-12'>
+                                                    Welcome to GTIA!
+                                                </div>
+                                            </div>
+                                            <div class='row login-heading-text'>
+                                                <div class='col-12'>
+                                                    Login
+                                                </div>
                                             </div>
                                             <form action="/user/login" method="POST">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="form-group">
+                                                        <div class="form-group login-text">
                                                             <input type="text" class="form-control"
                                                                 placeholder="Username" name="username" value="">
                                                         </div>
@@ -67,19 +76,20 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="form-group">
+                                                        <div class="form-group login-text">
                                                             <input type="password" class="form-control" name="password"
                                                                 value="" placeholder="Password">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row card-footer">
-                                                    <div class="col-md-12 no-left-pad no-right-pad">
+                                                <div class="row">
+                                                    <div class="col-md-12 login-btn-pad">
                                                         <button type="submit"
                                                             class="btn btn-fill btn-primary btn-fill-width btn-submit">Login</button>
                                                     </div>
-
-                                                    <div class="col-md-12 no-left-pad no-right-pad">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
                                                         <a href="/user/register"><button type="button"
                                                                 class="btn btn-fill btn-primary btn-fill-width btn-register">Register</button></a>
                                                     </div>
