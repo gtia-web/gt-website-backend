@@ -79,7 +79,8 @@
                                                             <div class="form-group">
                                                                 <label>Location</label>
                                                                 <input type="text" class="form-control"
-                                                                    placeholder="Location" name="location" value="">
+                                                                    placeholder="Location" name="eventlocation"
+                                                                    value="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,9 +151,10 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Send Notification</label>
-                                                                <select class="chosen-select form-control" multiple>
+                                                                <select class="chosen-select form-control"
+                                                                    name="notification-timeline" multiple>
                                                                     <option value=""></option>
-                                                                    <option value="admin">Now</option>
+                                                                    <option value="now">Now</option>
                                                                     <option value="1hour">1 Hour Before
                                                                     </option>
                                                                     <option value="2hour">2 Hours Before
@@ -300,13 +302,11 @@
                                             </form>
                                             <div class="row card-footer">
                                                 <div class="col-md-12">
-                                                    <button
-                                                        class="btn btn-fill btn-primary confirm-edit-btn back-btn hidden"
-                                                        onclick="gotoLastSection()">Back</button>
+                                                    <button type="button" onclick=""
+                                                        class="btn btn-fill btn-primary confirm-edit-btn back-btn hidden">Back</button>
 
-                                                    <button
-                                                        class="btn btn-fill btn-primary confirm-edit-btn btn-float-right next-btn"
-                                                        onclick="gotoNextSection()">Next</button>
+                                                    <button type="button" onclick=""
+                                                        class="btn btn-fill btn-primary confirm-edit-btn btn-float-right next-btn">Next</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -345,21 +345,7 @@
                                 <div class="card-body ">
                                     <div class="table-full-width table-responsive">
                                         <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="events-box">
-                                                            <p class="title">Night Market</p>
-                                                            <p class="text-muted">2/28/20, 7:00 PM, Online</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title=""
-                                                            class="btn btn-link" data-original-title="Edit Task">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                            <tbody id="event-list">
                                                 <tr>
                                                     <td>
                                                         <div class="events-box">

@@ -119,12 +119,4 @@ function initialize() {
 }
 
 
-$(window).on('click', function(event) {
-    if ($(event.target).attr('id') == "newEventCreateModal") {
-        $("#newEventCreateModal").removeClass("view");  
-        $("#newEventCreateModal").addClass('raise')
-    }
-})
-
-
 initialize()
