@@ -43,7 +43,7 @@ router.get('/', authentication.checkAuthenticated, async (req, res) => {
 router.get('/myevents', authentication.checkAuthenticated, async (req, res) => {
 
     events = await PortalEvent.find({AccessibleBy: req.user._id}, {AccessibleBy: 0})
-    console.log(events)
+    
     res.json({events: events})
 })
 
