@@ -51,6 +51,7 @@ function MakeSearchQuery() {
 function initialize() {
     requestsPending = true
     pendingQueries = ""
+    ViewWorkPoints()
 }
 
 /**
@@ -59,6 +60,7 @@ function initialize() {
 function ViewWorkPoints() {
     showPointType = 'work'
     MakeSearchQuery();
+    $('#points-title').html('Work Points')
 }
 
 /**
@@ -67,6 +69,7 @@ function ViewWorkPoints() {
 function ViewSocialPoints() {
     showPointType = 'social';
     MakeSearchQuery();
+    $('#points-title').html('Social Points')
 }
 
 function resizeTable() {

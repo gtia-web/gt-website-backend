@@ -128,7 +128,6 @@ async function updateEventList() {
             '<button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">' +
             '<i class="fas fa-edit"></i></button></td></tr>'
 
-        console.log(new_entry)        
         tbody.append(new_entry)        
     }
 }
