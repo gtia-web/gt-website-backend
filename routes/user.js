@@ -22,11 +22,22 @@ router.get('/login', authentication.checkNotAuthenticated, (req, res) => {
 
 // Submit login information for login
 router.post('/login', authentication.checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: "/",
-    failureRedirect: "/user/login",
+    successRedirect: "/user/login/success",
+    failureRedirect: "/user/login/fail",
     failureFlash: true
 }))
 
+router.get('/login/success', (req, res) => {
+    res.json({
+        status: 'success'
+    })
+})
+
+router.get('/login/fail', (req, res) => {
+    res.json({
+        status: 'fail'
+    })
+})
 // Get register new account page
 router.get('/register', authentication.checkNotAuthenticated, (req, res) => {
     res.render('registration.ejs')
@@ -34,7 +45,6 @@ router.get('/register', authentication.checkNotAuthenticated, (req, res) => {
 
 // Submit new registration form
 router.post('/register', async (req, res) => {
-    console.log(req.body)
     
     try {
         usersWithUsername = await UserProfile.findOne({
@@ -48,26 +58,43 @@ router.post('/register', async (req, res) => {
         });
     }     
     
-    if (usersWithUsername != null){
-        res.redirect('/user/register')
+    if (usersWithUsername != null){        
+        res.json({
+            runtimeErrorOccurred: false,
+            errorMessage: null,
+            existAlready: true,
+            redirect: null
+        });
     } else {
 
         const password = await bcrypt.hash(req.body.password, HashCycles)
+        try {
+            new UserProfile({
+                Username: req.body.username,
+                FirstName: req.body.firstname,
+                LastName: req.body.lastname,
+                Email: req.body.email,
+                Committee: "Not Assigned",
+                HashedPassword: password,
+                Points: {
+                    SocialPoints: 0,
+                    WorkPoints: 0
+                }
+            }).save();
+        } catch(err) {
+            res.json({
+                runtimeErrorOccurred: true,
+                errorMessage: err,
+                existAlready: false
+            });
+        }   
 
-        new UserProfile({
-            Username: req.body.username,
-            FirstName: req.body.firstname,
-            LastName: req.body.lastname,
-            Email: req.body.email,
-            Committee: "Not Assigned",
-            HashedPassword: password,
-            Points: {
-                SocialPoints: 0,
-                WorkPoints: 0
-            }
-        }).save();
-
-        res.redirect('/user/login')
+        res.json({
+            runtimeErrorOccurred: false,
+            errorMessage: null,
+            existAlready: false,
+            redirect: '/user/login'
+        });
     }
 });
 
@@ -241,89 +268,6 @@ router.post('/deleteByID', authentication.checkAuthenticated, authentication.che
     })
     res.json({})
 })
-
-
-/**canChangePermission = ["admin"]
-router.patch('/changePermission', async (req, res) => {
-    targetUserID = req.body.targetuserid;
-    currentUserID = req.body.currentuserid;
-    
-    try {
-        targetUser = await UserProfile.findById(targetUserID);
-        currUser = await UserProfile.findById(currentUserID);
-    } catch(err) {
-        res.json({
-            userID: null,
-            changeSuccessful: false,
-            runtimeErrorOccurred: true,
-            OperationDenied: false,
-            errorMessage: err,
-        });
-    }     
-
-    if (targetUser == null) {
-        res.json({
-            userID: null,
-            changeSuccessful: false,
-            runtimeErrorOccurred: false,
-            OperationDenied: true,
-            errorMessage: 'Target User DNE'
-        });
-    } else if (currUser == null) {
-        res.json({
-            changeSuccessful: false,
-            runtimeErrorOccurred: false,
-            OperationDenied: true,
-            errorMessage: 'Current User DNE'
-        });
-    }  else if (!utility.arrayIntersect(currUser.SpecialPermissions, canChangePermission)) {
-        res.json({
-            runtimeErrorOccurred: false,
-            OperationDenied: true,
-            errorMessage: 'Current User does not have permission to use operation'
-        });
-    } else {
-        if (req.body.hasOwnProperty('addPermissions')) {
-            for (i = 0; i < req.body.addPermissions.length; i++) {
-                for (j = targetUser.SpecialPermissions.length - 1; j >= 0; j--) {
-                    if(targetUser.SpecialPermissions[j] == req.body.addPermissions[i]) {
-                        targetUser.SpecialPermissions.splice(j, 1);
-                    }
-                }
-                targetUser.SpecialPermissions.push(req.body.addPermissions[i]);
-            }             
-        }
-
-        if (req.body.hasOwnProperty('removePermissions')) {
-            for (i = 0; i < req.body.removePermissions.length; i++) {
-                for (j = targetUser.SpecialPermissions.length - 1; j >= 0; j--) {                        
-                    if(targetUser.SpecialPermissions[j] == req.body.removePermissions[i]) {
-                        targetUser.SpecialPermissions.splice(j, 1);
-                    }
-                }
-            }             
-        }
-
-        try{
-            const UpdateResponse = await targetUser.save();
-            res.json({
-                userID: UpdateResponse._id,
-                changeSuccessful: true,
-                runtimeErrorOccurred: false,
-                OperationDenied: false
-            });
-        } catch(err) {
-            res.json({
-                userID: UpdateResponse._id,
-                changeSuccessful: false,
-                runtimeErrorOccurred: true,
-                OperationDenied: false,
-                errorMessage: err,
-            });
-        } 
-    }
-});
-*/
 
 
 module.exports = router;

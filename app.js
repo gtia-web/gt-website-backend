@@ -42,6 +42,7 @@ app.use('/signups', require('./routes/signups'));
 app.use('/points', require('./routes/points'));
 app.use('/', require('./routes/basic'));
 app.use('/events', require('./routes/events'));
+app.use('/sheets', require('./routes/sheets'));
 app.use(express.static("public"));
 
 //---------------------End of Routes-----------------------//
@@ -71,5 +72,5 @@ mongoose.connect(
     () => { console.log('Connected to DB!')
 });
 
-http.listen(process.env.PORT, () => console.log('The app is running on localhost:3000'));
+http.listen(process.env.PORT, () => console.log('The app is running on localhost:' + process.env.PORT));
 

@@ -1,4 +1,3 @@
-var currentlyAvailable = new Map()
 var requestsPending = false;
 var pendingQueries = "";
 var showApprovedAccounts = true;

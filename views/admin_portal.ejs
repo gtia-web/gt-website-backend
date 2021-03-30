@@ -64,6 +64,8 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="title">Edit Profile</h5>
+                                        <a class='modal-closed-button' onclick="closeModalButton(this)"><i
+                                                class="fas fa-times"></i></a>
                                     </div>
                                     <div class="card-body">
                                         <form>
@@ -195,6 +197,8 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="title">Activate Profile</h5>
+                                        <a class='modal-closed-button' onclick="closeModalButton(this)"><i
+                                                class="fas fa-times"></i></a>
                                     </div>
                                     <div class="card-body">
                                         <form>
@@ -309,6 +313,8 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="title">Delete Profile</h5>
+                                        <a class='modal-closed-button' onclick="closeModalButton(this)"><i
+                                                class="fas fa-times"></i></a>
                                     </div>
                                     <div class="card-body">
                                         <form>
@@ -448,6 +454,15 @@
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
     <script src="../assets/custom/js/admin_portal.js"></script>
+
+
+    <script>
+        function closeModalButton(e) {
+            modal = $(e).closest('.modal')
+            modal.removeClass("view");
+            modal.addClass('raise')
+        }
+    </script>
 
 </body>
 

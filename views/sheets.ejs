@@ -1,0 +1,220 @@
+<!--
+=========================================================
+* * Black Dashboard - v1.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/black-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
+    <title>
+        GTIA - Events
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/custom/css/all.css">
+    <!-- Nucleo Icons -->
+    <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
+
+
+    <link href="../assets/custom/css/events_sheets.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
+    <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
+    <link href="../assets/custom/css/sheets.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="white-content">
+    <div class="wrapper">
+        <div class="sidebar">
+            <%- include('partials/toolbar.ejs', {user: user, currentPage: 'sheets' })%>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <%- include('partials/top_navbar.ejs', {title: 'Sheets' })%>
+                <!-- End Navbar -->
+                <div class="content">
+                    <!-- The Modal -->
+                    <div id="newSheetCreateModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="flex-container">
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="title">Create Sheet</h5>
+                                            <a class='modal-closed-button' onclick="closeModalButton(this)"><i
+                                                    class="fas fa-times"></i></a>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div id='modalsection-1' class='' data-section-title='Basic Details'>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label>Sheet Title</label>
+                                                                <input type="text" placeholder="Title"
+                                                                    name="sheet-title" value="" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label>Sheet Source</label><br>
+                                                                <input type="radio" name="sheet-source" value="new">
+                                                                <label>Create New Sheet</label><br>
+                                                                <input type="radio" name="sheet-source" value="url">
+                                                                <label>Create From URL</label>
+                                                                <input type="text" placeholder="GoogleSheets URL"
+                                                                    name="sheetURL" value="" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label>Tags </label>
+                                                                <input type="text"
+                                                                    placeholder="Space separated list of tags"
+                                                                    name="tags" value="" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--
+                                                    <div class="row">
+                                                        <div class="col-md-12 plr-md-1">
+                                                            <div class="form-group">
+                                                                <label>Special Permission</label>
+                                                                <select class="chosen-select form-control" multiple>
+                                                                    <option value=""></option>
+                                                                    <option value="publicpublish">Display to
+                                                                        Public
+                                                                    </option>
+                                                                    <option value="notification">Send
+                                                                        Notification
+                                                                    </option>
+                                                                    <option value="signups">Add Signups</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>-->
+                                                </div>
+                                            </form>
+                                            <div class="row card-footer">
+                                                <div class="col-md-12">
+                                                    <button type="button" onclick=""
+                                                        class="btn btn-fill btn-primary confirm-edit-btn back-btn hidden">Back</button>
+
+                                                    <button type="button" onclick=""
+                                                        class="btn btn-fill btn-primary confirm-edit-btn btn-float-right next-btn">Create</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class='modal-toolbar hidden'>
+                                    <div class='button-container'>
+                                        <div class="btn-special">
+                                            <a href=""><span class="icon fas fa-plus-circle"></span></a>
+                                        </div>
+                                        <div class="btn-special">
+                                            <a href=""><span class="icon fas fa-trash-alt"></span></a>
+                                        </div>
+                                        <div class="btn-special">
+                                            <a href=""><span class="icon fas fa-chevron-up"></span></a>
+                                        </div>
+                                        <div class="btn-special">
+                                            <a href=""><span class="icon fas fa-chevron-down"></span></a>
+                                        </div>
+                                        <div class="btn-special bottom">
+                                            <a href=""><span class="icon far fa-check-circle"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row fixed-size-container">
+                        <div class="event-tab-holder">
+                            <div class="card card-events-list">
+                                <div class="card-header ">
+                                    <h4 class="title d-inline">Sheets</h4>
+                                </div>
+                                <div class="card-body ">
+                                    <input type="text" class="form-control sheets-search" id="searsch_user_1"
+                                        placeholder="SEARCH" value="" oninput="MakeSearchQuery()">
+                                    <div class="table-full-width table-responsive">
+                                        <table class="table">
+                                            <tbody id="sheets-list">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class='create-button-container'>
+                                    <button type="button" onclick="openCreateNewSheetModal()"
+                                        class="btn btn-fill btn-primary btn-fill-width btn-submit">Create Sheet</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='calendar-size-container'>
+                            <iframe class='google-sheets-iframe' id='google-sheets-iframe' src=''></iframe>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../assets/template/js/core/jquery.min.js"></script>
+    <script src="../assets/template/js/core/popper.min.js"></script>
+    <script src="../assets/template/js/core/bootstrap.min.js"></script>
+    <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+
+    <script src="../assets/custom/js/sheets.js"></script>
+    <!--
+    <script src="../assets/custom/js/calendar.js"></script>
+    <script src="../assets/custom/js/events.js"></script>
+    <script src="../assets/custom/js/sheet.js"></script> -->
+
+
+    <script>
+        function closeModalButton(e) {
+            modal = $(e).closest('.modal')
+            modal.removeClass("view");
+            modal.addClass('raise')
+        }
+    </script>
+
+</body>
+
+</html>

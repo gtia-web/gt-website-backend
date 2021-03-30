@@ -131,3 +131,12 @@ img.login-image {
 .login-btn-pad {
   margin-bottom: 4px;
 }
+
+.error-message {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}

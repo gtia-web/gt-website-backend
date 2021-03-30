@@ -13,7 +13,7 @@
     "events": "^3.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "googleapis": "^61.0.0",
+    "googleapis": "^39.2.0",
     "mongoose": "^5.10.9",
     "nodemailer": "^6.4.14",
     "nodemon": "^2.0.4",

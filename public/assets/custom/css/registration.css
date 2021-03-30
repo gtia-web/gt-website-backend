@@ -101,7 +101,7 @@ img.login-image {
 
 .login-preheading-text {
   font-family: "Roboto";
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
@@ -122,6 +122,10 @@ img.login-image {
 
   color: #091133;
   margin-bottom: 18px;
+}
+
+.login-heading-text.recieved-text {
+  font-size: 36px;
 }
 
 .form-group.login-text .form-control {
@@ -156,4 +160,21 @@ img.login-image {
 
 .login-btn-pad {
   margin-bottom: 4px;
+}
+
+.error-message {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.error-message-last {
+  margin-top: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.login-preheading-text.extra-text {
+  padding-top: 15px;
 }

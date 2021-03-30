@@ -60,14 +60,11 @@ function selectDate(e) {
 
     date = $(e).closest('.calendar-day').attr('id')
     modal = $('#newEventCreateModal')
+    initialize()
     modal.addClass('view')
     
     modal.find("input[name='date']").val(date)
     
-}
-
-function createEventButton() {
-    modal = $('#newEventCreateModal')
 }
 
 function intializeHeader() {

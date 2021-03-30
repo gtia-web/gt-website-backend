@@ -53,7 +53,7 @@
                             <div class="card card-login center-content">
                                 <div class="row full-height">
                                     <div class='col-md-6 no-right-pad '>
-                                        <div class="card-body">
+                                        <div class="card-body" id='registration-body'>
                                             <div class='row login-preheading-text'>
                                                 <div class='col-12'>
                                                     Welcome to GTIA!
@@ -64,7 +64,7 @@
                                                     Register
                                                 </div>
                                             </div>
-                                            <form action="/user/register" method="POST">
+                                            <form id="register-data">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group login-text">
@@ -89,12 +89,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row hidden" id='email-error-message-container'>
+                                                    <div class='col-12 error-message'>
+                                                        Invalid Email
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group login-text">
                                                             <input type="text" class="form-control"
                                                                 placeholder="Username" name="username" value="">
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row hidden" id='username-error-message-container'>
+                                                    <div class='col-12 error-message'>
+                                                        Username Unavailable
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -108,8 +118,13 @@
 
                                                 <div class="row">
                                                     <div class="col-md-12 login-btn-pad">
-                                                        <button type="submit"
+                                                        <button type="button" onclick='registrationRequest()'
                                                             class="btn btn-fill btn-primary btn-fill-width btn-submit">Register</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row hidden" id='runtime-error-message-container'>
+                                                    <div class='col-12 error-message error-message-last'>
+                                                        Something went wrong. Try Again!
                                                     </div>
                                                 </div>
                                             </form>
@@ -162,6 +177,7 @@
     <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="../assets/custom/js/registration.js"></script>
 
 </body>
 

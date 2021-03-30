@@ -34,12 +34,11 @@
     <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
 
 
-    <link href="../assets/custom/css/events.css" rel="stylesheet" />
+    <link href="../assets/custom/css/events_sheets.css" rel="stylesheet" />
     <link href="../assets/custom/css/calendar.css" rel="stylesheet" />
+    <link href="../assets/custom/css/events.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
     <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/custom/css/slider.css">
-    <link rel="stylesheet" href="../assets/custom/css/sheet.css">
 
 
 </head>
@@ -55,7 +54,7 @@
                 <!-- End Navbar -->
                 <div class="content">
                     <!-- The Modal -->
-                    <div id="newEventCreateModal" class="modal view">
+                    <div id="newEventCreateModal" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
                             <div class="flex-container">
@@ -63,6 +62,8 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="title">Create Event (Basic Details)</h5>
+                                            <a class='modal-closed-button' onclick="closeModalButton(this)"><i
+                                                    class="fas fa-times"></i></a>
                                         </div>
                                         <div class="card-body">
                                             <form>
@@ -346,23 +347,14 @@
                                     <div class="table-full-width table-responsive">
                                         <table class="table">
                                             <tbody id="event-list">
-                                                <tr>
-                                                    <td>
-                                                        <div class="events-box">
-                                                            <p class="title">Night Market</p>
-                                                            <p class="text-muted">2/28/20, 7:00 PM, Online</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title=""
-                                                            class="btn btn-link" data-original-title="Edit Task">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                                <div class='create-button-container'>
+                                    <button type="button" onclick="openCreateEventSheetModal()"
+                                        class="btn btn-fill btn-primary btn-fill-width btn-submit">Create
+                                        Event</button>
                                 </div>
                             </div>
                         </div>
@@ -376,34 +368,6 @@
 
                     </div>
                 </div>
-                <!--<footer class="footer">
-                    <div class="container-fluid">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a href="javascript:void(0)" class="nav-link">
-                                    Creative Tim
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0)" class="nav-link">
-                                    About Us
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0)" class="nav-link">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="copyright">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>2018 made with <i class="tim-icons icon-heart-2"></i> by
-                            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
-                        </div>
-                    </div>
-                </footer>-->
         </div>
     </div>
     <!--   Core JS Files   -->
@@ -422,7 +386,15 @@
     <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
     <script src="../assets/custom/js/calendar.js"></script>
     <script src="../assets/custom/js/events.js"></script>
-    <script src="../assets/custom/js/sheet.js"></script>
+
+
+    <script>
+        function closeModalButton(e) {
+            modal = $(e).closest('.modal')
+            modal.removeClass("view");
+            modal.addClass('raise')
+        }
+    </script>
 
 </body>
 

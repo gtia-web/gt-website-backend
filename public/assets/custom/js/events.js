@@ -1,78 +1,130 @@
 var currentSection = 1
 var maxSections = 2
-var numQuestion = 1
-var currQuestion
+
+function gotoSection(num) {
+    if (num <= maxSections && num >= 1){
+        for (i = 1; i <=  maxSections; i++) {
+            $('#modalsection-' + i).addClass('inactive')
+        }        
+        
+        $('#modalsection-' + num).removeClass('inactive')
+        currentSection = num       
+        $('#newEventCreateModal').find('.card-header .title').html('Create Event (' + $('#modalsection-' + num).data('section-title') + ')')
+    }
+    updateButtons()  
+}
 
 function gotoNextSection() {
-    if (currentSection < maxSections){
-        $('#modalsection-' + currentSection).addClass('inactive')
-        $('#modalsection-' + (currentSection + 1)).removeClass('inactive')
-        currentSection += 1       
-        $('#newEventCreateModal').find('.card-header .title').html('Create Event (' + $('#modalsection-' + (currentSection)).data('section-title') + ')')
-    }
-
-    updateButtons()
+    gotoSection(currentSection + 1)  
 }
 
 function gotoLastSection() {
-    if (currentSection > 1) {
-        $('#modalsection-' + currentSection).addClass('inactive')
-        $('#modalsection-' + (currentSection - 1)).removeClass('inactive')
-        currentSection -= 1
-        $('#newEventCreateModal').find('.card-header .title').html('Create Event (' + $('#modalsection-' + (currentSection)).data('section-title') + ')')
-    }    
-
-    updateButtons()    
+    gotoSection(currentSection - 1) 
 }
 
 async function createNewEvent() {
+    
     modal = $('#newEventCreateModal')
+
+    //Validation
+    invalid = false
+    invalidPages = null
+
     eventname = modal.find('input[name ="event-name"]').val()
+    modal.find('input[name ="event-name"]').removeClass('input-error-highlight')
+    if(eventname == '') {
+        invalid = true
+        modal.find('input[name ="event-name"]').addClass('input-error-highlight')
+        if (invalidPages == null) invalidPages = 1;
+    }
+
     eventlocation = modal.find('input[name="eventlocation"]').val()
-    description = modal.find('textarea[name ="description"]').val()    
+    modal.find('input[name ="eventlocation"]').removeClass('input-error-highlight')
+    if(eventlocation == '') {
+        invalid = true
+        modal.find('input[name ="eventlocation"]').addClass('input-error-highlight')
+        if (invalidPages == null) invalidPages = 1;
+    }
+
+    description = modal.find('textarea[name ="description"]').val()  
+    modal.find('textarea[name ="description"]').removeClass('input-error-highlight')
+    if(description == '') {
+        invalid = true
+        modal.find('textarea[name ="description"]').addClass('input-error-highlight')
+        if (invalidPages == null) invalidPages = 1;
+    }
+
     eventtype = modal.find('select[name ="event-type"]').val()
+    modal.find('select[name ="event-type"]').removeClass('input-error-highlight')
+    if(eventtype == '' || eventtype == null) {
+        invalid = true
+        modal.find('select[name ="event-type"]').addClass('input-error-highlight')
+        if (invalidPages == null) invalidPages = 1;
+    }
 
     date = modal.find('input[name ="date"]').val().split('-')
+    modal.find('input[name ="date"]').removeClass('input-error-highlight')
+    if(modal.find('input[name ="date"]').val() == '') {
+        invalid = true
+        modal.find('input[name ="date"]').addClass('input-error-highlight')
+        if (invalidPages == null) invalidPages = 1;
+    }
+
     starttime = modal.find('input[name ="starttime"]').val().split(':')
+    modal.find('input[name ="starttime"]').removeClass('input-error-highlight')
+    if(modal.find('input[name ="starttime"]').val() == '') {
+        invalid = true
+        modal.find('input[name ="starttime"]').addClass('input-error-highlight')
+        if (invalidPages == null) invalidPages = 1;
+    }
+
     endtime = modal.find('input[name ="endtime"]').val().split(':')
-
-    startDate = new Date(parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]), parseInt(starttime[0]), parseInt(starttime[1]), 0);
-    endDate = new Date(parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]), parseInt(endtime[0]), parseInt(endtime[1]), 0);
-
-
-    
-    notif_description = modal.find('textarea[name ="description"]').val()
+    modal.find('input[name ="endtime"]').removeClass('input-error-highlight')
+    if(modal.find('input[name ="endtime"]').val() == '') {
+        invalid = true
+        modal.find('input[name ="endtime"]').addClass('input-error-highlight')
+        if (invalidPages == null) invalidPages = 1;
+    }
+   
+    notif_description = modal.find('textarea[name ="notification-note"]').val()
     notif_time_line = modal.find("select.chosen-select[name='notification-timeline']").chosen().val()
     var index = notif_time_line.indexOf("");
     if (index > -1) {
         notif_time_line.splice(index, 1);
     }
 
+    if (!invalid){
+        console.log('here')
 
-    data = {
-        eventname:  eventname,
-        eventlocation: eventlocation,
-        description: description,    
-        eventtype: eventtype,
-        startDate: startDate,
-        endDate: endDate,
-        notif_description: notif_description,
-        notif_time_line: notif_time_line
+        startDate = new Date(parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]), parseInt(starttime[0]), parseInt(starttime[1]), 0);
+        endDate = new Date(parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]), parseInt(endtime[0]), parseInt(endtime[1]), 0);
 
-    }
+        data = {
+            eventname:  eventname,
+            eventlocation: eventlocation,
+            description: description,    
+            eventtype: eventtype,
+            startDate: startDate,
+            endDate: endDate,
+            notif_description: notif_description,
+            notif_time_line: notif_time_line
 
-    await Promise.resolve($.post('/events/create', {
-        data: data
-    })) 
+        }
 
-    //console.log([eventname, eventlocation, description, startDate, endDate, eventtype])
-    //console.log([notif_description, notif_time_line])
+        await Promise.resolve($.post('/events/create', {
+            data: data
+        })) 
 
-    $("#newEventCreateModal").removeClass("view");  
-    $("#newEventCreateModal").addClass('raise')
-    updateEventList()
+        initialize() 
+
+        $("#newEventCreateModal").removeClass("view");  
+        $("#newEventCreateModal").addClass('raise') 
+
+         
     
-    //modal.find('select[name ="pointstype"]').val(showPointType)
+    } else {
+        gotoSection(invalidPages)
+    }
 }
 
 function updateButtons() {
@@ -128,21 +180,52 @@ async function updateEventList() {
             '<button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">' +
             '<i class="fas fa-edit"></i></button></td></tr>'
 
-        tbody.append(new_entry)        
+        tbody.append(new_entry)       
     }
 }
 
-
-
-
-
 async function initialize() {
+    gotoSection(1)
+    modal = $('#newEventCreateModal')
+
     updateButtons()
-    $('#newEventCreateModal').find('.back-btn').on('click', gotoLastSection)    
-    updateEventList()   
+    modal.find('.back-btn').off('click')
+    modal.find('.back-btn').on('click', gotoLastSection)    
+    updateEventList()  
+
+    eventname = modal.find('input[name ="event-name"]').val("")
+    modal.find('input[name ="event-name"]').removeClass('input-error-highlight')
+
+    eventlocation = modal.find('input[name="eventlocation"]').val("")
+    modal.find('input[name="eventlocation"]').removeClass('input-error-highlight')
+
+    description = modal.find('textarea[name ="description"]').val("")
+    modal.find('textarea[name ="description"]').removeClass('input-error-highlight')
+
+    eventtype = modal.find('select[name ="event-type"]').val("")
+    modal.find('select[name ="event-type"]').removeClass('input-error-highlight')
+
+    date = modal.find('input[name ="date"]').val("")
+    modal.find('input[name ="date"]').removeClass('input-error-highlight')
+
+    starttime = modal.find('input[name ="starttime"]').val("")
+    modal.find('input[name ="starttime"]').removeClass('input-error-highlight')
+
+    endtime = modal.find('input[name ="endtime"]').val("")   
+    modal.find('input[name ="endtime"]').removeClass('input-error-highlight')
+
+    notif_description = modal.find('textarea[name ="notification-note"]').val("")
+    modal.find('textarea[name ="notification-note"]').removeClass('input-error-highlight')
+
+    notif_time_line = modal.find("select.chosen-select[name='notification-timeline']").val("").trigger('chosen:updated');
+    modal.find("select.chosen-select[name='notification-timeline']").removeClass('input-error-highlight')
 }
 
-
+function openCreateEventSheetModal(){
+    initialize()
+    $('#newEventCreateModal').addClass('view')
+    
+}
 
 
 $(window).on('click', function(event) {
