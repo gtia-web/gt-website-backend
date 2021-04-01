@@ -135,7 +135,7 @@ p {
 .faq-link {
 	color: var(--primary);
 	text-decoration: underline;
-	text-decoration-skip-ink: all;
+
 }
 .faq-link:hover {
 	color: var(--secondary);
@@ -145,5 +145,6 @@ p {
   transition: .3s transform ease-in-out;
 }
 .collapsed .fa {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
+  
 }
