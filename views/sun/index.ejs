@@ -14,14 +14,14 @@
 
         <section>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-12 col-lg-5">
                     <div class="home-title">
                         <h1>INTERNATIONAL AMBASSADORS AT GEORGIA TECH</h1>
                         <p class="color-dark-secondary">Bringing the world to Georgia Tech and Georgia Tech to the
                             world.</p>
                     </div>
                 </div>
-                <div class="col-md-7 px-0">
+                <div class="col-12 col-lg-7 px-0">
                     <img src="../../assets/sun/img/group_1.png" class="pt-2" width="100%" />
                 </div>
             </div>
@@ -30,10 +30,10 @@
         <section class="pt-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-6 col-lg-5 m-auto">
                         <img src="../../assets/sun/img/about_1.png" width="100%" />
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-lg-5 m-auto">
                         <div class="about-text">
                             <h2>WHAT WE DO</h2>
                             <p class="color-dark-secondary">Lorem ipsum dolor sit amet, consectetuer adipiscing
@@ -59,7 +59,7 @@
                 <div class="container">
                     <div class="row d-flex justify-content-center" id="events-container">
                         <div class="col-md-4">
-                            <div class="card event-card p-5 d-flex flex-column align-items-center">
+                            <div class="card event-card p-5 d-flex flex-column align-items-center my-3">
                                 <div class="spinner-border text-warning my-3" role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card event-card p-5 d-flex flex-column align-items-center">
+                            <div class="card event-card p-5 d-flex flex-column align-items-center my-3">
                                 <div class="spinner-border text-warning my-3" role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card event-card p-5 d-flex flex-column align-items-center">
+                            <div class="card event-card p-5 d-flex flex-column align-items-center my-3">
                                 <div class="spinner-border text-warning my-3" role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -95,7 +95,7 @@
         <section class="pt-4 my-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-lg-5 d-flex align-items-center">
                         <div id="home-contact-text">
                             <h2 class="pb-4">HAVE QUESTIONS?</h2>
                             <p class="color-dark-secondary">
@@ -109,7 +109,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-lg-7">
                         <img src="../../assets/sun/img/group_2.png" id="home-contact-image" width="100%" />
                     </div>
                 </div>
@@ -159,14 +159,14 @@
                     }
 
                     return `
-            <div class="col-md-6 col-lg-4 d-flex align-items-stretch my-xs-3 my-sm-0">
-                <div class="card event-card">    
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="card event-card my-3">    
                     <div class="card-body d-flex flex-column justify-content-between p-0">
                         <div class="p-4">
                             <h3 class="card-title">${title}</h3>
                             <h5 class="card-title">${(new Date(eventDate)).toLocaleDateString()}</h5>
                             
-                            <p class="card-text color-dark-secondary small">${description}</p>
+                            <p class="card-text color-dark-secondary">${description}</p>
                         </div>
                         <a class="card-footer text-center" href="${link}">
                             RSVP
