@@ -7,9 +7,13 @@ const authentication = require("../utility/authentication");
 /** 
  * Redirect to Home Page
  */
-router.get('/', async (req, res) => {
-    res.render('main.ejs');
-})
+router.get('/', (req, res) => {
+    res.render('sun/index.ejs');
+});
+
+router.get('/faq', (req, res) => {
+    res.render('sun/faq.ejs');
+});
 
 /**
  * Get Home Page if Logged in
