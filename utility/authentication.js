@@ -10,7 +10,7 @@ function checkAuthenticated(req, res, next) {
   
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        return res.redirect('/')
+        return res.redirect('/home')
     }
     next()
 }
@@ -20,7 +20,7 @@ async function checkAuthenticatedAdmin (req, res, next) {
     if (userData.SpecialPermissions.includes('admin')) {
         return next();
     } else {
-        return res.redirect('/')
+        return res.redirect('/home')
     }
 }
 

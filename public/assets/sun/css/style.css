@@ -1,0 +1,155 @@
+:root {
+	--primary: #EAAA00;
+	/*--secondary: #EAAA0033;*/
+	--secondary: #fbeecc;
+	--dark-primary: #003057;
+	/*--dark-secondary: #003057b3;*/
+	--dark-secondary: #4d6e89;
+}
+
+/* ======================================= */
+
+/*index*/
+.body, .row {
+	width: 100%;
+	margin: auto;
+}
+
+h1, h2, h3 {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	font-weight: 700;
+}
+
+h2, h3 {
+	font-weight: 600;
+}
+
+p {
+	font-family: 'Roboto', sans-serif;
+}
+
+.text-bold {
+	font-weight: 700;
+}
+
+.color-primary {
+	color: var(--primary);
+}
+
+.color-secondary {
+	color: var(--secondary);
+}
+
+.color-dark-primary {
+	color: var(--dark-primary);
+}
+
+.color-dark-secondary {
+	color: var(--dark-secondary);
+}
+
+.bg-secondary-gtia {
+	background-color: var(--secondary);
+}
+
+.nav-link {
+	color: var(--dark-secondary) !important;
+}
+
+.nav-button {
+	padding-left: 3.5rem !important;
+	padding-right: 3.5rem !important;
+	color: var(--secondary) !important;
+	background-color: var(--dark);
+	font-family: 'Montserrat', sans-serif;
+	border-radius: 5px;
+}
+
+.sponsor-button {
+	min-width: 200px;
+	color: white !important;
+	background-color: var(--dark-primary);
+	font-family: 'Montserrat', sans-serif;
+	border-radius: 5px;
+}
+
+.nav-item {
+	margin-left: 1.5rem !important;
+	margin-right: 1.5rem !important;
+}
+
+.bg-paint-1 {
+	background-image: url(../img/brushstroke-1.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: auto;
+}
+
+.bg-paint-2 {
+	background-image: url(../img/sponsor-brushstroke.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: auto;
+}
+
+.event-card {
+	box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+	border: none;
+	border-radius: 10px;
+}
+
+.event-card h3.card-title {
+	min-height: 64px;
+}
+
+.sponsor-img {
+	width: 80%;
+	margin-left: 10%;
+}
+
+img#home-contact-image {
+	border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+	.home-title {
+		padding-top: 10rem;
+		padding-left: 6rem;
+		padding-right: 4rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.home-title {
+		padding-top: 1rem;
+		padding-left: 1rem;
+	}
+	.about-text {
+		padding-left: 1rem;
+		padding-top: 2rem;
+	}
+}
+
+/* ======================================= */
+
+/* faq */
+
+.faq-link {
+	color: var(--primary);
+	text-decoration: underline;
+}
+
+.faq-link:hover {
+	color: var(--secondary);
+}
+
+.fa {
+	transition: .3s transform ease-in-out;
+}
+
+.collapsed .fa {
+	transform: rotate(-90deg);
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GTIA | Home</title>
+    <%- include('../partials/sun/header.ejs') %>
+
+        <link href="../../assets/sun/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <%- include('../partials/sun/navbar.ejs', {currentPage: 'home' })%>
+
+        <section>
+            <div class="row">
+                <div class="col-12 col-lg-5">
+                    <div class="home-title">
+                        <h1>INTERNATIONAL AMBASSADORS AT GEORGIA TECH</h1>
+                        <p class="color-dark-secondary">Bringing the world to Georgia Tech and Georgia Tech to the
+                            world.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-7 px-0">
+                    <img src="../../assets/sun/img/group_1.png" class="pt-2" width="100%" />
+                </div>
+            </div>
+        </section>
+
+        <section class="pt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-lg-5 m-auto">
+                        <img src="../../assets/sun/img/about_1.png" width="100%" />
+                    </div>
+                    <div class="col-lg-5 m-auto">
+                        <div class="about-text">
+                            <h2>WHAT WE DO</h2>
+                            <p class="color-dark-secondary">Lorem ipsum dolor sit amet, consectetuer adipiscing
+                                elit.
+                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+                                dis
+                                parturient montes, nascetur ridiculus</p>
+                            <p class="color-dark-secondary">mus. Donec quam felis, ultricies nec, pellentesque eu,
+                                pretium quis, sem. Nulla consequat massa quis enim.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pt-4 my-4">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center">EVENTS</h3>
+                </div>
+            </div>
+            <div class="bg-paint-1 py-5">
+                <div class="container">
+                    <div class="row d-flex justify-content-center" id="events-container">
+                        <div class="col-md-4">
+                            <div class="card event-card p-5 d-flex flex-column align-items-center my-3">
+                                <div class="spinner-border text-warning my-3" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                Loading...
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card event-card p-5 d-flex flex-column align-items-center my-3">
+                                <div class="spinner-border text-warning my-3" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                Loading...
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card event-card p-5 d-flex flex-column align-items-center my-3">
+                                <div class="spinner-border text-warning my-3" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="https://www.facebook.com/GTIAmbassadors/events/" target="_blank"
+                        class="btn btn-primary my-5" role="button">View all events</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="pt-4 my-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 d-flex align-items-center">
+                        <div id="home-contact-text">
+                            <h2 class="pb-4">HAVE QUESTIONS?</h2>
+                            <p class="color-dark-secondary">
+                                If you want to learn more about life on campus as an international student,
+                                are interested in joining GTIA, or would like to sponsor us, check out our
+                                <a href="/faq">FAQ page!</a>
+
+                            </p>
+                            <p class="color-dark-secondary">
+                                Couldn’t find the answer to your question? Send us a message!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <img src="../../assets/sun/img/group_2.png" id="home-contact-image" width="100%" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pt-5">
+            <div class="text-center pb-5">
+                <h2>OUR SPONSORS</h2>
+                <p>Interested in sponsoring us?</p>
+                <a class="btn sponsor-button" href="/faq#collapse-sponsorship">View Sponsor FAQ</a>
+            </div>
+
+            <div class="bg-paint-2" style="padding-bottom: 28rem">
+                <div class="container">
+                    <div class="row pt-5">
+                        <div class="col-6">
+                            <img src="../../assets/sun/img/sponsor_2.png" class="sponsor-img" />
+                        </div>
+                        <div class="col-6">
+                            <img src="../../assets/sun/img/sponsor_2.png" class="sponsor-img" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="../../assets/sun/img/sponsor_1.png" class="sponsor-img" />
+                        </div>
+                        <div class="col-4">
+                            <img src="../../assets/sun/img/sponsor_1.png" class="sponsor-img" />
+                        </div>
+                        <div class="col-4">
+                            <img src="../../assets/sun/img/sponsor_1.png" class="sponsor-img" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%- include('../partials/sun/footer.ejs') %>
+        <%- include('../partials/sun/common-scripts.ejs') %>
+            <script>
+                function createEventCard(title, description, eventDate, link) {
+                    let is_trimmed_description = false;
+                    if (description.length > 360) {
+                        is_trimmed_description = true;
+                        description = `${description.substring(0, 360)}... <a href="${link}">See More</a>`
+                    }
+
+                    return `
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="card event-card my-3">    
+                    <div class="card-body d-flex flex-column justify-content-between p-0">
+                        <div class="p-4">
+                            <h3 class="card-title">${title}</h3>
+                            <h5 class="card-title">${(new Date(eventDate)).toLocaleDateString()}</h5>
+                            
+                            <p class="card-text color-dark-secondary">${description}</p>
+                        </div>
+                        <a class="card-footer text-center" href="${link}">
+                            RSVP
+                        </a>
+                    </div>
+                </div>
+            </div>
+            `;
+                }
+
+
+                $(document).ready(function () {
+                    var eventContainer = document.getElementById('events-container');
+                    $.ajax({
+                        url: '/api/events/facebook',
+                        success: function (result) {
+                            eventContainer.innerHTML = '';
+                            if (result.events) {
+                                result.events.forEach((event) => {
+                                    const { name, description, start_time, link } = event;
+                                    eventContainer.innerHTML += createEventCard(name, description, start_time, link);
+                                });
+                            }
+                        },
+                        error: function (result) {
+                            eventContainer.innerHTML = `
+                    <div class="col-md-4">
+                        <div class="card event-card">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <p class="card-text color-dark-secondary">Failed to retreive our events</p>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                        }
+                    });
+                })
+            </script>
+
+</body>
+
+</html>
