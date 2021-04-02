@@ -10,6 +10,10 @@
 /* ======================================= */
 
 /*index*/
+.body, .row {
+	width: 100%;
+	margin: auto;
+}
 
 h1, h2, h3 {
 	font-family: 'Montserrat', sans-serif;
@@ -105,6 +109,10 @@ p {
 	margin-left: 10%;
 }
 
+img#home-contact-image {
+	border-radius: 20px;
+}
+
 @media (min-width: 768px) {
 	.home-title {
 		padding-top: 10rem;
@@ -119,6 +127,7 @@ p {
 	#home-contact-image {
 		padding-top: 4rem;
 		padding-right: 1rem;
+		border-radius: 20px;
 	}
 	#home-contact-text {
 		padding-left: 4rem;

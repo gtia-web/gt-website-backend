@@ -17,11 +17,11 @@
                 <div class="col-md-5">
                     <div class="home-title">
                         <h1>INTERNATIONAL AMBASSADORS AT GEORGIA TECH</h1>
-                        <p class="color-dark-secondary small">Bringing the world to Georgia Tech and Georgia Tech to the
+                        <p class="color-dark-secondary">Bringing the world to Georgia Tech and Georgia Tech to the
                             world.</p>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 px-0">
                     <img src="../../assets/sun/img/group_1.png" class="pt-2" width="100%" />
                 </div>
             </div>
@@ -35,13 +35,13 @@
                     </div>
                     <div class="col-md-7">
                         <div class="about-text">
-                            <h3>WHAT WE DO</h3>
-                            <p class="color-dark-secondary small">Lorem ipsum dolor sit amet, consectetuer adipiscing
+                            <h2>WHAT WE DO</h2>
+                            <p class="color-dark-secondary">Lorem ipsum dolor sit amet, consectetuer adipiscing
                                 elit.
                                 Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
                                 dis
                                 parturient montes, nascetur ridiculus</p>
-                            <p class="color-dark-secondary small">mus. Donec quam felis, ultricies nec, pellentesque eu,
+                            <p class="color-dark-secondary">mus. Donec quam felis, ultricies nec, pellentesque eu,
                                 pretium quis, sem. Nulla consequat massa quis enim.</p>
                         </div>
                     </div>
@@ -148,31 +148,8 @@
             </div>
         </section>
 
-        <footer class="bg-secondary-gtia">
-            <div class="container">
-                <div class="row pt-3">
-                    <div class="col-md-6">
-                        <p class="color-dark-secondary small">
-                            &#169;
-                            <script type="text/javascript">
-                                var today = new Date()
-                                var year = today.getFullYear()
-                                document.write(year)
-                            </script>
-                            GTIA
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="color-dark-secondary small text-right">
-                            Temp footer
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
+        <%- include('../partials/sun/footer.ejs') %>
         <%- include('../partials/sun/common-scripts.ejs') %>
-
             <script>
                 function createEventCard(title, description, eventDate, link) {
                     let is_trimmed_description = false;
