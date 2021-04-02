@@ -21,6 +21,14 @@ h3.title {
   padding-left: 15px;
 }
 
+.events-box.no-events {
+  padding-top: 20px;
+}
+
+.events-box.no-events p {
+  text-align: center;
+}
+
 .card-notif .events-box {
   padding-left: 25px;
   padding-top: 0px;

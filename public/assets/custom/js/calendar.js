@@ -1,23 +1,23 @@
+
+var current_month_year = [-1, -1]
 var days_of_week = {
     0: ['Sunday', 'Sun'], 1: ['Monday', 'Mon'], 2: ['Tuesday', 'Tue'], 
     3: ['Wednesday', 'Wed'], 4: ['Thursday', 'Thur'], 5: ['Friday', 'Fri'], 6: ['Saturday', 'Sat']
 }
-
 var months = {
     0: 'January', 1: 'February', 2: 'March', 3: 'April', 4: 'May', 5: 'June', 6: 'July', 7: 'August',
     8: 'September', 9: 'October', 10: 'November', 11: 'December'
 }
 
-var current_month_year = [-1, -1]
 
 function initializeDays(month, year) {
     current_month_year = [month, year]
-    $(".day-container").html("");
+    $(".day-container").empty();
 
     var d = new Date(year, month, 1);
-    first_day = d.getDay()
-    days_in_month = month == 11 ? 31 : new Date(year, month + 1, 0).getDate();
-    days_shown = (first_day + days_in_month + 1) + (70 - first_day - days_in_month - 1) % 7;
+    let first_day = d.getDay()
+    let days_in_month = month == 11 ? 31 : new Date(year, month + 1, 0).getDate();
+    let days_shown = (first_day + days_in_month + 1) + (70 - first_day - days_in_month - 1) % 7;
     
     for (i=0; i < days_shown; i++) {
         dayClasses = 'calendar-day '
@@ -31,13 +31,12 @@ function initializeDays(month, year) {
         }
 
 
-        date = new Date(year, month, i - first_day + 1)
+        let date = new Date(year, month, i - first_day + 1)
         dateText = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
 
-        let str = ""            
-        str += "<div class='" + dayClasses + "' id='" + dateText + "'>"
+        let str = "<div class='" + dayClasses + "' id='" + dateText + "'>"
         str += "<div class='calendar-day-number'><div class='" + dayNumberClasses + "'>" + date.getDate() +"</div></div>"        
-        str += "<div class='calendar-day-content'></div>"
+        str += "<div class='calendar-day-content table-full-width table-responsive'></div>"
         
         if (i < first_day + days_in_month && i >= first_day) {
             str += "<div class='add-event-icon' onclick='selectDate(this)'><i class='fas fa-plus'></i></div>"
@@ -45,6 +44,12 @@ function initializeDays(month, year) {
         str += "</div>"
 
         $('.day-container').append(str)
+
+
+
+        //"<div class='calendar-event'>" + General Meeting + "</div>"
+                        
+                    
 
     }   
 
@@ -54,6 +59,31 @@ function initializeDays(month, year) {
 
     $('#calender-header-month').html(months[month])
     $('#calender-header-year').html(year)
+
+    initializeEventsOnCalender()
+
+}
+
+async function initializeEventsOnCalender() {
+    let data = await Promise.resolve($.get('/events/myevents'))
+    let events = data.events
+    
+    $('.calendar-container').find('.calendar-day').each((i, e) => {
+        let date = $(e).attr('id').split('-')
+        let startDay = new Date(parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]), 0, 0, 0);
+        let endDay = new Date(parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]) + 1, 0, 0, 0);
+
+        if (startDay.getMonth() == current_month_year[0]) {
+            for (let i = 0; i < events.length; i++) {
+                let event = events[i]
+                eventTime = new Date(event.StartTime)
+                if (eventTime.getTime() >= startDay.getTime() && eventTime.getTime() <= endDay.getTime()) {
+                    new_event_entry = "<div class='calendar-event hidden'>" + event.EventName + "</div>"
+                    $(e).find('.calendar-day-content').append(new_event_entry)
+                }
+            }
+        }
+    })
 }
 
 function selectDate(e) {
@@ -104,6 +134,7 @@ function intializeHeader() {
 }
 
 function initialize() {
+    UpdateEventContainerSize();
     intializeHeader()
     now = new Date(Date.now())
     initializeDays(now.getMonth(), now.getFullYear()) 
@@ -115,5 +146,20 @@ function initialize() {
     }
 }
 
+function UpdateEventContainerSize() {
 
+    currWidth = $('.calendar-container').first().width()
+    currWidth /= 7    
+
+    $('.calendar-day-content .calendar-event').width(currWidth - 20)
+    $('.calendar-event.hidden').removeClass('hidden')
+    
+}
+
+async function loop() {
+    UpdateEventContainerSize();
+    setTimeout( loop, 500 );
+}
+
+loop() 
 initialize()

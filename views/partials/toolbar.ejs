@@ -30,7 +30,7 @@
                     <p>User</p>
                 </a>
         </li>
-        <% if (user.SpecialPermissions.includes('admin')) {%>
+        <% if (user.SpecialPermissions !=null && user.SpecialPermissions.includes('admin')) {%>
             <li <% if (currentPage=='admin_portal' ){ %> class="active " <%}%>>
                     <a href="/admin">
                         <i class="fas fa-toolbox"></i>
@@ -39,7 +39,7 @@
             </li>
             <% } %>
 
-                <% if (user.VPStatus.isVP) {%>
+                <% if (user.VPStatus !=null && user.VPStatus.isVP) {%>
                     <li <% if (currentPage=='vp_portal' ){ %> class="active " <%}%>>
                             <a href="">
                                 <i class="fas fa-users"></i>

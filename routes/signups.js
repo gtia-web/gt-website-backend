@@ -10,15 +10,15 @@ const utility = require("../utility/utility");
 // Route to get list of active sheets
 router.get('/active', authentication.checkAuthenticated, async (req, res) => {
     
-    activeSheets = await SignupSheet.find({NotCompleted: {$elemMatch:{ UserId: req.user._id }}}) 
+    let activeSheets = await SignupSheet.find({NotCompleted: {$elemMatch:{ UserId: req.user._id }}}) 
     res.render('signups/active-signups.ejs', {sheets: activeSheets})
 })
 
 // Route to get an active sheet
 router.post('/active', authentication.checkAuthenticated,  async (req, res) => { 
 
-    form = await SignupSheet.findById(req.body.sheet_id)  
-    timeSlots = await TimeSlots.find({
+    let form = await SignupSheet.findById(req.body.sheet_id)  
+    let timeSlots = await TimeSlots.find({
         AssociatedSignupSheet: req.body.sheet_id,
         IsUsed: false
     })    
@@ -32,14 +32,14 @@ router.post('/active', authentication.checkAuthenticated,  async (req, res) => {
 //Route to submit a response to an active sheet
 router.post('/active/submitForm', authentication.checkAuthenticated, async (req, res) => { 
     
-    form = await SignupSheet.findById(req.body.sheet_id) 
-    fieldsResponses = []
+    let form = await SignupSheet.findById(req.body.sheet_id) 
+    let fieldsResponses = []
 
     if (form.hasOwnProperty("Fields")) {
         form.Fields.forEach((f)  => fieldsResponses.push(f.value))
     }
 
-    assignedDate = null
+    let assignedDate = null
     if (form.hasOwnProperty("NotCompleted")) {
         form.NotCompleted.forEach((u)  => {
             if (u.UserId.toString() == req.user._id.toString()) {
@@ -48,7 +48,7 @@ router.post('/active/submitForm', authentication.checkAuthenticated, async (req,
         })
     }
        
-    createdSignupSheetResponse = await (new SignupSheetResponse({
+    let createdSignupSheetResponse = await (new SignupSheetResponse({
         SignupSheet: req.body.sheet_id,
         FilledBy: req.user._id,
         Fields: fieldsResponses,
@@ -57,7 +57,7 @@ router.post('/active/submitForm', authentication.checkAuthenticated, async (req,
     })).save();
 
     if (form.UsesTimeSlots && req.body.hasOwnProperty("selected_slot_ids")) {
-        selectedTimeSlots = req.body.selected_slot_ids
+        let selectedTimeSlots = req.body.selected_slot_ids
         utility.asyncForEach(selectedTimeSlots, async (slot)=> {
             await TimeSlots.updateMany({ _id: slot}, {
                 IsUsed: true,

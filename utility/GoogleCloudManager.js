@@ -20,7 +20,7 @@ function getEmailTransporter() {
 
     const myAccessToken =  getClient().getAccessToken()
     
-    var transporter = nodemailer.createTransport({
+    let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         type: "OAuth2",
@@ -46,7 +46,7 @@ function sendMain(mailOptions) {
 }
 
 async function createNewGCSheet(Title, isPublic) {
-    client = getClient()
+    let client = getClient()
     const gsapi = google.sheets({
         version: 'v4', 
         auth: client
@@ -62,8 +62,8 @@ async function createNewGCSheet(Title, isPublic) {
     console.log(response)
 
     if (isPublic) {
-        const fileId = response.data.spreadsheetId;
-        drive = google.drive({ version: "v3", auth: client });
+        let fileId = response.data.spreadsheetId;
+        const drive = google.drive({ version: "v3", auth: client });
         await drive.permissions.create({
             resource: {
                 type: "anyone",

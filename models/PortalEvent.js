@@ -43,6 +43,10 @@ const PortalEventSchema = mongoose.Schema({
         type: [mongoose.Schema.Types.ObjectId],
         ref: "UserProfile",
         required: true
+    },
+    AvailableToEveryone: {
+        type: Boolean,
+        default: false
     }
 });
 

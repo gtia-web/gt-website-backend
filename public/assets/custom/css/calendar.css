@@ -20,6 +20,7 @@
 .calendar-day {
   position: relative;
   min-height: 110px;
+  max-height: 145px;
   border-left: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -33,7 +34,10 @@
 }
 
 .calendar-day-content {
-  padding: 5px 10px 0 10px;
+  padding: 5px 2px 0 2px;
+  height: calc(100% - 60px);
+  max-height: calc(100% - 60px);
+  overflow: hidden;
 }
 
 .calendar-day.inactive {
@@ -138,4 +142,27 @@
 .day-number.current {
   background-color: #eaaa00;
   color: white;
+}
+
+.calendar-event {
+  position: relative;
+  width: 0px;
+  height: 22px;
+  background-color: #1879db;
+  color: white;
+  border-radius: 3px;
+  padding: 0 5px;
+  margin-bottom: 2px;
+  font-size: 0.675rem;
+  line-height: 22px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  cursor: pointer;
+}
+
+.calendar-event.hidden {
+  display: none;
 }

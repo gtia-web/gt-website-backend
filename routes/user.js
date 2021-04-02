@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const UserProfile = require('../models/UserProfile');
 const PointReceipt = require('../models/PointsReceipt');
+const GlobalVariables = require('../models/GlobalVariables');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
@@ -11,8 +12,12 @@ HashCycles = parseInt(process.env.PASSWORD_HASHING_CYCLES);
 
 //Retrieve User Page
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
-    userData = await UserProfile.findById(req.user._id)
-    res.render('user.ejs', {user: userData})
+    let userData = await UserProfile.findById(req.user._id)
+    let globalVariables = await GlobalVariables.findById(process.env.GLOBAL_VARIABLES_ID)
+    res.render('user.ejs', {
+        user: userData,
+        globalVariables: globalVariables
+    })
 })
 
 //Retrieve Login Page
@@ -46,6 +51,8 @@ router.get('/register', authentication.checkNotAuthenticated, (req, res) => {
 // Submit new registration form
 router.post('/register', async (req, res) => {
     
+    let usersWithUsername
+
     try {
         usersWithUsername = await UserProfile.findOne({
             Username: req.body.username
@@ -111,8 +118,8 @@ router.get('/logout', authentication.checkAuthenticated, (req, res) => {
  * Must be logged in
  */
 router.post('/list', authentication.checkAuthenticated, async (req, res) => {
-    var query = req.body.query
-    users = await UserProfile.find(
+    let query = req.body.query
+    let users = await UserProfile.find(
         { $and: [
             {
                 $or: [
@@ -134,8 +141,8 @@ router.post('/list', authentication.checkAuthenticated, async (req, res) => {
  * Must be Admin
  */
 router.post('/data', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
-    var id = req.body.id
-    user = await UserProfile.findById(id, { HashedPassword: 0})
+    let id = req.body.id
+    let user = await UserProfile.findById(id, { HashedPassword: 0})
     res.json(user)
 })
 
@@ -144,8 +151,8 @@ router.post('/data', authentication.checkAuthenticated, authentication.checkAuth
  * Must be Admin
  */
 router.post('/data/self', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
-    var id = req.user._id
-    user = await UserProfile.findById(id, { HashedPassword: 0})
+    let id = req.user._id
+    let user = await UserProfile.findById(id, { HashedPassword: 0})
     res.json(user)
 })
 
@@ -154,9 +161,8 @@ router.post('/data/self', authentication.checkAuthenticated, authentication.chec
  * Must be Admin
  */
 router.post('/update', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
-    var data = req.body.data
-    users = await UserProfile.findById(data.id, { HashedPassword: 0})
-
+    let data = req.body.data
+    
     previousPoint = {
         socialpoints: user.Points.SocialPoints,
         workpoints: user.Points.WorkPoints

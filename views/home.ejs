@@ -87,7 +87,8 @@
                                             </div>
                                             <div>
                                                 <h4>
-                                                    <%- user.Points.WorkPoints %>/3
+                                                    <%- user.Points.WorkPoints %>/<%-
+                                                            globalVariables.WorkPointsRequirement %>
                                                 </h4>
                                             </div>
                                         </div>
@@ -97,17 +98,12 @@
                                             </div>
                                             <div>
                                                 <h4>
-                                                    <%- user.Points.SocialPoints %>/3
+                                                    <%- user.Points.SocialPoints %>/<%-
+                                                            globalVariables.SocialPointsRequirement %>
                                                 </h4>
                                             </div>
                                         </div>
                                     </div>
-                                    <!--<div class="card-description">
-                      Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                    </div>
-                    <div class="card-description">
-                        Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -115,23 +111,11 @@
                             <div class="card card-tasks">
                                 <div class="card-header ">
                                     <h4 class="title d-inline">Upcoming Events</h4>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn btn-link dropdown-toggle btn-icon"
-                                            data-toggle="dropdown">
-                                            <i class="tim-icons icon-settings-gear-63"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#pablo">Action</a>
-                                            <a class="dropdown-item" href="#pablo">Another action</a>
-                                            <a class="dropdown-item" href="#pablo">Something else</a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="card-body ">
                                     <div class="table-full-width table-responsive">
                                         <table class="table">
-                                            <tbody>
+                                            <tbody id='upcoming-event-table'>
                                                 <tr>
                                                     <td>
                                                         <div class="events-box">
@@ -270,6 +254,7 @@
     <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="../assets/custom/js/home.js"></script>
 
 </body>
 

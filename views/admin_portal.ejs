@@ -408,6 +408,103 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2 class="card-title">Global Variables</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id='global-variable-form'>
+                                        <div class="row">
+                                            <div class="col-md-6 pr-md-1">
+                                                <div class="form-group">
+                                                    <label>Work Point Requirement</label>
+                                                    <input type="text" class="form-control" placeholder="0"
+                                                        name="workpointsreq" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl-md-1">
+                                                <div class="form-group">
+                                                    <label>Social Point Requirement</label>
+                                                    <input type="text" class="form-control" placeholder="0"
+                                                        name="socialpointsreq" value="0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-md-1">
+                                                <div class="form-group">
+                                                    <label>Current Semester</label>
+                                                    <select class="form-control" name="currsemester">
+                                                        <option value="Fall">Fall</option>
+                                                        <option value="Spring">Spring</option>
+                                                        <option value="Summer">Summer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-md-1">
+                                                <div class="form-group">
+                                                    <label>Start of Semester</label>
+                                                    <input type="date" class="form-control" placeholder="0"
+                                                        name="startsemester" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-md-1">
+                                                <div class="form-group">
+                                                    <label>End of Semester</label>
+                                                    <input type="date" class="form-control" placeholder="0"
+                                                        name="endsemester" value="0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-md-1">
+                                                <div class="form-group">
+                                                    <label>General Meeting Day</label>
+                                                    <select class="form-control" name="gm-day">
+                                                        <option value="Sunday">Sunday</option>
+                                                        <option value="Monday">Monday</option>
+                                                        <option value="Tuesday">Tuesday</option>
+                                                        <option value="Wednesday">Wednesday</option>
+                                                        <option value="Thursday">Thursday</option>
+                                                        <option value="Friday">Friday</option>
+                                                        <option value="Saturday">Saturday</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-md-1">
+                                                <div class="form-group">
+                                                    <label>General Meeting Time</label>
+                                                    <input type="time" class="form-control" placeholder="0"
+                                                        name="gm-time" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-md-1">
+                                                <div class="form-group">
+                                                    <label>Automatically Make General Meeting Event</label>
+                                                    <select class="form-control" name="gm-auto-event">
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                    <div class="row card-footer">
+                                        <div class="col-md-4 pl-md-1">
+                                            <button class="btn btn-fill btn-primary" onclick="UpdateGlobalVariables()">
+                                                Confirm Edit</button>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!--<footer class="footer">
                     <div class="container-fluid">

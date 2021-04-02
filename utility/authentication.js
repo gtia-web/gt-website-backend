@@ -16,7 +16,7 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 async function checkAuthenticatedAdmin (req, res, next) {
-    userData = await UserProfile.findById(req.user._id)
+    let userData = await UserProfile.findById(req.user._id)
     if (userData.SpecialPermissions.includes('admin')) {
         return next();
     } else {

@@ -42,13 +42,13 @@ var mongoose = require('mongoose');
 
 //Serve Point Page
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
-    userData = await UserProfile.findById(req.user._id)
+    let userData = await UserProfile.findById(req.user._id)
     res.render('points.ejs', {user: userData})
 })
 
 router.post('/receipts/recipient', authentication.checkAuthenticated, async (req, res) => {
-    query = req.body.query
-    type = req.body.type
+    let query = req.body.query
+    let type = req.body.type
 
     receipts = await PointsReceipt.find(
         { $and: [
@@ -68,7 +68,7 @@ router.post('/receipts/recipient', authentication.checkAuthenticated, async (req
 
 router.post('/approver/list', authentication.checkAuthenticated, async (req, res) => {
 
-    approvers = await UserProfile.find(
+    let approvers = await UserProfile.find(
         { $or: [
                     { "VPStatus.isVP": true }, 
                     { "VPStatus.isPresident": true }
@@ -80,8 +80,8 @@ router.post('/approver/list', authentication.checkAuthenticated, async (req, res
 });
 
 router.post('/request', authentication.checkAuthenticated, async (req, res) => {
-    data = req.body.data
-    date = data.date.split("-");
+    let data = req.body.data
+    let date = data.date.split("-");
 
     new PointsReceipt({
         Type: "Points Request",

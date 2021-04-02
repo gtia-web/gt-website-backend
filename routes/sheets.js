@@ -11,22 +11,22 @@ const authentication = require("../utility/authentication");
  * Get sheets page
  */
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
-    userData = await UserProfile.findById(req.user._id)
+    let userData = await UserProfile.findById(req.user._id)
     res.render('sheets.ejs',  {user: userData})
 })
 /**
  * Create new sheet
  */
 router.post('/create', authentication.checkAuthenticated, async (req, res) => {
-    allActiveUsers = await UserProfile.find({Approved: true}, {_id: 1});
-    data = req.body.data;
-    url = data.url;
+    let allActiveUsers = await UserProfile.find({Approved: true}, {_id: 1});
+    let data = req.body.data;
+    let url = data.url;
 
     if (data.sheetSource == 'new') {
         url = (await gcManager.createNewGCSheet(data.sheetTitle, true)).data.spreadsheetUrl
     }
 
-    AccessibleBy = []
+    let AccessibleBy = []
     for (let i = 0; i <  allActiveUsers.length; i++) {
         AccessibleBy.push({
             User: allActiveUsers[i]._id,
@@ -54,10 +54,7 @@ router.post('/view', authentication.checkAuthenticated, async (req, res) => {
     let sheets = await PortalSheet.find({
         $and: [
             {$or: [
-                { $and: [
-                    { 'AccessibleBy.User': req.user._id },
-                    { VisibleOn: {$lte: Date.now()}}
-                ] },
+                { 'AccessibleBy.User': req.user._id, VisibleOn: {$lte: Date.now()}},
                 { CreatedBy: req.user._id }
             ]},
             { $or: [
@@ -84,9 +81,9 @@ router.post('/view', authentication.checkAuthenticated, async (req, res) => {
 
 router.post('/logview', authentication.checkAuthenticated, async (req, res) => {
 
-    sheetID = req.body.sheetID
-    sheet = await PortalSheet.findById(sheetID, {AccessibleBy: 1})
-    access = sheet.AccessibleBy
+    let sheetID = req.body.sheetID
+    let sheet = await PortalSheet.findById(sheetID, {AccessibleBy: 1})
+    let access = sheet.AccessibleBy
 
     for (let i = access.length - 1; i >= 0; i--) {
         if (String(access[i].User) ==  String(req.user._id)) {

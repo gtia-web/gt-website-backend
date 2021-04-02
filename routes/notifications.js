@@ -11,15 +11,15 @@ async function EmailNotificationUpdate() {
     const app = require('express')();
     app.set('view engine', 'ejs')
 
-    dueEmailsNotification = await PendingEmailNotif.find({
+    let dueEmailsNotification = await PendingEmailNotif.find({
         ExpectedDate: {"$lte": Date.now()}
     });
 
     utility.asyncForEach(dueEmailsNotification, async (emailNotif) => {
-        user = await UserProfile.findById(emailNotif.TargetUser)
-        signupSheet = await SignupSheet.findById(emailNotif.AssociatedSheet)
-        signupSheetResponse = await SignupSheetResponse.findById(emailNotif.AssociatedResponse)
-        timeSlots = await TimeSlots.find({
+        let user = await UserProfile.findById(emailNotif.TargetUser)
+        let signupSheet = await SignupSheet.findById(emailNotif.AssociatedSheet)
+        let signupSheetResponse = await SignupSheetResponse.findById(emailNotif.AssociatedResponse)
+        let timeSlots = await TimeSlots.find({
             AssociatedResponse: emailNotif.AssociatedResponse
         })
 

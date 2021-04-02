@@ -3,11 +3,13 @@
   top: 0;
   left: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 .navbar.navbar-solid-color {
-  background: rgba(234, 170, 0, 0.2);
+  background: rgb(255, 228, 180);
 }
+/*rgba(234, 170, 0, 0.2);*/
 
 .main-panel {
   border-top: none;
@@ -125,4 +127,10 @@ input[type="radio"].input-error-highlight {
 
 .modal .title {
   float: left;
+}
+
+.navbar .photo {
+  border-radius: 0;
+  width: 20px;
+  height: 20px;
 }

@@ -7,7 +7,8 @@
 .off-canvas-sidebar {
   margin-left: 0px;
   border-radius: 0px;
-  margin-top: 67px;
+  margin-top: 50px;
+  padding-top: 30px;
   background: -webkit-linear-gradient(0deg, #335161 0%, #003057 100%);
   background: -o-linear-gradient(0deg, #335161 0%, #003057 100%);
   background: -moz-linear-gradient(0deg, #002233 0%, #003057 100%);

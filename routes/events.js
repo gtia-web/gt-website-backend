@@ -10,7 +10,7 @@ const authentication = require("../utility/authentication");
  * Get events page
  */
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
-    userData = await UserProfile.findById(req.user._id)
+    let userData = await UserProfile.findById(req.user._id)
     res.render('events.ejs',  {user: userData})
 })
 
@@ -18,8 +18,8 @@ router.get('/', authentication.checkAuthenticated, async (req, res) => {
  * Create new event
  */
  router.post('/create', authentication.checkAuthenticated, async (req, res) => {
-    allActiveUsers = await UserProfile.find({Approved: true}, {_id: 1})
-    data = req.body.data
+    let allActiveUsers = await UserProfile.find({Approved: true}, {_id: 1})
+    let data = req.body.data
 
     new PortalEvent({
         CreatedBy: req.user._id,
@@ -33,7 +33,8 @@ router.get('/', authentication.checkAuthenticated, async (req, res) => {
             NotificationNote: data.notif_description,
             NotificationTimeLine: []
         },
-        AccessibleBy: allActiveUsers
+        AccessibleBy: allActiveUsers,
+        AvailableToEveryone: false        
     }).save();
     
 
@@ -42,7 +43,11 @@ router.get('/', authentication.checkAuthenticated, async (req, res) => {
 
 router.get('/myevents', authentication.checkAuthenticated, async (req, res) => {
 
-    events = await PortalEvent.find({AccessibleBy: req.user._id}, {AccessibleBy: 0})
+    let events = await PortalEvent.find({
+        $or: [
+            {AccessibleBy: req.user._id},
+            {AvailableToEveryone: true}
+        ]}, {AccessibleBy: 0})
     
     res.json({events: events})
 })

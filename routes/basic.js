@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserProfile = require('../models/UserProfile');
-
+const GlobalVariables = require('../models/GlobalVariables');
 const authentication = require("../utility/authentication");
 const gcManager = require("../utility/GoogleCloudManager");
 
@@ -16,8 +16,12 @@ router.get('/', authentication.checkAuthenticated, async (req, res) => {
  * Get Home Page if Logged in
  */
 router.get('/home', authentication.checkAuthenticated, async (req, res)=> {
-    userData = await UserProfile.findById(req.user._id)
-    res.render('home.ejs', {user: userData})
+    let userData = await UserProfile.findById(req.user._id)
+    let globalVariables = await GlobalVariables.findById(process.env.GLOBAL_VARIABLES_ID)
+    res.render('home.ejs', {
+        user: userData,
+        globalVariables: globalVariables
+    })
 })
 
 /**
@@ -25,8 +29,8 @@ router.get('/home', authentication.checkAuthenticated, async (req, res)=> {
  */
 router.get('/admin', authentication.checkAuthenticated, 
     authentication.checkAuthenticatedAdmin, async (req, res) => {
-    userData = await UserProfile.findById(req.user._id)
-    res.render('admin_portal.ejs',  {user: userData})
+        let userData = await UserProfile.findById(req.user._id)
+        res.render('admin_portal.ejs',  {user: userData})
 })
 
 router.get('/googleAPI', async (req, res) => {

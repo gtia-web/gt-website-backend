@@ -94,7 +94,6 @@ async function createNewEvent() {
     }
 
     if (!invalid){
-        console.log('here')
 
         startDate = new Date(parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]), parseInt(starttime[0]), parseInt(starttime[1]), 0);
         endDate = new Date(parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]), parseInt(endtime[0]), parseInt(endtime[1]), 0);
@@ -165,15 +164,17 @@ function formatAMPM(date) {
 async function updateEventList() {
     data = await Promise.resolve($.get('/events/myevents'))
     events = data.events
-    console.log(data)
-    console.log(events)
+
+    events.sort((a, b) => {
+        return (new Date(b.StartTime)).getTime() - (new Date(a.StartTime)).getTime()
+    })
 
     tbody = $('#event-list')
     tbody.empty()
     for (i = 0; i < events.length; i++) {
-        startDate = new Date(events[i].StartTime)
+        let startDate = new Date(events[i].StartTime)
         new_entry = '<tr><td><div class="events-box">' +
-            '<p class="title">' +events[i].EventName + '</p>' +
+            '<p class="title">' + events[i].EventName + '</p>' +
             '<p class="text-muted">' + (startDate.getMonth() + 1) + '/' + startDate.getDate() +'/' + (startDate.getFullYear()-2000) + ', ' + 
             formatAMPM(startDate) + ', ' + events[i].Location + '</p>' +
             '</div></td><td class="td-actions text-right">' +
@@ -182,6 +183,8 @@ async function updateEventList() {
 
         tbody.append(new_entry)       
     }
+
+    initializeDays(current_month_year[0], current_month_year[1]) 
 }
 
 async function initialize() {
