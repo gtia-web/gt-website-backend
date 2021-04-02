@@ -26,7 +26,7 @@ async function loginRequest() {
         })) 
 
         if (res.status == 'success') {
-            $(location).attr('href', '/')
+            $(location).attr('href', '/home')
         } else {
             $('#error-message-container').find('.error-message').html('Login Failed') 
             form.find('input[name ="username"]').addClass('input-error-highlight')            
