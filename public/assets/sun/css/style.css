@@ -65,10 +65,9 @@ p {
 }
 
 .sponsor-button {
-	padding-left: 2.5rem !important;
-	padding-right: 2.5rem !important;
+	min-width: 200px;
 	color: white !important;
-	background-color: var(--dark);
+	background-color: var(--dark-primary);
 	font-family: 'Montserrat', sans-serif;
 	border-radius: 5px;
 }
@@ -81,15 +80,15 @@ p {
 .bg-paint-1 {
 	background-image: url(../img/brushstroke-1.png);
 	background-repeat: no-repeat;
-	background-position: 50% 100%;
+	background-position: center center;
 	background-size: auto;
 }
 
 .bg-paint-2 {
-	background-image: url(../img/bg_2.png);
+	background-image: url(../img/sponsor-brushstroke.png);
 	background-repeat: no-repeat;
-	background-position: 50% 100%;
-	background-size: 100%;
+	background-position: center center;
+	background-size: auto;
 }
 
 .event-card {
