@@ -87,11 +87,13 @@ p {
 
 
 .paint-card {
+	width: 90%; 
+	margin-left: 5%;
 	box-shadow: 2px 2px 10px grey;
 }
 
 .sponsor-img {
-	width: 80%;
+	width: 80%
 	margin-left: 10%;
 }
 
@@ -133,7 +135,7 @@ p {
 .faq-link {
 	color: var(--primary);
 	text-decoration: underline;
-	text-decoration-skip-ink: all;
+
 }
 .faq-link:hover {
 	color: var(--secondary);
@@ -143,5 +145,6 @@ p {
   transition: .3s transform ease-in-out;
 }
 .collapsed .fa {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
+  
 }
