@@ -42,6 +42,7 @@ app.use('/signups', require('./routes/signups'));
 app.use('/points', require('./routes/points'));
 app.use('/', require('./routes/basic'));
 app.use('/events', require('./routes/events'));
+app.use('/api/events', require('./routes/api/events'));
 app.use(express.static("public"));
 
 //---------------------End of Routes-----------------------//

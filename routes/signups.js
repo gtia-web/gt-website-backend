@@ -284,7 +284,7 @@ router.post('/create', authentication.checkAuthenticated, async (req, res) => {
     
     console.log('complete creation')
     res.json({
-        redirect: "/"
+        redirect: "/home"
     });
 })
 
