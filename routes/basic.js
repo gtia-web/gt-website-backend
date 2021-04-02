@@ -8,11 +8,11 @@ const authentication = require("../utility/authentication");
  * Redirect to Home Page
  */
 router.get('/', (req, res) => {
-    res.render('main.ejs');
+    res.render('sun/index.ejs');
 });
 
 router.get('/faq', (req, res) => {
-    res.render('faq.ejs');
+    res.render('sun/faq.ejs');
 });
 
 /**
