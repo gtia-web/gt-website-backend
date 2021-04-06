@@ -17,6 +17,14 @@ HashCycles = parseInt(process.env.PASSWORD_HASHING_CYCLES);
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
     let userData = await UserProfile.findById(req.user._id)
     let globalVariables = await GlobalVariables.findById(process.env.GLOBAL_VARIABLES_ID)
+    let profileFilePath = 'public/' + userData.ProfilePicture.Path + '/' + userData.ProfilePicture.Filename
+    if (!fs.existsSync(profileFilePath)) {
+        await gcManager.getImagefromDrive({
+            Path: 'public/' + userData.ProfilePicture.Path,
+            Filename: userData.ProfilePicture.Filename,
+            FileID: userData.ProfilePicture.GCImageID
+        })
+    }
     res.render('moon/user.ejs', {
         user: userData,
         globalVariables: globalVariables
@@ -327,8 +335,6 @@ router.post('/profileimage/update', async (req, res) => {
                     GCImageID: data.id
                 }
             }})
-
-            //uploader.deleteFile('test/testfile2')
   
             res.redirect('/user')
         }

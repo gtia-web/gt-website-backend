@@ -3,6 +3,8 @@ const router = express.Router();
 const UserProfile = require('../models/UserProfile');
 const GlobalVariables = require('../models/GlobalVariables');
 const authentication = require("../utility/authentication");
+const gcManager = require("../utility/GoogleCloudManager");
+const fs = require('fs')
 
 /** 
  * Redirect to Home Page
@@ -20,6 +22,15 @@ router.get('/faq', (req, res) => {
  */
 router.get('/home', authentication.checkAuthenticated, async (req, res)=> {
     let userData = await UserProfile.findById(req.user._id)
+    let profileFilePath = 'public/' + userData.ProfilePicture.Path + '/' + userData.ProfilePicture.Filename
+    if (!fs.existsSync(profileFilePath)) {
+        await gcManager.getImagefromDrive({
+            Path: 'public/' + userData.ProfilePicture.Path,
+            Filename: userData.ProfilePicture.Filename,
+            FileID: userData.ProfilePicture.GCImageID
+        })
+    }
+
     let globalVariables = await GlobalVariables.findById(process.env.GLOBAL_VARIABLES_ID)
     res.render('moon/home.ejs', {
         user: userData,
