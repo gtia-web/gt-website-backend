@@ -80,3 +80,7 @@ h3.title {
   max-height: 360px;
   position: relative;
 }
+
+.card .avatar {
+  border: none;
+}

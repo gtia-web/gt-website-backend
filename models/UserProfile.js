@@ -60,6 +60,26 @@ const MemberProfileSchema = mongoose.Schema({
     HashedPassword: {
         type: String,
         required: true
+    },
+    ProfilePicture: {
+        Filename: {
+            type: String,
+            required: true 
+        }, 
+        Path: {
+            type: String,
+            required: true
+        },        
+        ImageType: {
+            type: String,
+            required: true
+        },
+        Size: {
+            type: Number
+        },
+        GCImageID: {
+            type: String
+        }
     }
 });
 

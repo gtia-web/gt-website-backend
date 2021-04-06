@@ -43,7 +43,7 @@ var mongoose = require('mongoose');
 //Serve Point Page
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
     let userData = await UserProfile.findById(req.user._id)
-    res.render('points.ejs', {user: userData})
+    res.render('moon/points.ejs', {user: userData})
 })
 
 router.post('/receipts/recipient', authentication.checkAuthenticated, async (req, res) => {

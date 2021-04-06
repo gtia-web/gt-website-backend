@@ -1,23 +1,35 @@
+:root {
+  --primary: #eaaa00;
+  /*--secondary: #EAAA0033;*/
+  --secondary: #fbeecc;
+  --dark-primary: #003057;
+  /*--dark-secondary: #003057b3;*/
+  --dark-secondary: #4d6e89;
+}
+
 .navbar.navbar-fixed {
   position: fixed;
   top: 0;
   left: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   z-index: 1000;
 }
 
 .navbar.navbar-solid-color {
-  background: rgb(255, 228, 180);
+  background: var(--secondary);
 }
-/*rgba(234, 170, 0, 0.2);*/
 
 .main-panel {
   border-top: none;
 }
-
 .main-panel > .content {
   padding: 98px 30px 10px 280px;
   min-height: calc(100vh - 70px);
+}
+
+@media screen and (max-width: 991px) {
+  .main-panel > .content {
+    padding-left: 30px;
+  }
 }
 
 .white-content .main-panel {

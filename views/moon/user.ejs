@@ -17,25 +17,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
     <title>
-        GTIA - User
+        GTIA | User
     </title>
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/custom/css/all.css">
-    <!-- Nucleo Icons -->
-    <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-    <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
-
-    <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/template/chosen/chosen.css">
-    <link href="../assets/custom/css/user.css" rel="stylesheet" />
+    <%- include('partials/header.ejs')%>
+        <link href="assets/moon/css/user.css" rel="stylesheet" />
 
 
 </head>
@@ -60,13 +46,23 @@
                                         <div class="block block-two"></div>
                                         <div class="block block-three"></div>
                                         <div class="block block-four"></div>
-                                        <a href="javascript:void(0)">
-                                            <img class="avatar" src="../assets/custom/img/avatar.jpg" alt="...">
-                                            <h3 class="title">
-                                                <%- user.FirstName %>
-                                                    <%- user.LastName %>
-                                            </h3>
-                                        </a>
+                                        <form action="user/profileimage/update" method='POST'
+                                            enctype="multipart/form-data" id="img-change-form">
+                                            <img class="avatar"
+                                                src="<%- user.ProfilePicture.Path %>/<%- user.ProfilePicture.Filename %>"
+                                                alt="..">
+                                            <label for="avatar-change-img-upload">
+                                                <i class="fas fa-edit avatar-change"></i>
+                                            </label>
+                                            <input type="file" id="avatar-change-img-upload" name="img" accept="image/*"
+                                                style="display: none;">
+                                        </form>
+
+
+                                        <h3 class="title">
+                                            <%- user.FirstName %>
+                                                <%- user.LastName %>
+                                        </h3>
                                         <p class="description">
                                             <%- user.Committee %>
 
@@ -269,21 +265,22 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="../assets/template/js/core/jquery.min.js"></script>
-    <script src="../assets/template/js/core/popper.min.js"></script>
-    <script src="../assets/template/js/core/bootstrap.min.js"></script>
-    <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <script src="../assets/custom/js/user.js"></script>
+    <script src="assets/template/js/core/jquery.min.js"></script>
+    <script src="assets/template/js/core/popper.min.js"></script>
+    <script src="assets/template/js/core/bootstrap.min.js"></script>
+    <script src="assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
+    <script src="assets/template/js/plugins/bootstrap-notify.js"></script>
 
-    <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
-    <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+
+    <script src="assets/moon/js/user.js"></script>
 </body>
 
 </html>

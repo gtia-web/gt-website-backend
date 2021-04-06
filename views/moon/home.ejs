@@ -17,24 +17,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
     <title>
-        GTIA - Dashboard
+        GTIA | Dashboard
     </title>
-    <!--   Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/custom/css/all.css">
-    <!-- Nucleo Icons -->
-    <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-    <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
+    <%- include('partials/header.ejs')%>
 
-    <link href="../assets/custom/css/dashboard.css" rel="stylesheet" />
-    <link href="../assets/custom/css/toolbar.css" rel="stylesheet" />
+        <link href="assets/moon/css/dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="white-content">
@@ -58,7 +46,9 @@
                                         <div class="block block-three"></div>
                                         <div class="block block-four"></div>
                                         <a href="javascript:void(0)">
-                                            <img class="avatar" src="../assets/custom/img/avatar.jpg" alt="...">
+                                            <img class="avatar"
+                                                src="<%- user.ProfilePicture.Path %>/<%- user.ProfilePicture.Filename %>"
+                                                alt="...">
                                             <h3 class="title">
                                                 <%- user.FirstName %>
                                                     <%- user.LastName %>
@@ -116,34 +106,6 @@
                                     <div class="table-full-width table-responsive">
                                         <table class="table">
                                             <tbody id='upcoming-event-table'>
-                                                <tr>
-                                                    <td>
-                                                        <div class="events-box">
-                                                            <p class="title">Night Market</p>
-                                                            <p class="text-muted">Online, 7:00 PM</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title=""
-                                                            class="btn btn-link" data-original-title="Edit Task">
-                                                            <i class=" fas fas fa-external-link-square-alt"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="events-box">
-                                                            <p class="title">Night Market</p>
-                                                            <p class="text-muted">Online, 7:00 PM</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title=""
-                                                            class="btn btn-link" data-original-title="Edit Task">
-                                                            <i class=" fas fas fa-external-link-square-alt"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -245,16 +207,16 @@
     </div>
 
     <!--   Core JS Files   -->
-    <script src="../assets/template/js/core/jquery.min.js"></script>
-    <script src="../assets/template/js/core/popper.min.js"></script>
-    <script src="../assets/template/js/core/bootstrap.min.js"></script>
-    <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/template/js/core/jquery.min.js"></script>
+    <script src="assets/template/js/core/popper.min.js"></script>
+    <script src="assets/template/js/core/bootstrap.min.js"></script>
+    <script src="assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
+    <script src="assets/template/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
-    <script src="../assets/custom/js/home.js"></script>
+    <script src="assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="assets/moon/js/home.js"></script>
 
 </body>
 

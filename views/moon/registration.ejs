@@ -17,44 +17,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/template/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/template/img/favicon.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
-
     <title>
-        GTIA - Login
+        GTIA | Registration
     </title>
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <!-- Nucleo Icons -->
-    <link href="../assets/template/css/nucleo-icons.css" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link href="../assets/template/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-    <link href="../assets/custom/css/custom_style.css" rel="stylesheet" />
-
-    <link href="../assets/custom/css/login.css" rel="stylesheet" />
+    <%- include('partials/header.ejs')%>
+        <link href="/assets/moon/css/registration.css" rel="stylesheet" />
 </head>
 
 <body class="white-content">
     <div class="wrapper">
         <div class="main-panel">
             <!-- Navbar -->
-            <%- include('partials/top_navbar.ejs', {title: 'Login' })%>
+            <%- include('partials/top_navbar.ejs', {title: 'Registration' })%>
                 <!-- End Navbar -->
                 <div class="content">
                     <div class="row context-box">
                         <div class="col-md-12 ">
                             <div class="card card-login center-content">
                                 <div class="row full-height">
-                                    <div class='col-md-6 no-right-pad'>
-                                        <div class="card-body">
+                                    <div class='col-md-6 no-right-pad '>
+                                        <div class="card-body" id='registration-body'>
                                             <div class='row login-preheading-text'>
                                                 <div class='col-12'>
                                                     Welcome to GTIA!
@@ -62,16 +44,50 @@
                                             </div>
                                             <div class='row login-heading-text'>
                                                 <div class='col-12'>
-                                                    Login
+                                                    Register
                                                 </div>
                                             </div>
-                                            <form id='login-data'>
+                                            <form id="register-data">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group login-text">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="First Name" name="firstname" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group login-text">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Last Name" value="" name="lastname">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group login-text">
+                                                            <input type="email" class="form-control" placeholder="Email"
+                                                                name="email" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row hidden" id='email-error-message-container'>
+                                                    <div class='col-12 error-message'>
+                                                        Invalid Email
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group login-text">
                                                             <input type="text" class="form-control"
                                                                 placeholder="Username" name="username" value="">
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row hidden" id='username-error-message-container'>
+                                                    <div class='col-12 error-message'>
+                                                        Username Unavailable
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -82,28 +98,23 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row hidden" id='error-message-container'>
-                                                    <div class='col-12 error-message'>
-                                                        Login Failed
-                                                    </div>
-                                                </div>
+
                                                 <div class="row">
                                                     <div class="col-md-12 login-btn-pad">
-                                                        <button type="button" onclick="loginRequest()"
-                                                            class="btn btn-fill btn-primary btn-fill-width btn-submit">Login</button>
+                                                        <button type="button" onclick='registrationRequest()'
+                                                            class="btn btn-fill btn-primary btn-fill-width btn-submit">Register</button>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <a href="/user/register"><button type="button"
-                                                                class="btn btn-fill btn-primary btn-fill-width btn-register">Register</button></a>
+                                                <div class="row hidden" id='runtime-error-message-container'>
+                                                    <div class='col-12 error-message error-message-last'>
+                                                        Something went wrong. Try Again!
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                     <div class='col-md-6 no-left-pad'>
-                                        <img class='login-image' src="../assets/custom/img/login_img_cropped.jpg">
+                                        <img class='login-image' src="/assets/moon/img/new_members_login_img.jpg">
                                     </div>
                                 </div>
                             </div>
@@ -141,16 +152,15 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="../assets/template/js/core/jquery.min.js"></script>
-    <script src="../assets/template/js/core/popper.min.js"></script>
-    <script src="../assets/template/js/core/bootstrap.min.js"></script>
-    <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/assets/template/js/core/jquery.min.js"></script>
+    <script src="/assets/template/js/core/popper.min.js"></script>
+    <script src="/assets/template/js/core/bootstrap.min.js"></script>
+    <script src="/assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--  Notifications Plugin    -->
-    <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
+    <script src="/assets/template/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
-
-    <script src="../assets/custom/js/login.js"></script>
+    <script src="/assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="/assets/moon/js/registration.js"></script>
 
 </body>
 

@@ -11,7 +11,7 @@ const authentication = require("../utility/authentication");
  */
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
     let userData = await UserProfile.findById(req.user._id)
-    res.render('events.ejs',  {user: userData})
+    res.render('moon/events.ejs',  {user: userData})
 })
 
 /** 

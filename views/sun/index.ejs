@@ -3,14 +3,14 @@
 
 <head>
     <title>GTIA | Home</title>
-    <%- include('../partials/sun/header.ejs') %>
+    <%- include('partials/header.ejs') %>
 
         <link href="../../assets/sun/css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-    <%- include('../partials/sun/navbar.ejs', {currentPage: 'home' })%>
+    <%- include('partials/navbar.ejs', {currentPage: 'home' })%>
 
         <section>
             <div class="row">
@@ -148,17 +148,17 @@
             </div>
         </section>
 
-        <%- include('../partials/sun/footer.ejs') %>
-        <%- include('../partials/sun/common-scripts.ejs') %>
-            <script>
-                function createEventCard(title, description, eventDate, link) {
-                    let is_trimmed_description = false;
-                    if (description.length > 360) {
-                        is_trimmed_description = true;
-                        description = `${description.substring(0, 360)}... <a href="${link}">See More</a>`
-                    }
+        <%- include('partials/footer.ejs') %>
+            <%- include('partials/common-scripts.ejs') %>
+                <script>
+                    function createEventCard(title, description, eventDate, link) {
+                        let is_trimmed_description = false;
+                        if (description.length > 360) {
+                            is_trimmed_description = true;
+                            description = `${description.substring(0, 360)}... <a href="${link}">See More</a>`
+                        }
 
-                    return `
+                        return `
             <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
                 <div class="card event-card my-3">    
                     <div class="card-body d-flex flex-column justify-content-between p-0">
@@ -175,24 +175,24 @@
                 </div>
             </div>
             `;
-                }
+                    }
 
 
-                $(document).ready(function () {
-                    var eventContainer = document.getElementById('events-container');
-                    $.ajax({
-                        url: '/api/events/facebook',
-                        success: function (result) {
-                            eventContainer.innerHTML = '';
-                            if (result.events) {
-                                result.events.forEach((event) => {
-                                    const { name, description, start_time, link } = event;
-                                    eventContainer.innerHTML += createEventCard(name, description, start_time, link);
-                                });
-                            }
-                        },
-                        error: function (result) {
-                            eventContainer.innerHTML = `
+                    $(document).ready(function () {
+                        var eventContainer = document.getElementById('events-container');
+                        $.ajax({
+                            url: '/api/events/facebook',
+                            success: function (result) {
+                                eventContainer.innerHTML = '';
+                                if (result.events) {
+                                    result.events.forEach((event) => {
+                                        const { name, description, start_time, link } = event;
+                                        eventContainer.innerHTML += createEventCard(name, description, start_time, link);
+                                    });
+                                }
+                            },
+                            error: function (result) {
+                                eventContainer.innerHTML = `
                     <div class="col-md-4">
                         <div class="card event-card">
                             <div class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -201,10 +201,10 @@
                         </div>
                     </div>
                     `;
-                        }
-                    });
-                })
-            </script>
+                            }
+                        });
+                    })
+                </script>
 
 </body>
 

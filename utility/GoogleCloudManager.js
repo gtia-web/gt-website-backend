@@ -1,6 +1,7 @@
 require('dotenv/config');
 var nodemailer = require('nodemailer');
 const { google } = require("googleapis");
+const fs = require('fs')
 
 function getClient() {
     let client = new google.auth.OAuth2 (
@@ -59,7 +60,7 @@ async function createNewGCSheet(Title, isPublic) {
             }
         }
     })
-    console.log(response)
+    //console.log(response)
 
     if (isPublic) {
         let fileId = response.data.spreadsheetId;
@@ -77,7 +78,72 @@ async function createNewGCSheet(Title, isPublic) {
     return response
 }
 
+
+
+async function saveImageToDrive(image_data) {
+    let client = getClient()
+    const drive = google.drive({ version: "v3", auth: client });
+
+    var fileMetadata = {
+        'name': image_data.Filename //'photo.jpg'
+    };
+    var media = {
+        mimeType: image_data.ImageType, //'image/jpeg',
+        body: fs.createReadStream('public/' + image_data.Path + '/' + image_data.Filename) //files/photo.jpg') 
+    };
+
+    let file = await drive.files.create({
+        resource: fileMetadata,
+        media: media
+    });
+
+    return file.data
+}
+
+async function getImagefromDrive(file_data) {
+    let client = getClient()
+    const drive = google.drive({ version: "v3", auth: client });
+
+    var dest = fs.createWriteStream(file_data.Path + '/' + file_data.Filename);
+
+    await drive.files.get({
+        fileId: file_data.FileID,
+        alt: 'media'
+    }, {responseType: "stream"},
+        function(err, res){
+            res.data
+            .on("end", () => {
+                console.log("Done");
+            })
+            .on("error", err => {
+                console.log("Error", err);
+            })
+            .pipe(dest);
+    })
+    
+}
+
+/**getImagefromDrive({
+    Path: "public/uploads/profiles/img",
+    Filename: "Test.jpg",
+    FileID: "1UZNisZwi5Fj2dtZ0KOtEmO3pgdmlPcB3"
+})
+
+async function Test() {
+    let inp = await saveImageToDrive({
+        Filename: 'avatar.jpg',       
+        ImageType: 'image/jpeg',
+        Path: 'uploads/profiles/img'
+    })
+
+    console.log(inp)
+}
+
+Test()**/
+
 module.exports = {
     sendMain,
-    createNewGCSheet
+    createNewGCSheet,
+    saveImageToDrive,
+    getImagefromDrive
 };

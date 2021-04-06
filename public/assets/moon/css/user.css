@@ -140,3 +140,25 @@ h3.title {
   line-height: 1.428571;
   font-family: "Poppins", sans-serif;
 }
+
+.avatar-change {
+  background-color: white;
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 16px;
+  padding: 3px;
+  position: relative;
+  top: 45px;
+  right: 30px;
+  color: black;
+}
+
+.card .avatar {
+  position: relative;
+  left: 12px;
+  border: none;
+}
+
+.card-user .author {
+  position: relative;
+}

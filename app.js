@@ -9,6 +9,7 @@ const io = require('socket.io')(http)
 const passport = require('passport')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const fileUpload = require('./utility/fileUploads')
 
 
 //--------------------Start of Middleware----------------------//
@@ -33,6 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./utility/passportConfig')(passport);
 
+fileUpload.clearUploadCache()
 //--------------------End of Middleware----------------------//
 
 //---------------------Start of Routes-----------------------//

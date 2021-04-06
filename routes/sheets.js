@@ -12,7 +12,7 @@ const authentication = require("../utility/authentication");
  */
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
     let userData = await UserProfile.findById(req.user._id)
-    res.render('sheets.ejs',  {user: userData})
+    res.render('moon/sheets.ejs',  {user: userData})
 })
 /**
  * Create new sheet
@@ -33,8 +33,6 @@ router.post('/create', authentication.checkAuthenticated, async (req, res) => {
         })
     }
 
-    console.log(AccessibleBy)
-
     new PortalSheet({
         CreatedBy: req.user._id,
         Title: data.sheetTitle,
@@ -45,6 +43,7 @@ router.post('/create', authentication.checkAuthenticated, async (req, res) => {
         AccessibleBy: AccessibleBy,
         VisibleOn: Date.now()
     }).save();    
+    
 
     res.json({status: true})
 })

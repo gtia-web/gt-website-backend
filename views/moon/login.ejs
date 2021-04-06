@@ -1,0 +1,112 @@
+<!--
+=========================================================
+* * Black Dashboard - v1.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/black-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        GTIA | Login
+    </title>
+    <%- include('partials/header.ejs')%>
+        <link href="/assets/moon/css/login.css" rel="stylesheet" />
+        <link href="/assets/sun/css/style.css" rel="stylesheet" />
+</head>
+
+<body class="white-content">
+    <div class="wrapper">
+        <div class="main-panel">
+            <!-- Navbar -->
+            <%- include('partials/top_navbar.ejs', {title: 'Login' })%>
+                <!-- End Navbar -->
+                <div class="content">
+                    <div class="row context-box">
+                        <div class="col-md-12 ">
+                            <div class="card card-login center-content">
+                                <div class="row full-height">
+                                    <div class='col-md-6 no-right-pad'>
+                                        <div class="card-body">
+                                            <div class='row login-preheading-text'>
+                                                <div class='col-12'>
+                                                    Welcome to GTIA!
+                                                </div>
+                                            </div>
+                                            <div class='row login-heading-text'>
+                                                <div class='col-12'>
+                                                    Login
+                                                </div>
+                                            </div>
+                                            <form id='login-data'>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group login-text">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Username" name="username" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group login-text">
+                                                            <input type="password" class="form-control" name="password"
+                                                                value="" placeholder="Password">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row hidden" id='error-message-container'>
+                                                    <div class='col-12 error-message'>
+                                                        Login Failed
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 login-btn-pad">
+                                                        <button type="button" onclick="loginRequest()"
+                                                            class="btn btn-fill btn-primary btn-fill-width btn-submit">Login</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <a href="/user/register"><button type="button"
+                                                                class="btn btn-fill btn-primary btn-fill-width btn-register">Register</button></a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-6 no-left-pad'>
+                                        <img class='login-image' src="/assets/moon/img/login_img_cropped.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="/assets/template/js/core/jquery.min.js"></script>
+    <script src="/assets/template/js/core/popper.min.js"></script>
+    <script src="/assets/template/js/core/bootstrap.min.js"></script>
+    <script src="/assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="/assets/template/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="/assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+
+    <script src="/assets/moon/js/login.js"></script>
+
+</body>
+
+</html>

@@ -7,6 +7,9 @@ const PointReceipt = require('../models/PointsReceipt');
 const GlobalVariables = require('../models/GlobalVariables');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const uploader = require("../utility/fileUploads")
+const gcManager = require("../utility/GoogleCloudManager");
+const fs = require('fs')
 
 HashCycles = parseInt(process.env.PASSWORD_HASHING_CYCLES);
 
@@ -14,7 +17,7 @@ HashCycles = parseInt(process.env.PASSWORD_HASHING_CYCLES);
 router.get('/', authentication.checkAuthenticated, async (req, res) => {
     let userData = await UserProfile.findById(req.user._id)
     let globalVariables = await GlobalVariables.findById(process.env.GLOBAL_VARIABLES_ID)
-    res.render('user.ejs', {
+    res.render('moon/user.ejs', {
         user: userData,
         globalVariables: globalVariables
     })
@@ -22,7 +25,7 @@ router.get('/', authentication.checkAuthenticated, async (req, res) => {
 
 //Retrieve Login Page
 router.get('/login', authentication.checkNotAuthenticated, (req, res) => {
-    res.render('login.ejs')
+    res.render('moon/login.ejs')
 })
 
 // Submit login information for login
@@ -32,10 +35,25 @@ router.post('/login', authentication.checkNotAuthenticated, passport.authenticat
     failureFlash: true
 }))
 
-router.get('/login/success', (req, res) => {
+router.get('/login/success', async (req, res) => {
     res.json({
         status: 'success'
     })
+
+    let userData = await UserProfile.findById(req.user._id)
+    let profileFilePath = 'public/' + userData.ProfilePicture.Path + '/' + userData.ProfilePicture.Filename
+
+    if (!fs.existsSync(profileFilePath)) {
+        await gcManager.getImagefromDrive({
+            Path: 'public/' + userData.ProfilePicture.Path,
+            Filename: userData.ProfilePicture.Filename,
+            FileID: userData.ProfilePicture.GCImageID
+        })
+    }
+
+    //console.log(profileFilePath)
+    //console.log(req.user._id)
+
 })
 
 router.get('/login/fail', (req, res) => {
@@ -45,7 +63,7 @@ router.get('/login/fail', (req, res) => {
 })
 // Get register new account page
 router.get('/register', authentication.checkNotAuthenticated, (req, res) => {
-    res.render('registration.ejs')
+    res.render('moon/registration.ejs')
 })
 
 // Submit new registration form
@@ -86,6 +104,12 @@ router.post('/register', async (req, res) => {
                 Points: {
                     SocialPoints: 0,
                     WorkPoints: 0
+                },
+                ProfilePicture: {
+                    Filename: process.env.DEFAULT_PHOTO_NAME, 
+                    Path: 'uploads/profiles/img',        
+                    ImageType: process.env.DEFAULT_PHOTO_TYPE,
+                    GCImageID: process.env.DEFAULT_PHOTO_GC_ID
                 }
             }).save();
         } catch(err) {
@@ -275,5 +299,42 @@ router.post('/deleteByID', authentication.checkAuthenticated, authentication.che
     res.json({})
 })
 
+
+router.post('/profileimage/update', async (req, res) => {
+    let upload = uploader.getImageUploader('img')
+    
+    upload(req, res, async function(err) {  
+        if(err) {
+            res.send(err)
+        }
+        else {
+            let fileDetails = req.file
+            let data = await gcManager.saveImageToDrive({
+                Filename: fileDetails.filename, 
+                Path: 'uploads/profiles/img',        
+                ImageType: fileDetails.mimetype,
+                Size: fileDetails.size
+            })
+
+            console.log(data)
+
+            await UserProfile.updateOne({_id: req.user._id  }, { $set: {                
+                ProfilePicture: {
+                    Filename: fileDetails.filename, 
+                    Path: 'uploads/profiles/img',        
+                    ImageType: fileDetails.mimetype,
+                    Size: fileDetails.size,
+                    GCImageID: data.id
+                }
+            }})
+
+            //uploader.deleteFile('test/testfile2')
+  
+            res.redirect('/user')
+        }
+    })
+
+    
+});
 
 module.exports = router;

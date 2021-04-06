@@ -1,4 +1,3 @@
-
 async function initializeProfile() {
     var data = await Promise.resolve($.post('/user/data/self', {})) 
 
@@ -32,4 +31,14 @@ async function initializeProfile() {
     modal.find(".chosen-select").val(data.SpecialPermissions).trigger('chosen:updated')
 }
 
+function initializeProfileChange() {
+    $('#avatar-change-img-upload').on('change', function () {
+        let photo = $('#avatar-change-img-upload').val()
+        console.log(photo)
+
+        $('#img-change-form').submit()
+    })
+}
+
+initializeProfileChange() 
 initializeProfile()
