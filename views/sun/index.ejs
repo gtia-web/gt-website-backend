@@ -17,8 +17,10 @@
                 <div class="col-12 col-lg-5">
                     <div class="home-title">
                         <h1>INTERNATIONAL AMBASSADORS AT GEORGIA TECH</h1>
-                        <p class="color-dark-secondary">Bringing the world to Georgia Tech and Georgia Tech to the
-                            world.</p>
+                        <p class="color-dark-secondary lead">
+                            Bringing the world to Georgia Tech and <br />
+                            Georgia Tech to the world.
+                        </p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-7 px-0">
@@ -36,13 +38,16 @@
                     <div class="col-lg-5 m-auto">
                         <div class="about-text">
                             <h2>WHAT WE DO</h2>
-                            <p class="color-dark-secondary">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                elit.
-                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
-                                dis
-                                parturient montes, nascetur ridiculus</p>
-                            <p class="color-dark-secondary">mus. Donec quam felis, ultricies nec, pellentesque eu,
-                                pretium quis, sem. Nulla consequat massa quis enim.</p>
+                            <p class="color-dark-secondary">
+                                International Ambassadors at Georgia Tech (GTIA) is an organization dedicated to
+                                supporting Georgia Tech students, both international and domestic. Our tight-knit
+                                organization has roughly 60 members from over 20 nations and five continents, and
+                                together we work to celebrate our student body’s diversity and internationality by
+                                providing resources for international students and hosting multiple cultural festivities
+                                throughout the year. Our talented and hardworking members love to connect with students
+                                -- past, present, and future -- to make Tech a welcoming and diverse environment for
+                                everyone.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -87,7 +92,7 @@
 
                 <div class="text-center">
                     <a href="https://www.facebook.com/GTIAmbassadors/events/" target="_blank"
-                        class="btn btn-primary my-5" role="button">View all events</a>
+                        class="btn sponsor-button my-5" role="button">View all events</a>
                 </div>
             </div>
         </section>
@@ -123,88 +128,78 @@
                 <a class="btn sponsor-button" href="/faq#collapse-sponsorship">View Sponsor FAQ</a>
             </div>
 
-            <div class="bg-paint-2" style="padding-bottom: 28rem">
-                <div class="container">
-                    <div class="row pt-5">
-                        <div class="col-6">
-                            <img src="../../assets/sun/img/sponsor_2.png" class="sponsor-img" />
-                        </div>
-                        <div class="col-6">
-                            <img src="../../assets/sun/img/sponsor_2.png" class="sponsor-img" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <img src="../../assets/sun/img/sponsor_1.png" class="sponsor-img" />
-                        </div>
-                        <div class="col-4">
-                            <img src="../../assets/sun/img/sponsor_1.png" class="sponsor-img" />
-                        </div>
-                        <div class="col-4">
-                            <img src="../../assets/sun/img/sponsor_1.png" class="sponsor-img" />
-                        </div>
-                    </div>
+            <div class="bg-paint-2">
+                <div class="container d-flex justify-content-center align-items-center" style="min-height: 540px;">
+                    <img src="../../assets/sun/img/sponsor_2.png" class="sponsor-img" />
                 </div>
             </div>
         </section>
 
         <%- include('../partials/sun/footer.ejs') %>
-        <%- include('../partials/sun/common-scripts.ejs') %>
-            <script>
-                function createEventCard(title, description, eventDate, link) {
-                    let is_trimmed_description = false;
-                    if (description.length > 360) {
-                        is_trimmed_description = true;
-                        description = `${description.substring(0, 360)}... <a href="${link}">See More</a>`
-                    }
+            <%- include('../partials/sun/common-scripts.ejs') %>
+                <script>
+                    function createEventCard(title, description, eventDate, link, isPastEvent) {
+                        let is_trimmed_description = false;
+                        if (description.length > 360) {
+                            is_trimmed_description = true;
+                            description = `${description.substring(0, 360)}... <a href="${link}" target="_blank">See More</a>`
+                        }
 
-                    return `
-            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-                <div class="card event-card my-3">    
-                    <div class="card-body d-flex flex-column justify-content-between p-0">
-                        <div class="p-4">
-                            <h3 class="card-title">${title}</h3>
-                            <h5 class="card-title">${(new Date(eventDate)).toLocaleDateString()}</h5>
-                            
-                            <p class="card-text color-dark-secondary">${description}</p>
-                        </div>
-                        <a class="card-footer text-center" href="${link}">
-                            RSVP
-                        </a>
-                    </div>
-                </div>
-            </div>
-            `;
-                }
+                        let cardFooter = '';
+                        if (!isPastEvent) {
+                            cardFooter = `
+                            <a class="card-footer text-center font-weight-bold" href="${link}" target="_blank">
+                                RSVP
+                            </a>
+                        `
+                        }
 
 
-                $(document).ready(function () {
-                    var eventContainer = document.getElementById('events-container');
-                    $.ajax({
-                        url: '/api/events/facebook',
-                        success: function (result) {
-                            eventContainer.innerHTML = '';
-                            if (result.events) {
-                                result.events.forEach((event) => {
-                                    const { name, description, start_time, link } = event;
-                                    eventContainer.innerHTML += createEventCard(name, description, start_time, link);
-                                });
-                            }
-                        },
-                        error: function (result) {
-                            eventContainer.innerHTML = `
-                    <div class="col-md-4">
-                        <div class="card event-card">
-                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                <p class="card-text color-dark-secondary">Failed to retreive our events</p>
+                        return `
+                        <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                            <div class="card event-card my-3 ${isPastEvent ? 'disabled' : ''}">    
+                                <div class="card-body d-flex flex-column justify-content-between p-0">
+                                    <div class="p-4">
+                                        <h3 class="card-title">${title}</h3>
+                                        <h5 class="card-title">${(new Date(eventDate)).toLocaleDateString()}</h5>
+                                        
+                                        <p class="card-text color-dark-secondary">${description}</p>
+                                    </div>
+                                    ${cardFooter}
+                                </div>
                             </div>
                         </div>
-                    </div>
                     `;
-                        }
-                    });
-                })
-            </script>
+                    }
+
+
+                    $(document).ready(function () {
+                        var eventContainer = document.getElementById('events-container');
+                        $.ajax({
+                            url: '/api/events/facebook',
+                            success: function (result) {
+                                eventContainer.innerHTML = '';
+                                if (result.events) {
+                                    result.events.forEach((event) => {
+                                        const { name, description, start_time, link, isPastEvent } = event;
+                                        eventContainer.innerHTML += createEventCard(name, description, start_time, link, isPastEvent);
+                                    });
+                                }
+                            },
+                            error: function (result) {
+                                eventContainer.innerHTML = `
+                            <div class="col-md-4">
+                                <div class="card event-card">
+                                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                        <p class="card-text color-dark-secondary">Failed to retreive our events</p>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+                            }
+                        });
+                    })
+                </script>
 
 </body>
 
