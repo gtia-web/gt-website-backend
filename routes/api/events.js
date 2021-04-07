@@ -39,7 +39,14 @@ router.get('/facebook', async (req, res) => {
             const pastEvents = await facebookUtils.getPastEvents();
             const remaining_events_count = TOTAL_EVENTS_COUNT - events.length;
 
-            events = events.concat(pastEvents.events.slice(0, remaining_events_count));
+            const past_events_to_display = pastEvents.events.slice(0, remaining_events_count);
+
+            // Mark past events as isPastEvent
+            past_events_to_display.forEach(x => {
+                x.isPastEvent = true;
+            });
+
+            events = [...events, ...past_events_to_display]
         }
 
         // Add facebook link for each event based on the event id

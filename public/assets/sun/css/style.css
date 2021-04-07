@@ -10,6 +10,7 @@
 /* ======================================= */
 
 /*index*/
+
 .body, .row {
 	width: 100%;
 	margin: auto;
@@ -33,6 +34,15 @@ p {
 
 .text-bold {
 	font-weight: 700;
+}
+
+a {
+	color: var(--primary);
+}
+
+a:hover {
+	color: var(--primary);
+	text-decoration: none;
 }
 
 .color-primary {
@@ -99,6 +109,10 @@ p {
 	box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
 	border: none;
 	border-radius: 10px;
+}
+
+.event-card.disabled {
+	background-color: rgb(247, 247, 247);
 }
 
 .event-card h3.card-title {
