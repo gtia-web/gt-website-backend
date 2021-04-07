@@ -147,9 +147,7 @@ async function getCalenderEvents() {
         } else {
             console.log('No upcoming events found.');
         }
-    }).then((res) => {
-        console.log(res)
-    });
+    })
 
     
 }
