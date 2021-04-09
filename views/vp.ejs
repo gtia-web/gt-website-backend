@@ -59,12 +59,12 @@
   <body class="white-content">
     <div class="wrapper">
       <div class="sidebar">
-        <%- include('partials/toolbar.ejs', {user: user, currentPage: 'points'
-        })%>
+        <%- include('partials/toolbar.ejs', {user: user, currentPage:
+        'vp_portal' })%>
       </div>
       <div class="main-panel">
         <!-- Navbar -->
-        <%- include('partials/top_navbar.ejs', {title: 'Points' })%>
+        <%- include('partials/top_navbar.ejs', {title: 'VP Point Approval' })%>
         <!-- End Navbar -->
         <div class="content">
           <!-- The Modal -->
@@ -74,7 +74,7 @@
               <div class="modal-body">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="title">New Points Request</h5>
+                    <h5 class="title">Points Request For You</h5>
                   </div>
                   <div class="card-body">
                     <form>
@@ -157,13 +157,39 @@
             </div>
           </div>
 
+          <!-- The Modal -->
+          <!-- <div id="approveModal" class="modal">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="title">Approve Point: </h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="row card-footer">
+                      <div class="col-md-4 pl-md-1">
+                        <button
+                          onclick="createNewPointsRequest()"
+                          class="btn btn-fill btn-primary accept-profile-btn"
+                        >
+                          Approve Request
+                        </button>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
           <div class="row">
             <div class="col-12">
               <div class="card card-user-management">
                 <div class="card-header">
                   <div class="row">
                     <div class="col-sm-6 text-left">
-                      <h2 class="card-title">Work Points</h2>
+                      <h2 class="card-title">Points to Approve</h2>
                     </div>
                     <div class="col-sm-6">
                       <div
@@ -200,10 +226,45 @@
                             <i class="tim-icons icon-gift-2"></i>
                           </span>
                         </label>
+                        <label
+                          class="btn btn-sm btn-primary btn-simple"
+                          onclick="ViewApprovedWorkPoints()"
+                        >
+                          <input
+                            type="radio"
+                            class="d-none d-sm-none"
+                            name="options"
+                          />
+                          <span
+                            class="d-none d-sm-block d-md-block d-lg-block d-xl-block"
+                            >Approved Work Points</span
+                          >
+                          <span class="d-block d-sm-none">
+                            <i class="tim-icons icon-gift-2"></i>
+                          </span>
+                        </label>
+                        <label
+                          class="btn btn-sm btn-primary btn-simple"
+                          onclick="ViewApprovedSocialPoints()"
+                        >
+                          <input
+                            type="radio"
+                            class="d-none d-sm-none"
+                            name="options"
+                          />
+                          <span
+                            class="d-none d-sm-block d-md-block d-lg-block d-xl-block"
+                            >Approved Social Points</span
+                          >
+                          <span class="d-block d-sm-none">
+                            <i class="tim-icons icon-gift-2"></i>
+                          </span>
+                        </label>
                       </div>
                     </div>
                   </div>
                 </div>
+                <!-- Table For Work-->
                 <div class="card-body points-table">
                   <input
                     type="text"
@@ -219,7 +280,7 @@
                         <thead class="text-primary">
                           <tr>
                             <th>Date</th>
-                            <th>Type</th>
+                            <th>Person</th>
                             <th>Description</th>
                             <th>Points</th>
                             <th>Status</th>
@@ -307,6 +368,6 @@
     <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
-    <script src="../assets/custom/js/points.js"></script>
+    <script src="../assets/custom/js/vp.js"></script>
   </body>
 </html>
