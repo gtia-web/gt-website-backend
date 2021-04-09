@@ -34,7 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./utility/passportConfig')(passport);
 
-fileUpload.clearUploadCache()
+//fileUpload.clearUploadCache()
 //--------------------End of Middleware----------------------//
 
 //---------------------Start of Routes-----------------------//
