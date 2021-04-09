@@ -71,7 +71,7 @@ async function getEvents(url) {
 
             return {
                 events: events_data.data,
-                next: events_data.paging.next
+                next: events_data?.paging?.next
             };
         }
 
