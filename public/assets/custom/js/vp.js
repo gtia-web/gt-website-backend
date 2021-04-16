@@ -69,6 +69,7 @@ async function AcceptProposal() {
 
   currentID = $(this).closest('tr').attr('id');
   console.log(currentID);
+  // This is supposed to approve Request
   await Promise.resolve($.put('/admin/points/' + currentID));
 }
 
@@ -76,6 +77,7 @@ async function DeleteProposal() {
   console.log('noo :(');
   currentID = $(this).closest('tr').attr('id');
   console.log(currentID);
+  // This is supposed to Delete Request
   await Promise.resolve($.delete('/' + currentID));
 }
 
