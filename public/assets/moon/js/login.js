@@ -32,6 +32,8 @@ async function loginRequest() {
             form.find('input[name ="username"]').addClass('input-error-highlight')            
             form.find('input[name ="password"]').addClass('input-error-highlight')           
             $('#error-message-container').removeClass('hidden')
+
+            console.log(res)
         }    
     }
 }

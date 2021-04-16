@@ -44,20 +44,29 @@ router.post('/login', authentication.checkNotAuthenticated, passport.authenticat
 }))
 
 router.get('/login/success', async (req, res) => {
-    res.json({
-        status: 'success'
-    })
+    try {
+        let userData = await UserProfile.findById(req.user._id)
+        let profileFilePath = 'public/' + userData.ProfilePicture.Path + '/' + userData.ProfilePicture.Filename
 
-    let userData = await UserProfile.findById(req.user._id)
-    let profileFilePath = 'public/' + userData.ProfilePicture.Path + '/' + userData.ProfilePicture.Filename
+        if (!fs.existsSync(profileFilePath)) {
+            await gcManager.getImagefromDrive({
+                Path: 'public/' + userData.ProfilePicture.Path,
+                Filename: userData.ProfilePicture.Filename,
+                FileID: userData.ProfilePicture.GCImageID
+            })
+        } 
 
-    if (!fs.existsSync(profileFilePath)) {
-        await gcManager.getImagefromDrive({
-            Path: 'public/' + userData.ProfilePicture.Path,
-            Filename: userData.ProfilePicture.Filename,
-            FileID: userData.ProfilePicture.GCImageID
+        res.json({
+            status: 'success'
         })
+    } catch (err) {
+        return res.json({
+            runtimeErrorOccurred: true,
+            errorMessage: err,
+            status: 'failed'
+        });
     }
+    
 
     //console.log(profileFilePath)
     //console.log(req.user._id)
