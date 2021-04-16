@@ -73,7 +73,7 @@ a:hover {
 	padding-left: 3.5rem !important;
 	padding-right: 3.5rem !important;
 	color: var(--secondary) !important;
-	background-color: var(--dark);
+	background-color: var(--dark-primary);
 	font-family: 'Montserrat', sans-serif;
 	border-radius: 5px;
 }
@@ -166,4 +166,17 @@ img#home-contact-image {
 
 .collapsed .fa {
 	transform: rotate(-90deg);
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: red;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: red;
 }
