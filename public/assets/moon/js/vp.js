@@ -1,35 +1,54 @@
 var requestsPending = false;
 var pendingQueries = '';
 var showPointType = 'work';
+var showStatusType = 'Pending';
 var currentID = '';
+var currentData;
 
 async function GetReceipts(query) {
   var data = await Promise.resolve(
-    $.post('/points/receipts/recipient', {
+    $.post('/vp/receipts/recipient', {
       query: query,
       type: showPointType,
+      status: showStatusType,
     })
   );
 
-  data.sort((a, b) =>
+  console.log(query);
+  console.log(data);
+
+  receipts = data.receipts
+  users = data.users
+
+  receipts.sort((a, b) =>
     new Date(a.SubmissionDate) < new Date(b.SubmissionDate) ? 1 : -1
   );
 
   tbody = $('#points-list-body-1');
   tbody.empty();
 
-  data.forEach((e) => {
-    date = new Date(e.SubmissionDate);
+  receipts.forEach((e) => {
+      
+    let user = null
+    for (let i = 0; i  < users.length; i++) {
+        if (e.Recipient == users[i]._id) {
+            user = users[i]
+        }
+    }
+    let name = user.FirstName + ' ' + user.LastName
 
+    date = new Date(e.SubmissionDate);
     entry =
-      '<tr><td class="table-width-bound">' +
+      '<tr id="' +
+      e._id +
+      '"><td class="table-width-bound">' +
       (date.getMonth() + 1) +
       '/' +
       date.getDate() +
       '/' +
       date.getFullYear() +
       '</td>';
-    entry += '<td class="table-width-bound">' + e.Type + '</td>';
+    entry += '<td class="table-width-bound">' + name + '</td>';
     entry +=
       '<td class="table-width-bound">' + e.RequestDetails.Description + '</td>';
     entry +=
@@ -38,11 +57,43 @@ async function GetReceipts(query) {
       e.PointsChange +
       '</td>';
     entry += '<td class="table-width-bound">' + e.Status + '</td>';
+    // entry += `<td class="text-right table-width-bound"> <i class="check fas fa-check btn-accept-point"></i><i class="cross fas fa-times btn-delete-point"></i></td></tr>`;
     entry +=
-      '</tr>';
+      '<td class="text-right table-width-bound"><button type="button" rel="tooltip" title="" class="btn btn-link  btn-accept-point" data-original-title="Accept Task">' +
+      '<i class="check fas fa-check"></i></button> <button type="button" rel="tooltip" title="" class="btn btn-link  btn-delete-point" data-original-title="Delete Task">' +
+      '<i class="cross fas fa-times"></i></button></td></tr>';
+
+    // entry += `<td class="text-right table-width-bound"> <i onClick="approve(${e._id})" class="check fas fa-check"></i><i onClick="deny()" class="cross fas fa-times"></i></td></tr>`;
+    // entry +=
+    //   '<td class="text-right table-width-bound"> <i onClick="approve(' +
+    //   e._id +
+    //   ')" class="check fas fa-check"></i><i onClick="deny()" class="cross fas fa-times"></i></td></tr>';
 
     tbody.append(entry);
+
+    $('#' + e._id + ' .btn-accept-point').on('click', AcceptProposal);
+    $('#' + e._id + ' .btn-delete-point').on('click', DeleteProposal);
   });
+}
+
+async function AcceptProposal() {
+    console.log('wooh');
+
+    currentID = $(this).closest('tr').attr('id');
+    console.log(currentID);
+    response = await $.post('vp/points/approve', {
+        recieptID: currentID
+    });
+
+    console.log(response)
+    requestsPending = true;
+}
+
+async function DeleteProposal() {
+  console.log('noo :(');
+  currentID = $(this).closest('tr').attr('id');
+  console.log(currentID);
+  await Promise.resolve($.delete('/' + currentID));
 }
 
 async function RunSearchUpdate() {
@@ -65,27 +116,40 @@ function MakeSearchQuery() {
  * Initialize page with empty query
  */
 function initialize() {
-    requestsPending = true
-    pendingQueries = ""
-    ViewWorkPoints()
+  requestsPending = true;
+  pendingQueries = '';
 }
 
 /**
- * Get List of work points
+ * Get List of unnaproved work points
  */
 function ViewWorkPoints() {
-    showPointType = 'work'
-    MakeSearchQuery();
-    $('#points-title').html('Work Points')
+  showPointType = 'work';
+  showStatusType = 'Pending';
+  MakeSearchQuery();
 }
 
 /**
- * Get List of social points
+ * Get List of unnaproved social points
  */
 function ViewSocialPoints() {
-    showPointType = 'social';
-    MakeSearchQuery();
-    $('#points-title').html('Social Points')
+  showPointType = 'social';
+  showStatusType = 'Pending';
+  MakeSearchQuery();
+}
+
+// Get list of approved points
+function ViewApprovedWorkPoints() {
+  showPointType = 'work';
+  showStatusType = 'Complete';
+  MakeSearchQuery();
+}
+
+// Get list of approved points
+function ViewApprovedSocialPoints() {
+  showPointType = 'social';
+  showStatusType = 'Complete';
+  MakeSearchQuery();
 }
 
 function resizeTable() {

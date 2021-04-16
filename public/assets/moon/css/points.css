@@ -130,7 +130,7 @@
   width: 100% !important;
 }
 
-.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+.chosen-container-multi .chosen-choices li.search-field input[type='text'] {
   margin: 1px 0;
   padding: 10px 18px 10px 18px;
   width: 25px;
@@ -154,9 +154,9 @@
   .chosen-container-active
   .chosen-choices
   li.search-field
-  input[type="text"] {
+  input[type='text'] {
   color: #222a42 !important;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .modal .chosen-container-multi .chosen-choices {
@@ -204,14 +204,14 @@
   .chosen-container-multi
   .chosen-choices
   li.search-field
-  input[type="text"] {
+  input[type='text'] {
   padding: 10px 10px 10px 10px;
   height: calc(2.25rem + 2px);
   color: #adb5bd;
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.428571;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .modal .chosen-drop ul li {
@@ -311,4 +311,19 @@ textarea.form-control:active {
 .error-highlight.chosen-container .chosen-drop {
   border: 0.5px solid red;
   box-shadow: 0px 0px 5px red;
+}
+
+/* buttons */
+.check {
+  color: rgb(4, 221, 4);
+  cursor: pointer;
+}
+
+.cross {
+  color: rgb(221, 4, 4);
+  cursor: pointer;
+}
+
+button {
+  width: fit-content;
 }

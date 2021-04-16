@@ -17,21 +17,25 @@
 <html lang="en">
 
 <head>
+
     <title>
-        GTIA | Points
+        GTIA | VP Portal
     </title>
     <%- include('partials/header.ejs')%>
         <link href="assets/moon/css/points.css" rel="stylesheet" />
+
+
+        <!--<link href="../assets/custom/css/points.css" rel="stylesheet" /> -->
 </head>
 
 <body class="white-content">
     <div class="wrapper">
         <div class="sidebar">
-            <%- include('partials/toolbar.ejs', {user: user, currentPage: 'points' })%>
+            <%- include('partials/toolbar.ejs', {user: user, currentPage: 'vp_portal' })%>
         </div>
         <div class="main-panel">
             <!-- Navbar -->
-            <%- include('partials/top_navbar.ejs', {title: 'Points' })%>
+            <%- include('partials/top_navbar.ejs', {title: 'VP Portal' })%>
                 <!-- End Navbar -->
                 <div class="content">
                     <!-- The Modal -->
@@ -41,7 +45,7 @@
                             <div class="modal-body">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="title">New Points Request</h5>
+                                        <h5 class="title">Points Request For You</h5>
                                     </div>
                                     <div class="card-body">
                                         <form>
@@ -105,13 +109,39 @@
                         </div>
                     </div>
 
+                    <!-- The Modal -->
+                    <!-- <div id="approveModal" class="modal">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="title">Approve Point: </h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="row card-footer">
+                      <div class="col-md-4 pl-md-1">
+                        <button
+                          onclick="createNewPointsRequest()"
+                          class="btn btn-fill btn-primary accept-profile-btn"
+                        >
+                          Approve Request
+                        </button>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
                     <div class="row">
                         <div class="col-12">
                             <div class="card card-user-management">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-sm-6 text-left">
-                                            <h2 class="card-title">Work Points</h2>
+                                            <h2 class="card-title">Points to Approve</h2>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
@@ -135,10 +165,31 @@
                                                         <i class="tim-icons icon-gift-2"></i>
                                                     </span>
                                                 </label>
+                                                <label class="btn btn-sm btn-primary btn-simple"
+                                                    onclick="ViewApprovedWorkPoints()">
+                                                    <input type="radio" class="d-none d-sm-none" name="options" />
+                                                    <span
+                                                        class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Approved
+                                                        Work Points</span>
+                                                    <span class="d-block d-sm-none">
+                                                        <i class="tim-icons icon-gift-2"></i>
+                                                    </span>
+                                                </label>
+                                                <label class="btn btn-sm btn-primary btn-simple"
+                                                    onclick="ViewApprovedSocialPoints()">
+                                                    <input type="radio" class="d-none d-sm-none" name="options" />
+                                                    <span
+                                                        class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Approved
+                                                        Social Points</span>
+                                                    <span class="d-block d-sm-none">
+                                                        <i class="tim-icons icon-gift-2"></i>
+                                                    </span>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Table For Work-->
                                 <div class="card-body points-table">
                                     <input type="text" class="form-control user-search" id="search_receipt_1"
                                         placeholder="SEARCH" value="" oninput="MakeSearchQuery()" />
@@ -148,10 +199,11 @@
                                                 <thead class="text-primary">
                                                     <tr>
                                                         <th>Date</th>
-                                                        <th>Type</th>
+                                                        <th>Person</th>
                                                         <th>Description</th>
                                                         <th>Points</th>
                                                         <th>Status</th>
+                                                        <th class="text-right">Action</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -176,62 +228,24 @@
                         </div>
                     </div>
                 </div>
-                <!--
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a href="javascript:void(0)" class="nav-link">
-                                    Creative Tim
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0)" class="nav-link">
-                                    About Us
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0)" class="nav-link">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="copyright">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>2018 made with <i class="tim-icons icon-heart-2"></i> by
-                            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
-                        </div>
-                    </div>
-                </footer>-->
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="assets/template/js/core/jquery.min.js"></script>
-    <script src="assets/template/js/core/popper.min.js"></script>
-    <script src="assets/template/js/core/bootstrap.min.js"></script>
-    <script src="assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/template/js/core/jquery.min.js"></script>
+    <script src="../assets/template/js/core/popper.min.js"></script>
+    <script src="../assets/template/js/core/bootstrap.min.js"></script>
+    <script src="../assets/template/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-    <script src="assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
-    <script src="assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-    <script src="assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../assets/template/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../assets/template/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../assets/template/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
     <!-- Chart JS -->
-    <script src="assets/template/js/plugins/chartjs.min.js"></script>
+    <script src="../assets/template/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
-    <script src="assets/template/js/plugins/bootstrap-notify.js"></script>
+    <script src="../assets/template/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
-    <script src="assets/moon/js/points.js"></script>
-
-    <script>
-        function closeModalButton(e) {
-            modal = $(e).closest('.modal')
-            modal.removeClass("view");
-            modal.addClass('raise')
-        }
-    </script>
-
+    <script src="../assets/template/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="../assets/moon/js/vp.js"></script>
 </body>
 
 </html>

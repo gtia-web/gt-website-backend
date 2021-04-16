@@ -1,43 +1,10 @@
 const express = require('express');
 const router = express.Router();
 //const { isLoggedIn, isVP } = require('../currentUserMiddleware');
-const PointsRequest = require('../models/PointsRequest');
 const PointsReceipt = require('../models/PointsReceipt');
 const UserProfile = require('../models/UserProfile');
 const authentication = require("../utility/authentication");
 var mongoose = require('mongoose');
-
-/**
- * Retrieve all points requested by a given user
- * Can pass additional request queries for filtering:
- *  - pointStatus: [pending, approved]
- */
-/**  router.get('/', authentication.checkAuthenticated, async (req, res) => {
-    try {
-        const { pointStatus } = req.query.pointsStatus;
-        const searchParams = {
-            requester: req.currentUser._id,
-        }
-
-        if (pointStatus === "pending") {
-            searchParams["isPending"] = true;
-        } else if (pointStatus === "approved") {
-            searchParams["isPending"] = false;
-        }
-
-        const pointRequest = await PointsRequest.find(searchParams);
-
-        return res.json({
-            runtimeErrorOccurred: false,
-            pointRequest
-        });
-    } catch (err) {
-        return res.json({
-            runtimeErrorOccurred: true,
-            errorMessage: err
-        });
-    }
-}); **/
 
 
 //Serve Point Page

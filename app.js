@@ -26,10 +26,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
-}));
+    saveUninitialized: true,
+  })
+);
 
-app.use(cookieParser(process.env.SESSION_SECRET))
+app.use(cookieParser(process.env.SESSION_SECRET));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -48,10 +49,10 @@ app.use('/events', require('./routes/events'));
 app.use('/sheets', require('./routes/sheets'));
 app.use('/globalvariables', require('./routes/globalvariables'));
 app.use('/api/events', require('./routes/api/events'));
-app.use(express.static("public"));
+app.use('/vp', require('./routes/vp'));
+app.use(express.static('public'));
 
 //---------------------End of Routes-----------------------//
-
 
 /**
 io.on('connection', socket => {
@@ -68,14 +69,14 @@ io.on('connection', socket => {
 
 //setInterval(notification.EmailNotificationUpdate, parseInt(process.env.NOTIFICATION_UPDATE_INTERVAL));
 
-
 //Connect to DB
 mongoose.connect(
-    process.env.DB_CONNECTION, 
-    {useNewUrlParser: true,
-    useUnifiedTopology: true },
-    () => { console.log('Connected to DB!')
-});
+  process.env.DB_CONNECTION,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log('Connected to DB!');
+  }
+);
 
 http.listen(process.env.PORT, () => console.log('The app is running on localhost:' + process.env.PORT));
 
