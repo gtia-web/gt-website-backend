@@ -17,6 +17,11 @@ router.get('/faq', (req, res) => {
     res.render('sun/faq.ejs');
 });
 
+router.get('/about', (req, res) => {
+    res.render('sun/about.ejs');
+});
+
+
 /**
  * Get Home Page if Logged in
  */

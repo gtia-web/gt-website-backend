@@ -69,6 +69,7 @@ async function getEvents(url) {
                 throw Error('No events data');
             }
 
+            // Plesk is running Node version < 14. Hence optional chaining is not supported :(
             return {
                 events: events_data.data,
                 next: events_data && events_data.paging && events_data.paging.next
