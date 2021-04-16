@@ -194,6 +194,7 @@ router.post('/data/self', authentication.checkAuthenticated, authentication.chec
  */
 router.post('/update', authentication.checkAuthenticated, authentication.checkAuthenticatedAdmin, async (req, res) => {
     let data = req.body.data
+    let user = await UserProfile.findById(data.id, { HashedPassword: 0})
     
     previousPoint = {
         socialpoints: user.Points.SocialPoints,
