@@ -1,0 +1,72 @@
+.contact_form {
+  max-width: 1080px;
+  margin: 30px auto;
+}
+.contact_info_item {
+  padding: 25px 0;
+}
+.contact_info_item:nth-child(1) {
+  border-bottom: 1px solid #8a898f;
+}
+
+.contact_info_item h6 {
+  margin-bottom: 20px;
+  color: #222d39;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.contact_info_item p {
+  margin-bottom: 8px;
+  font-weight: 300;
+}
+
+.text_box {
+  margin-bottom: 30px;
+}
+
+.text_box textarea,
+.text_box input[type="text"],
+.text_box input[type="email"] {
+  font: 300 15px/60px "Poppins", sans-serif;
+  color: #222d39;
+  height: 60px;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0px 10px 30px rgb(0 0 0 / 25%);
+  width: 100%;
+  border: 1px solid #fff;
+  padding-left: 30px;
+  transition: all 0.5 ease-in-out;
+  outline: none;
+}
+
+.text_box textarea {
+  height: 300px;
+}
+
+.text_box textarea:focus,
+.text_box input[type="text"]:focus,
+.text_box input[type="email"]:focus {
+  border-color: #f2effc;
+  box-shadow: 0px 10px 30px rgb(0 0 0 / 50%);
+  transition: all 0.5 ease-in-out;
+}
+
+.submit_button {
+  color: #fff;
+  border-radius: 5px;
+  padding: 15px 30px;
+  border: 1px solid #212529;
+  margin-left: 12px;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  display: inline-block;
+  min-width: 180px;
+  text-align: center;
+  background: #212529;
+  margin-top: 0px;
+  color: white !important;
+  background-color: #212529;
+  box-shadow: 0px 10px 30px rgb(0 0 0 / 25%);
+}
