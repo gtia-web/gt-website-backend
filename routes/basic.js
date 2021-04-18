@@ -28,12 +28,28 @@ router.get("/contact", (req, res) => {
   });
 });
 
-router.post("/contact", (req, res) => {
+router.post("/contact", async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
-    res.render("sun/contact.ejs", {
-      success: true,
-      error: false,
+    const mailOptions = {
+      from: email,
+      to: "tiptracker302@gmail.com",
+      subject: subject,
+      text: `${name} says\n\n${message}`,
+    };
+
+    const transporter = await gcManager.getEmailTransporter();
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        res.render("sun/contact.ejs", {
+          success: false,
+          error: true,
+        });
+      }
+      res.render("sun/contact.ejs", {
+        success: true,
+        error: false,
+      });
     });
   } catch (err) {
     res.render("sun/contact.ejs", {
