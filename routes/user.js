@@ -38,8 +38,8 @@ router.get('/login', authentication.checkNotAuthenticated, (req, res) => {
 
 // Submit login information for login
 router.post('/login', authentication.checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: "/user/login/success",
-    failureRedirect: "/user/login/fail",
+    successRedirect: "/user/register",// /user/login/success
+    failureRedirect: "/home", // /user/login/fail
     failureFlash: true
 }))
 
