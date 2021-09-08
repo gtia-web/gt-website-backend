@@ -47,6 +47,7 @@ app.use('/signups', require('./routes/signups'));
 app.use('/points', require('./routes/points'));
 app.use('/events', require('./routes/events'));
 app.use('/sheets', require('./routes/sheets'));
+app.use('/resources', require('./routes/resources'));
 app.use('/globalvariables', require('./routes/globalvariables'));
 app.use('/api/events', require('./routes/api/events'));
 app.use('/vp', require('./routes/vp'));
