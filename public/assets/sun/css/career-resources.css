@@ -1,0 +1,15 @@
+h3 {
+    color: var(--primary);
+}
+
+#on_campus_resources ol > li{
+    margin: 15px 0;
+}
+
+#on_campus_resources ol li p{
+    margin: 0;
+}
+
+#career_resources p, #career_resources li {
+    font-size: 1.25rem;
+}
