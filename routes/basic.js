@@ -103,4 +103,8 @@ router.get("/image", (req, res) => {
   res.render("moon/imageUpload.ejs");
 });
 
+router.get("/career-resources", (req, res) => {
+  res.render("sun/career-resources.ejs");
+});
+
 module.exports = router;
