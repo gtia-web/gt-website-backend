@@ -126,6 +126,15 @@ To setup the environment variables
 
 Note, these variables can be set directly. However, by using `.env`, these variables are only available during the runtime of the application and are easier to manage.
 
+The following environment variables are required for `Moon` component:
+- `DB_CONNECTION`: This is used to specify connection string the to database.
+- `SESSION_SECRET`: This is used to encrypt the session data for a user.
+- **Facebook**: This is required to show upcoming/past events in the home page.
+  - `FB_APP_ID`: This is used to specify the application to access the GTIA Facebook page on behalf of the admin.
+  - `FB_APP_SECRET`: This is used to authenticate the application.
+  - `FB_PAGE_ACCESS_TOKEN`: This is a long-term token used to access the GTIA Facebook page on behalf of the admin user. If new token needs to be generated, see instructions [here](./utility/facebookUtils.js).
+  - `FB_PAGE_ID`: This is the ID for the GTIA Facebook page.
+
 <br />
 
 ## Run Instructions
