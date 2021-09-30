@@ -122,10 +122,9 @@ To setup the environment variables
 
     # Configurations
     PORT=8080
-
     ```
 
-    Note, these variables can be set directly. However, by using `.env`, these variables are only available during the runtime of the application and are easier to manage.
+Note, these variables can be set directly. However, by using `.env`, these variables are only available during the runtime of the application and are easier to manage.
 
 <br />
 
@@ -139,6 +138,7 @@ This will start the application at http://localhost:8080 by default. Simply visi
 
 If you want to use a different port, update it in `.env` file.
 
+<br />
 
 ## Deployments
 The website is currently deployed to and hosted from `hosting.gatech.edu`.
