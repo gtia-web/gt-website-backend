@@ -9,7 +9,6 @@
 
 /* ======================================= */
 
-
 .nav-item {
   margin: 5px 0;
 }
@@ -37,7 +36,8 @@ h3 {
   font-weight: 600;
 }
 
-p, li {
+p,
+li {
   font-family: "Roboto", sans-serif;
   font-size: 1.25rem;
 }
@@ -193,4 +193,22 @@ img#home-contact-image {
   content: "<";
   font-size: 55px;
   color: red;
+}
+
+/* About Us Page */
+
+.aboutUsCard {
+  text-align: center;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  transition: all 0.5s ease 0s;
+  border-radius: 20px;
+}
+
+.aboutUsCard:hover {
+  text-align: center;
+  background: #f5f5f5;
+  transition: all 0.5s ease 0s;
 }
