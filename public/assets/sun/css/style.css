@@ -129,6 +129,10 @@ a:hover {
   min-height: 64px;
 }
 
+.event-card a {
+  text-decoration: none;
+}
+
 #sponsor img {
   object-fit: contain;
   width: 100%;

@@ -69,7 +69,15 @@
           <div class="row d-flex justify-content-center" id="events-container">
             <div class="col-md-4">
               <div
-                class="card event-card p-5 d-flex flex-column align-items-center my-3"
+                class="
+                  card
+                  event-card
+                  p-5
+                  d-flex
+                  flex-column
+                  align-items-center
+                  my-3
+                "
               >
                 <div class="spinner-border text-warning my-3" role="status">
                   <span class="sr-only">Loading...</span>
@@ -79,7 +87,15 @@
             </div>
             <div class="col-md-4">
               <div
-                class="card event-card p-5 d-flex flex-column align-items-center my-3"
+                class="
+                  card
+                  event-card
+                  p-5
+                  d-flex
+                  flex-column
+                  align-items-center
+                  my-3
+                "
               >
                 <div class="spinner-border text-warning my-3" role="status">
                   <span class="sr-only">Loading...</span>
@@ -89,7 +105,15 @@
             </div>
             <div class="col-md-4">
               <div
-                class="card event-card p-5 d-flex flex-column align-items-center my-3"
+                class="
+                  card
+                  event-card
+                  p-5
+                  d-flex
+                  flex-column
+                  align-items-center
+                  my-3
+                "
               >
                 <div class="spinner-border text-warning my-3" role="status">
                   <span class="sr-only">Loading...</span>
@@ -161,7 +185,7 @@
               </a>
             </div>
 
-<!--             <div class="col-12 col-md-6 p-5 d-flex flex-column text-center">
+            <!--             <div class="col-12 col-md-6 p-5 d-flex flex-column text-center">
               <a href="https://www.numerade.com/" target="_blank" class="image">
                 <img
                   src="../../assets/sun/img/sponsor/numerade.png"
@@ -199,15 +223,6 @@
           )}... <a href="${link}" target="_blank">See More</a>`;
         }
 
-        let cardFooter = "";
-        if (!isPastEvent) {
-          cardFooter = `
-                <a class="card-footer text-center font-weight-bold" href="${link}" target="_blank">
-                    RSVP 
-                </a>
-            `;
-        }
-
         return `
             <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
                 <div class="card event-card my-3 ${
@@ -222,7 +237,9 @@
                             
                             <p class="card-text color-dark-secondary">${description}</p>
                         </div>
-                        ${cardFooter}
+                        <a class="card-footer text-center font-weight-bold" href="${link}" target="_blank">
+                          View Event
+                        </a>
                     </div>
                 </div>
             </div>
@@ -237,13 +254,8 @@
             eventContainer.innerHTML = "";
             if (result.events) {
               result.events.forEach((event) => {
-                const {
-                  name,
-                  description,
-                  start_time,
-                  link,
-                  isPastEvent,
-                } = event;
+                const { name, description, start_time, link, isPastEvent } =
+                  event;
                 eventContainer.innerHTML += createEventCard(
                   name,
                   description,
