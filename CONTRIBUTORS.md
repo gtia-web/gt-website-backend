@@ -1,5 +1,5 @@
 Ishan Baniya
 Sharon Kim
 Isabelle Ilyia
-Ian Loo
+Ian Loo Loo
 Faris Durrani
