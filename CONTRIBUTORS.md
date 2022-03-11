@@ -1,3 +1,6 @@
 Ishan Baniya
-Sharon Kim
 git 
+Sharon Kim
+Isabelle Ilyia
+Ian Loo Loo
+Faris Durrani

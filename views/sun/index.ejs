@@ -1,191 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>GTIA | Home</title>
-    <%- include('partials/header.ejs') %>
+    <head>
+        <title>GTIA | Home</title>
+        <%- include('partials/header.ejs') %>
 
-    <link href="../../assets/sun/css/style.css" rel="stylesheet" />
-  </head>
+        <link href="../../assets/sun/css/style.css" rel="stylesheet" />
+    </head>
 
-  <body>
-    <%- include('partials/navbar.ejs', {currentPage: 'home' })%>
+    <body>
+        <%- include('partials/navbar.ejs', {currentPage: 'home' })%>
 
-    <section>
-      <div class="row">
-        <div class="col-12 col-lg-5">
-          <div class="home-title">
-            <h1>INTERNATIONAL AMBASSADORS AT GEORGIA TECH</h1>
-            <p class="color-dark-secondary lead">
-              Bringing the world to Georgia Tech and <br />
-              Georgia Tech to the world.
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-lg-7 px-0">
-          <img
-            src="../../assets/sun/img/group_1.png"
-            class="pt-2"
-            width="100%"
-          />
-        </div>
-      </div>
-    </section>
-
-    <section class="pt-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-6 col-lg-5 m-auto">
-            <img src="../../assets/sun/img/about_1.png" width="100%" />
-          </div>
-          <div class="col-lg-5 m-auto">
-            <div class="about-text">
-              <h2>WHAT WE DO</h2>
-              <p class="color-dark-secondary">
-                International Ambassadors at Georgia Tech (GTIA) is an
-                organization dedicated to supporting Georgia Tech students, both
-                international and domestic. Our tight-knit organization has
-                roughly 60 members from over 20 nations and five continents, and
-                together we work to celebrate our student body’s diversity and
-                internationality by providing resources for international
-                students and hosting multiple cultural festivities throughout
-                the year. Our talented and hardworking members love to connect
-                with students -- past, present, and future -- to make Tech a
-                welcoming and diverse environment for everyone.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pt-4 my-4">
-      <div class="row">
-        <div class="col">
-          <h3 class="text-center">EVENTS</h3>
-        </div>
-      </div>
-      <div class="bg-paint-1 py-5">
-        <div class="container">
-          <div class="row d-flex justify-content-center" id="events-container">
-            <div class="col-md-4">
-              <div
-                class="
-                  card
-                  event-card
-                  p-5
-                  d-flex
-                  flex-column
-                  align-items-center
-                  my-3
-                "
-              >
-                <div class="spinner-border text-warning my-3" role="status">
-                  <span class="sr-only">Loading...</span>
+        <section>
+            <div class="row">
+                <div class="col-12 col-lg-5">
+                    <div class="home-title">
+                        <h1>INTERNATIONAL AMBASSADORS AT GEORGIA TECH</h1>
+                        <p class="color-dark-secondary lead">
+                            Bringing the world to Georgia Tech and <br />
+                            Georgia Tech to the world.
+                        </p>
+                    </div>
                 </div>
-                Loading...
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div
-                class="
-                  card
-                  event-card
-                  p-5
-                  d-flex
-                  flex-column
-                  align-items-center
-                  my-3
-                "
-              >
-                <div class="spinner-border text-warning my-3" role="status">
-                  <span class="sr-only">Loading...</span>
+                <div class="col-12 col-lg-7 px-0">
+                    <img
+                        src="../../assets/sun/img/group_1.png"
+                        class="pt-2"
+                        width="100%"
+                    />
                 </div>
-                Loading...
-              </div>
             </div>
-            <div class="col-md-4">
-              <div
-                class="
-                  card
-                  event-card
-                  p-5
-                  d-flex
-                  flex-column
-                  align-items-center
-                  my-3
-                "
-              >
-                <div class="spinner-border text-warning my-3" role="status">
-                  <span class="sr-only">Loading...</span>
+        </section>
+
+        <section class="pt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-lg-5 m-auto">
+                        <img
+                            src="../../assets/sun/img/about_1.png"
+                            width="100%"
+                        />
+                    </div>
+                    <div class="col-lg-5 m-auto">
+                        <div class="about-text">
+                            <h2>WHAT WE DO</h2>
+                            <p class="color-dark-secondary">
+                                International Ambassadors at Georgia Tech (GTIA)
+                                is an organization dedicated to supporting
+                                Georgia Tech students, both international and
+                                domestic. Our tight-knit organization has
+                                roughly 60 members from over 20 nations and five
+                                continents, and together we work to celebrate
+                                our student body’s diversity and
+                                internationality by providing resources for
+                                international students and hosting multiple
+                                cultural festivities throughout the year. Our
+                                talented and hardworking members love to connect
+                                with students -- past, present, and future -- to
+                                make Tech a welcoming and diverse environment
+                                for everyone.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                Loading...
-              </div>
             </div>
-          </div>
-        </div>
+        </section>
 
-        <div class="text-center">
-          <a
-            href="https://www.facebook.com/GTIAmbassadors/events/"
-            target="_blank"
-            class="btn sponsor-button my-5"
-            role="button"
-            >View all events</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <section class="pt-4 my-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-5 d-flex align-items-center">
-            <div id="home-contact-text">
-              <h2 class="pb-4">HAVE QUESTIONS?</h2>
-              <p class="color-dark-secondary">
-                If you want to learn more about life on campus as an
-                international student, are interested in joining GTIA, or would
-                like to sponsor us, check out our
-                <a href="/faq">FAQ page!</a>
-              </p>
-              <p class="color-dark-secondary">
-                Couldn’t find the answer to your question? Send us a message!
-              </p>
+        <section class="pt-4 my-4">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center">EVENTS</h3>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-7">
-            <img
-              src="../../assets/sun/img/group_2.png"
-              id="home-contact-image"
-              width="100%"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+            <div class="bg-paint-1 py-5">
+                <div class="container">
+                    <div
+                        class="row d-flex justify-content-center"
+                        id="events-container"
+                    >
+                        <div class="col-md-4">
+                            <div
+                                class="
+                                    card
+                                    event-card
+                                    p-5
+                                    d-flex
+                                    flex-column
+                                    align-items-center
+                                    my-3
+                                "
+                            >
+                                <div
+                                    class="spinner-border text-warning my-3"
+                                    role="status"
+                                >
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                Loading...
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div
+                                class="
+                                    card
+                                    event-card
+                                    p-5
+                                    d-flex
+                                    flex-column
+                                    align-items-center
+                                    my-3
+                                "
+                            >
+                                <div
+                                    class="spinner-border text-warning my-3"
+                                    role="status"
+                                >
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                Loading...
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div
+                                class="
+                                    card
+                                    event-card
+                                    p-5
+                                    d-flex
+                                    flex-column
+                                    align-items-center
+                                    my-3
+                                "
+                            >
+                                <div
+                                    class="spinner-border text-warning my-3"
+                                    role="status"
+                                >
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <section class="pt-5" id="sponsor">
-      <div class="text-center pb-5">
-        <h2>OUR SPONSORS</h2>
-        <p>Interested in sponsoring us?</p>
-        <a class="btn sponsor-button" href="/faq#collapse-sponsorship"
-          >View Sponsor FAQ</a
-        >
-      </div>
-
-      <div class="bg-paint-2">
-        <div
-          class="container d-flex justify-content-center align-items-center"
-          style="min-height: 540px"
-        >
-          <div class="row">
-            <div class="col-12 col-md-6 offset-md-3 p-5">
-              <a href="https://oie.gatech.edu/" target="_blank">
-                <img src="../../assets/sun/img/sponsor/oie.png" />
-              </a>
+                <div class="text-center">
+                    <a
+                        href="https://www.facebook.com/GTIAmbassadors/events/"
+                        target="_blank"
+                        class="btn sponsor-button my-5"
+                        role="button"
+                        >View all events</a
+                    >
+                </div>
             </div>
+        </section>
 
-            <!--             <div class="col-12 col-md-6 p-5 d-flex flex-column text-center">
+        <section class="pt-4 my-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 d-flex align-items-center">
+                        <div id="home-contact-text">
+                            <h2 class="pb-4">HAVE QUESTIONS?</h2>
+                            <p class="color-dark-secondary">
+                                If you want to learn more about life on campus
+                                as an international student, are interested in
+                                joining GTIA, or would like to sponsor us, check
+                                out our
+                                <a href="/faq">FAQ page!</a>
+                            </p>
+                            <p class="color-dark-secondary">
+                                Couldn’t find the answer to your question? Send
+                                us a message!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <img
+                            src="../../assets/sun/img/group_2.png"
+                            id="home-contact-image"
+                            width="100%"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="pt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-lg-5 m-auto">
+                        <img id="cookbook" src="../../assets/sun/img/cookbook_cover.png" width="100%" />
+                    </div>
+                    <div class="col-lg-5 m-auto" >
+                        <div class="about-text">
+                            <h2>INTERNATIONAL COOKBOOK</h2>
+                            <p class="color-dark-secondary">
+                                This collection of international recipes was put together with lots of love from Georgia Tech International Ambassadors.
+                                GTIA is devoted to celebrating cultural diversity, promoting awareness, and supporting the international student
+                                experience at Georgia Tech. And what better way to share culture than food? We’ve compiled these delicious recipes from
+                                our diverse members, so you can experience cultures from around the world from your own kitchen.
+                                Press the button below to purchase a 30 page pdf of the cookbook featuring 21 special, homemade recipes
+                                from around the globe!
+                            </p>
+                        </div>
+                        <a class="btn purchase-button" href="https://gtintlambassadors.gumroad.com/l/gtiacookbookf21">Purchase our cookbook</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="pt-5" >
+            <div
+                class="
+                    bg-paint-2
+                    container
+                    d-flex
+                    justify-content-center
+                    align-items-center
+                "
+                style="min-height: 540px"
+            >
+                <div class="row">
+                    <div class="col-12 col-md-6 d-flex align-items-center justify-content-center p-2">
+                        <a href="https://oie.gatech.edu/" target="_blank">
+                            <img src="../../assets/sun/img/sponsor/oie.png" />
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex align-items-center justify-content-center p-2">
+                        <a href="https://www.stickergiant.com/" target="_blank">
+                            <img
+                                src="../../assets/sun/img/sponsor/stickergiant.svg"
+                            />
+                        </a>
+                    </div>
+
+                    <!--             <div class="col-12 col-md-6 p-5 d-flex flex-column text-center">
               <a href="https://www.numerade.com/" target="_blank" class="image">
                 <img
                   src="../../assets/sun/img/sponsor/numerade.png"
@@ -199,40 +251,39 @@
                 experts!
               </small>
             </div> -->
-          </div>
-        </div>
-      </div>
-    </section>
+                </div>
+            </div>
+        </section>
 
-    <%- include('partials/footer.ejs') %> <%-
-    include('partials/common-scripts.ejs') %>
-    <script>
-      function createEventCard(
-        title,
-        description,
-        eventDate,
-        link,
-        isPastEvent
-      ) {
-        let is_trimmed_description = false;
-        if (description.length > 360) {
-          is_trimmed_description = true;
-          description = `${description.substring(
-            0,
-            360
-          )}... <a href="${link}" target="_blank">See More</a>`;
-        }
+        <%- include('partials/footer.ejs') %> <%-
+        include('partials/common-scripts.ejs') %>
+        <script>
+            function createEventCard(
+                title,
+                description,
+                eventDate,
+                link,
+                isPastEvent
+            ) {
+                let is_trimmed_description = false;
+                if (description.length > 360) {
+                    is_trimmed_description = true;
+                    description = `${description.substring(
+                        0,
+                        360
+                    )}... <a href="${link}" target="_blank">See More</a>`;
+                }
 
-        return `
+                return `
             <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
                 <div class="card event-card my-3 ${
-                  isPastEvent ? "disabled" : ""
+                    isPastEvent ? "disabled" : ""
                 }">    
                     <div class="card-body d-flex flex-column justify-content-between p-0">
                         <div class="p-4">
                             <h3 class="card-title">${title}</h3>
                             <h5 class="card-title">${new Date(
-                              eventDate
+                                eventDate
                             ).toLocaleDateString()}</h5>
                             
                             <p class="card-text color-dark-secondary">${description}</p>
@@ -244,30 +295,36 @@
                 </div>
             </div>
         `;
-      }
-
-      $(document).ready(function () {
-        var eventContainer = document.getElementById("events-container");
-        $.ajax({
-          url: "/api/events/facebook",
-          success: function (result) {
-            eventContainer.innerHTML = "";
-            if (result.events) {
-              result.events.forEach((event) => {
-                const { name, description, start_time, link, isPastEvent } =
-                  event;
-                eventContainer.innerHTML += createEventCard(
-                  name,
-                  description,
-                  start_time,
-                  link,
-                  isPastEvent
-                );
-              });
             }
-          },
-          error: function (result) {
-            eventContainer.innerHTML = `
+
+            $(document).ready(function () {
+                var eventContainer =
+                    document.getElementById("events-container");
+                $.ajax({
+                    url: "/api/events/facebook",
+                    success: function (result) {
+                        eventContainer.innerHTML = "";
+                        if (result.events) {
+                            result.events.forEach((event) => {
+                                const {
+                                    name,
+                                    description,
+                                    start_time,
+                                    link,
+                                    isPastEvent,
+                                } = event;
+                                eventContainer.innerHTML += createEventCard(
+                                    name,
+                                    description,
+                                    start_time,
+                                    link,
+                                    isPastEvent
+                                );
+                            });
+                        }
+                    },
+                    error: function (result) {
+                        eventContainer.innerHTML = `
                 <div class="col-md-4">
                     <div class="card event-card">
                         <div class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -276,9 +333,9 @@
                     </div>
                 </div>
                 `;
-          },
-        });
-      });
-    </script>
-  </body>
+                    },
+                });
+            });
+        </script>
+    </body>
 </html>
