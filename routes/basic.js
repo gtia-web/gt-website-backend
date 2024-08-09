@@ -33,7 +33,7 @@ router.post("/contact", async (req, res) => {
     const { name, email, subject, message } = req.body;
     const mailOptions = {
       from: email,
-      to: "gtinternationalambassadors@gmail.com",
+      to: "info@gtiambassadors.com",
       subject: subject,
       text: `${name} says\n\n${message}`,
     };
