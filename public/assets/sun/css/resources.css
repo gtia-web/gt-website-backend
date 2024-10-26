@@ -1,0 +1,95 @@
+/* academic-resources.css */
+
+/* General Page Styles */
+body {
+    padding: 2rem 0;
+}
+
+/* Headings */
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color); /* Assuming you have a CSS variable for primary color */
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color-dark); /* Slightly darker variation of primary color */
+}
+
+/* Paragraphs */
+p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--secondary-color); /* Assuming you have a secondary color variable */
+}
+
+/* Links */
+a.color-primary {
+    color: var(--link-color); /* Assuming a CSS variable for link color */
+    text-decoration: none;
+}
+
+a.color-primary:hover {
+    text-decoration: underline;
+}
+
+/* Lists */
+ul {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+li {
+    font-size: 1.2rem;
+    /* margin-bottom: 1rem; */
+}
+
+/* Section Spacing */
+section {
+    margin-bottom: 3rem;
+}
+
+/* Row and Column Spacing */
+.row {
+    margin-top: 2rem;
+}
+
+.col-md-7 {
+    margin-bottom: 2rem;
+}
+
+/* Custom Padding */
+.pl-5 {
+    padding-left: 3rem; /* Adjust if needed based on page layout */
+}
+
+/* Utility Classes (if needed) */
+.pt-5 {
+    padding-top: 3rem !important; /* Adjust as per your design needs */
+}
+
+/* Color Definitions */
+:root {
+    --primary-color: #004080; /* Example primary color */
+    --primary-color-dark: #003366; /* Darker version for headings */
+    --secondary-color: #666666; /* Example secondary text color */
+    --link-color: #1a73e8; /* Example link color */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pl-5 {
+        padding-left: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}

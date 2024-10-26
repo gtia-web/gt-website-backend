@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('../partials/header.ejs') %>
+        <title>GTIA | Housing Resources</title>
+        <link href="../../assets/sun/css/style.css" rel="stylesheet" />
+        <link href="../../assets/sun/css/resources.css" rel="stylesheet" />
+</head>
+
+<body>
+    <%- include('../partials/navbar.ejs', { currentPage: 'housing' }) %>
+
+        <div class="container py-5" id="housing">
+            <h1 class="text-center">Housing Resources</h1>
+
+            <section class="pt-5">
+                <div class="row">
+                    <div class="pl-5">
+                        <h3 class="color-dark-primary">Can you compare on-campus housing on East and West
+                            Campus?
+                        </h3>
+                        <p class="color-dark-secondary pt-3">
+                            You can find more information on the <a href="https://housing.gatech.edu/first-year"
+                                class="color-primary" target="_blank">GT housing website</a>.
+                        </p>
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="pl-5">
+                        <h3 class="color-dark-primary">What are LLCs, and what to they do?</h3>
+                        <p class="color-dark-secondary pt-3">
+                            LLC's (Living Learning Communities) are a program at Georgia Tech where students
+                            live
+                            and take classes with a close-knit group of like-minded students. Some benefits
+                            of
+                            LLC's
+                            include having the opportunity to be part of a er community on campus, access
+                            to
+                            LLC-specific courses, a special LLC designation on your degree, access to
+                            scholarships,
+                            and specialized advising and career services. Most LLC's are targeted towards
+                            first-year
+                            students, but other LLC's such as I-House and Women, Science, and Technology
+                            (WST)
+                            are
+                            available to upperclassmen as well. <a href="https://learningcommunities.gatech.edu/"
+                                class="color-primary" target="_blank">Learn more about LLC's at Georgia Tech</a>!
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

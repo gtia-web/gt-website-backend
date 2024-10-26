@@ -275,3 +275,30 @@ img#home-contact-image {
 .committee-card hr {
   color: rgb(175, 175, 175);
 }
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Hide dropdown menu initially */
+.nav-item .dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white; /* Make sure the background color matches your theme */
+}
+
+/* Ensure the dropdown does not close on hover */
+.dropdown-menu {
+  top: 100%; /* Positions the dropdown directly below the nav link */
+  left: 0;
+  z-index: 1000;
+  border: 1px solid rgba(0, 0, 0, 0.15); /* Customize border as per your theme */
+  border-radius: 0.25rem;
+}
+
+/* Optionally, style the dropdown items to match your existing theme */
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  color: #333; /* Customize text color */
+  text-decoration: none;
+}

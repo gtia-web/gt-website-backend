@@ -103,8 +103,23 @@ router.get("/image", (req, res) => {
   res.render("moon/imageUpload.ejs");
 });
 
+//resources routes
 router.get("/career-resources", (req, res) => {
   res.render("sun/career-resources.ejs");
 });
-
+router.get("/academics-resources", (req, res) => {
+  res.render("sun/resources/academics-resources.ejs");
+});
+router.get("/extracurricular-resources", (req, res) => {
+  res.render("sun/resources/extracurriculars-resources.ejs");
+});
+router.get("/atlanta-food-resources", (req, res) => {
+  res.render("sun/resources/atlanta-food-resources.ejs");
+});
+router.get("/housing-resources", (req, res) => {
+  res.render("sun/resources/housing-resources.ejs");
+});
+router.get("/transition-resources", (req, res) => {
+  res.render("sun/resources/transition-resources.ejs");
+});
 module.exports = router;

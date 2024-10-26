@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('../partials/header.ejs') %>
+        <title>GTIA | Extracurricular Resources</title>
+        <link href="../../assets/sun/css/style.css" rel="stylesheet" />
+        <link href="../../assets/sun/css/resources.css" rel="stylesheet" />
+</head>
+
+<body>
+    <%- include('../partials/navbar.ejs', { currentPage: 'extracurriculars' }) %>
+
+        <div class="container py-5" id="extracurriculars">
+            <h1 class="text-center">Extracurricular Resources</h1>
+
+            <section class="pt-5">
+                <div class="row">
+                    <div class="pl-5">
+                        <h3 class="color-dark-primary">What is the central resource to find all student
+                            organizations at Tech?</h3>
+                        <p class="color-dark-secondary pt-3">
+                            Once admitted to Georgia Tech, you can find campus organizations by using <a
+                                href="https://gatech.campuslabs.com/engage" class="color-primary"
+                                target="_blank">Engage</a>. On the "Organizations" page, you can filter for
+                            student
+                            orgs by selecting "Registered Student Organizations" in the "Braches" field.
+                        </p>
+                        <p class="color-dark-secondary ">
+                            Another great way to learn more about GT's student organizations is to check out
+                            the
+                            club tabling booths during FASET and the first week of classes in the Fall!
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="pt-2">
+                <div class="row">
+                    <div class="pl-5">
+                        <h3 class="color-dark-primary">What are some professional / major-related
+                            extracurriculars
+                            on campus?</h3>
+                        <p class="color-dark-secondary pt-3">
+                            There are many organizations that have an academic and/or professional focus.
+                            These
+                            organizations allow you to obtain valuable experience in an area you might want
+                            to
+                            work
+                            in later on. Some notable ones include <a href="http://ewbgt.org/" class="color-primary"
+                                target="_blank">Engineers Without Borders (EWB)</a>,
+                            <a href="https://bitsofgood.org/" class="color-primary" target="_blank">Bits of
+                                Good</a>, <a
+                                href="http://www.undergradresearch.gatech.edu/content/undergraduate-research-ambassadors"
+                                class="color-primary" target="_blank">Undergraduate Research Ambassadors
+                                (URA)</a>,
+                            <a href="https://gatech.campuslabs.com/engage/organization/consult-your-community"
+                                class="color-primary" target="_blank">Consult Your Community (CYC)</a>, and
+                            <a href="https://scc.gatech.edu/" class="color-primary" target="_blank">Student
+                                Competition Center Teams</a>. However, there are many more that cater to a
+                            very
+                            wide
+                            variety of interests.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>
